@@ -16,7 +16,7 @@ class MarsavinPlugin(plugins.SingletonPlugin):
     def update_config(self, config_):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
-        toolkit.add_resource('marsavin')
+        toolkit.add_resource('fanstatic', 'marsavin')
 
     # IActions
     def get_actions(self):
