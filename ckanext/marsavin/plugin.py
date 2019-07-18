@@ -1,39 +1,28 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
 import os
-import ckan.lib.mailer as mailer
-from six import text_type
 import logging
+from helpers import _mail_recipient
+import actions
 
 log = logging.getLogger(__name__)
 
 
-def _mail_recipient(recipient=None, email_dict=None):
-    try:
-        # send email
-        email = {'recipient_name': recipient['display_name'],
-                 'recipient_email': recipient['email'],
-                 'subject': email_dict['subject'],
-                 'body': email_dict['body'],
-                 #  'headers': {'header1': 'value1'}
-                 }
-        mailer.mail_recipient(**email)
-
-    except mailer.MailerException as e:
-        toolkit.h.flash_error(toolkit._('Could not send an email: %s') %
-                      text_type(e))
-        raise
-    return
-
-
 class MarsavinPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
+    plugins.implements(plugins.IActions)
 
     # IConfigurer
     def update_config(self, config_):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
-        toolkit.add_resource('fanstatic', 'marsavin')
+        toolkit.add_resource('marsavin')
+
+    # IActions
+    def get_actions(self):
+        return {
+            "ckanext_marsavin_reqaccess_create": actions.reqaccess_create
+        }
 
 
 class MarsavinResourcePlugin(plugins.SingletonPlugin):
