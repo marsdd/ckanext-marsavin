@@ -1,0 +1,7 @@
+{% ckan_extends %}
+
+{% block all_user_agents %}
+  {{ super() }}
+  {# a.s. TODO remove disallow all #}
+  Disallow: /
+{% endblock %}
