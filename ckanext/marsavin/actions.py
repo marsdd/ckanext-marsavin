@@ -3,6 +3,7 @@ import ckan.logic as logic
 import ckan
 import ckan.lib.dictization.model_save as model_save
 import logging
+from ckan.plugins import toolkit
 
 # Define some shortcuts
 # Ensure they are module-private so that they don't get loaded as available
@@ -74,8 +75,7 @@ def reqaccess_create(context, data_dict):
         '\n\nMessage:\n' + data_dict['user_msg']
     }
 
-    # a.s. send a msg to data maintainer
-    if _mail_recipient(recipient, email_dict):
-        log.info('create.py: a.s. - email to a maintainer sent')
+    toolkit.enqueue_job(_mail_recipient, [recipient, email_dict])
+    log.info('create.py: a.s. - email to a maintainer enqueued')
 
     return data_dict
