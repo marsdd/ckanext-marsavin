@@ -1,0 +1,26 @@
+/* a.s. */
+.homepage.layout-1 .stats {
+  margin-top: 20px;
+}
+
+.homepage.layout-1 .row1 .col2 {
+    /* a.s. move search box to the top on the home page */
+    /* position: absolute; */
+    bottom: 0;
+    right: 0;
+  }
+.masthead {
+  margin-bottom: initial;
+  padding: 10px 0;
+  color: #000;
+  background: #ffffff url("/base/images/bg.png");
+}
+.masthead .navigation .nav-pills li a:hover,
+.masthead .navigation .nav-pills li a:focus,
+.masthead .navigation .nav-pills li.active a {
+  background-color: #eaeaea;
+}
+.masthead .nav>.active>a:focus {
+  color: #133c55;
+  text-shadow: none;
+}
