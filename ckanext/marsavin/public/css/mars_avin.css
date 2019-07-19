@@ -5,7 +5,7 @@
 
 .homepage.layout-1 .row1 .col2 {
     /* a.s. move search box to the top on the home page */
-    /* position: absolute; */
+    position: static;
     bottom: 0;
     right: 0;
   }
