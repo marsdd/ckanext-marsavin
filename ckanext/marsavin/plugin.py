@@ -10,7 +10,6 @@ log = logging.getLogger(__name__)
 
 class MarsavinPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
-    plugins.implements(plugins.IActions)
 
     # IConfigurer
     def update_config(self, config_):
@@ -18,12 +17,52 @@ class MarsavinPlugin(plugins.SingletonPlugin):
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('fanstatic', 'marsavin')
 
+
+class MarsavinRequestAccessPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
+    plugins.implements(plugins.IActions)
+    plugins.implements(plugins.IDatasetForm)
+
     # IActions
     def get_actions(self):
         return {
             "ckanext_marsavin_reqaccess_create": actions.reqaccess_create
         }
 
+    def create_package_schema(self):
+        # let's grab the default schema in our plugin
+        schema = super(MarsavinRequestAccessPlugin, self).create_package_schema()
+
+        schema.update({
+            # a.s. validate maintainer fields aren't empty
+            'maintainer': [toolkit.get_validator('not_empty'),
+                            toolkit.get_validator('unicode_safe')],
+            'maintainer_email': [toolkit.get_validator('not_empty'),
+                           toolkit.get_validator('unicode_safe')],
+            # a.s. additional fields Jun 7, 2019
+            'associated_tasks': [toolkit.get_validator('ignore_missing'),
+                           toolkit.get_validator('unicode_safe')],
+            'collection_period': [toolkit.get_validator('ignore_missing'),
+                           toolkit.get_validator('unicode_safe')],
+            'geographical_area': [toolkit.get_validator('ignore_missing'),
+                           toolkit.get_validator('unicode_safe')],
+            'number_of_instances': [toolkit.get_validator('not_empty'),
+                           toolkit.get_validator('unicode_safe')],
+            'number_of_missing_values': [toolkit.get_validator('ignore_missing'),
+                           toolkit.get_validator('unicode_safe')],
+            'pkg_description': [toolkit.get_validator('not_empty'),
+                           toolkit.get_validator('unicode_safe')],
+        })
+        return schema
+
+    def is_fallback(self):
+        # Return True to register this plugin as the default handler for
+        # package types not handled by any other IDatasetForm plugin.
+        return True
+
+    def package_types(self):
+        # This plugin doesn't handle any special package types, it just
+        # registers itself as the default (above).
+        return []
 
 class MarsavinResourcePlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IResourceController)

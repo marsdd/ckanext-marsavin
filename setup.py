@@ -83,6 +83,7 @@ setup(
         marsavin=ckanext.marsavin.plugin:MarsavinPlugin
         marsavinResource=ckanext.marsavin.plugin:MarsavinResourcePlugin
         marsavinPackage=ckanext.marsavin.plugin:MarsavinPackagePlugin
+        MarsavinRequestAccess=ckanext.marsavin.plugin:MarsavinRequestAccessPlugin
 
         [babel.extractors]
         ckan = ckan.lib.extract:extract_ckan
