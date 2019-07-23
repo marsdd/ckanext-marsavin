@@ -1,10 +1,11 @@
 import ckan.plugins as plugins
 import ckan.plugins.toolkit as toolkit
+from flask import Blueprint
 import os
 import logging
 from helpers import _mail_recipient
 import actions
-
+from views.request_access import RequestAccessView
 log = logging.getLogger(__name__)
 
 
@@ -18,9 +19,11 @@ class MarsavinPlugin(plugins.SingletonPlugin):
         toolkit.add_resource('fanstatic', 'marsavin')
 
 
-class MarsavinRequestAccessPlugin(plugins.SingletonPlugin, toolkit.DefaultDatasetForm):
+class MarsavinRequestAccessPlugin(plugins.SingletonPlugin,
+                                  toolkit.DefaultDatasetForm):
     plugins.implements(plugins.IActions)
     plugins.implements(plugins.IDatasetForm)
+    plugins.implements(plugins.IBlueprint)
 
     # IActions
     def get_actions(self):
@@ -30,7 +33,8 @@ class MarsavinRequestAccessPlugin(plugins.SingletonPlugin, toolkit.DefaultDatase
 
     def create_package_schema(self):
         # let's grab the default schema in our plugin
-        schema = super(MarsavinRequestAccessPlugin, self).create_package_schema()
+        schema = super(MarsavinRequestAccessPlugin,
+                        self).create_package_schema()
 
         schema.update({
             # a.s. validate maintainer fields aren't empty
@@ -47,7 +51,8 @@ class MarsavinRequestAccessPlugin(plugins.SingletonPlugin, toolkit.DefaultDatase
                            toolkit.get_validator('unicode_safe')],
             'number_of_instances': [toolkit.get_validator('not_empty'),
                            toolkit.get_validator('unicode_safe')],
-            'number_of_missing_values': [toolkit.get_validator('ignore_missing'),
+            'number_of_missing_values': [toolkit.get_validator(
+                 'ignore_missing'),
                            toolkit.get_validator('unicode_safe')],
             'pkg_description': [toolkit.get_validator('not_empty'),
                            toolkit.get_validator('unicode_safe')],
@@ -63,6 +68,15 @@ class MarsavinRequestAccessPlugin(plugins.SingletonPlugin, toolkit.DefaultDatase
         # This plugin doesn't handle any special package types, it just
         # registers itself as the default (above).
         return []
+
+    # IBlueprint
+    def get_blueprint(self):
+        bp = Blueprint(u'req_access', self.__module__)
+        bp.add_url_rule("/request_access",
+                        view_func=RequestAccessView.as_view(str(
+                            u'request_access')))
+        return bp
+
 
 class MarsavinResourcePlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IResourceController)
@@ -80,12 +94,14 @@ class MarsavinResourcePlugin(plugins.SingletonPlugin):
                     u'Package Name: ' + email_context.name + '\n' + \
                     u'Package Title: ' + email_context.title + '\n' + \
                     u'Package Author: ' + email_context.author + '\n' + \
-                    u'Package Maintainer: ' + email_context.maintainer + '\n' + \
+                    u'Package Maintainer: ' + email_context.maintainer + \
+                    '\n' + \
                     u'Package Notes: ' + email_context.notes + '\n' + \
                     u'--------------------------------' + '\n' + \
                     u'Resource Name: ' + email_resource.name + '\n' + \
                     u'Resource URL: ' + email_resource.url + '\n' + \
-                    u'Resource Description: ' + email_resource.description + '\n' + \
+                    u'Resource Description: ' + email_resource.description + \
+                    '\n' + \
                     u'--------------------------------' + '\n'
         }
 
@@ -95,7 +111,8 @@ class MarsavinResourcePlugin(plugins.SingletonPlugin):
         toolkit.enqueue_job(_mail_recipient, [recipient, email_dict])
 
         log.info(
-            'create.py.resource_create: a.s. - email to OCE distribution group sent')
+            'create.py.resource_create: a.s. - email to OCE distribution '
+            'group sent')
 
     def before_create(self, context, resource):
         u'''
@@ -209,7 +226,8 @@ class MarsavinPackagePlugin(plugins.SingletonPlugin):
         toolkit.enqueue_job(_mail_recipient, [recipient, email_dict])
 
         log.info(
-            'create.py.package_create: a.s. - email to OCE distribution group sent - s.h. moved to plugin')
+            'create.py.package_create: a.s. - email to OCE distribution '
+            'group sent - s.h. moved to plugin')
 
     def read(self, entity):
         u'''Called after IGroupController.before_view inside package_read.
