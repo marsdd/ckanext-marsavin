@@ -1,4 +1,4 @@
-from ckan.logic.schema import reqaccess_new_form_schema
+from ckanext.marsavin.schema import reqaccess_new_form_schema
 from flask.views import MethodView
 from ckan import model, logic
 from ckan.lib import base

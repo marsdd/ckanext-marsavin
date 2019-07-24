@@ -4,6 +4,7 @@ import ckan
 import ckan.lib.dictization.model_save as model_save
 import logging
 from ckan.plugins import toolkit
+from ckanext.marsavin.schema import default_reqaccess_schema
 
 # Define some shortcuts
 # Ensure they are module-private so that they don't get loaded as available
@@ -42,7 +43,7 @@ def reqaccess_create(context, data_dict):
 
     model = context['model']
     # schema = context.get('schema') or ckan.logic.schema.default_reqaccess_schema()
-    schema = ckan.logic.schema.default_reqaccess_schema()
+    schema = default_reqaccess_schema()
     session = context['session']
 
     data, errors = _validate(data_dict, schema, context)
