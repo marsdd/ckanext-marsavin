@@ -1,7 +1,7 @@
 from helpers import _mail_recipient
 import ckan.logic as logic
 import ckan
-import ckan.lib.dictization.model_save as model_save
+from ckanext.marsavin.dictization import reqaccess_dict_save
 import logging
 from ckan.plugins import toolkit
 from ckanext.marsavin.schema import default_reqaccess_schema
@@ -56,7 +56,7 @@ def reqaccess_create(context, data_dict):
         session.rollback()
         raise ValidationError(errors)
 
-    model_save.reqaccess_dict_save(data, context)
+    reqaccess_dict_save(data, context)
 
     if not context.get('defer_commit'):
         model.repo.commit()
