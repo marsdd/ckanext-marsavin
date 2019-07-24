@@ -1,10 +1,10 @@
 from ckan.logic.schema import reqaccess_new_form_schema
 from flask.views import MethodView
-from flask import request
 from ckan import model, logic
 from ckan.lib import base
 from ckan.lib.navl import dictization_functions
 from ckan.plugins import toolkit
+from ckan.common import g, request
 
 
 def _new_form_to_db_schema():
@@ -57,8 +57,8 @@ class RequestAccessView(MethodView):
         self._prepare()
 
         user_email = u'your_email@domain.com'
-        if toolkit.c.userobj and toolkit.c.userobj.email:
-            user_email = toolkit.c.userobj.email
+        if g.userobj and g.userobj.email:
+            user_email = g.userobj.email
         maintainer_email = request.params.get('maintainer_email', u'')
         maintainer_name = request.params.get('maintainer_name', u'')
         resource_name = request.params.get('resource_name', u'')

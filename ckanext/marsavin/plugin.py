@@ -28,7 +28,7 @@ class MarsavinRequestAccessPlugin(plugins.SingletonPlugin,
     # IActions
     def get_actions(self):
         return {
-            "ckanext_marsavin_reqaccess_create": actions.reqaccess_create
+            "reqaccess_create": actions.reqaccess_create
         }
 
     def create_package_schema(self):
@@ -71,7 +71,7 @@ class MarsavinRequestAccessPlugin(plugins.SingletonPlugin,
 
     # IBlueprint
     def get_blueprint(self):
-        bp = Blueprint(u'req_access', self.__module__)
+        bp = Blueprint(u'request_access', self.__module__)
         bp.add_url_rule("/request_access",
                         view_func=RequestAccessView.as_view(str(
                             u'request_access')))
