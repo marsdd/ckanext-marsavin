@@ -31,33 +31,50 @@ class MarsavinRequestAccessPlugin(plugins.SingletonPlugin,
             "reqaccess_create": actions.reqaccess_create
         }
 
+    def _get_schema_updates(self, schema):
+        schema.update({
+            # a.s. validate maintainer fields aren't empty
+            'maintainer': [toolkit.get_validator('not_empty'),
+                           toolkit.get_validator('unicode_safe')],
+            'maintainer_email': [toolkit.get_validator('not_empty'),
+                                 toolkit.get_validator('unicode_safe')],
+            # a.s. additional fields Jun 7, 2019
+            'associated_tasks': [toolkit.get_validator('ignore_missing'),
+                                 toolkit.get_validator('unicode_safe')],
+            'collection_period': [toolkit.get_validator('ignore_missing'),
+                                  toolkit.get_validator('unicode_safe')],
+            'geographical_area': [toolkit.get_validator('ignore_missing'),
+                                  toolkit.get_validator('unicode_safe')],
+            'number_of_instances': [toolkit.get_validator('not_empty'),
+                                    toolkit.get_validator('unicode_safe')],
+            'number_of_missing_values': [toolkit.get_validator(
+                'ignore_missing'),
+                toolkit.get_validator('unicode_safe')],
+            'pkg_description': [toolkit.get_validator('not_empty'),
+                                toolkit.get_validator('unicode_safe')],
+        })
+        return schema
+
     def create_package_schema(self):
         # let's grab the default schema in our plugin
         schema = super(MarsavinRequestAccessPlugin,
                         self).create_package_schema()
 
-        schema.update({
-            # a.s. validate maintainer fields aren't empty
-            'maintainer': [toolkit.get_validator('not_empty'),
-                            toolkit.get_validator('unicode_safe')],
-            'maintainer_email': [toolkit.get_validator('not_empty'),
-                           toolkit.get_validator('unicode_safe')],
-            # a.s. additional fields Jun 7, 2019
-            'associated_tasks': [toolkit.get_validator('ignore_missing'),
-                           toolkit.get_validator('unicode_safe')],
-            'collection_period': [toolkit.get_validator('ignore_missing'),
-                           toolkit.get_validator('unicode_safe')],
-            'geographical_area': [toolkit.get_validator('ignore_missing'),
-                           toolkit.get_validator('unicode_safe')],
-            'number_of_instances': [toolkit.get_validator('not_empty'),
-                           toolkit.get_validator('unicode_safe')],
-            'number_of_missing_values': [toolkit.get_validator(
-                 'ignore_missing'),
-                           toolkit.get_validator('unicode_safe')],
-            'pkg_description': [toolkit.get_validator('not_empty'),
-                           toolkit.get_validator('unicode_safe')],
-        })
-        return schema
+        return self._get_schema_updates(schema)
+
+    def update_package_schema(self):
+        # let's grab the default schema in our plugin
+        schema = super(MarsavinRequestAccessPlugin,
+                       self).update_package_schema()
+
+        return self._get_schema_updates(schema)
+
+    def show_package_schema(self):
+        # let's grab the default schema in our plugin
+        schema = super(MarsavinRequestAccessPlugin,
+                       self).show_package_schema()
+
+        return self._get_schema_updates(schema)
 
     def is_fallback(self):
         # Return True to register this plugin as the default handler for
