@@ -7,7 +7,7 @@ from helpers import _mail_recipient
 import actions
 from views.request_access import RequestAccessView
 from dictization import package_marsavin_save, package_marsavin_delete, \
-    package_marsavin_get
+    package_marsavin_load
 log = logging.getLogger(__name__)
 
 
@@ -287,7 +287,7 @@ class MarsavinPackagePlugin(plugins.SingletonPlugin):
             Extensions will receive the data dict (tipically containing
             just the package id) after the package has been deleted.
         '''
-        package_marsavin_delete(pkg_dict, context)
+        package_marsavin_delete(pkg_dict)
         pass
 
     def after_show(self, context, pkg_dict):
@@ -296,7 +296,7 @@ class MarsavinPackagePlugin(plugins.SingletonPlugin):
             is ready for display (Note that the read method will return a
             package domain object, which may not include all fields).
         '''
-        package_marsavin_get(pkg_dict)
+        package_marsavin_load(pkg_dict)
         pass
 
     def before_search(self, search_params):

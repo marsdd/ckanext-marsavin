@@ -12,7 +12,7 @@ def reqaccess_dict_save(reqaccess_dict, context):
 
 
 def package_marsavin_save(pkg_dict, context):
-
+    package_id = _get_or_bust(pkg_dict, 'id')
     pkg_marsavin_dict = {
         "package_id": pkg_dict["id"],
         "associated_tasks": pkg_dict["associated_tasks"],
@@ -22,6 +22,11 @@ def package_marsavin_save(pkg_dict, context):
         "number_of_missing_values": pkg_dict["number_of_missing_values"],
         "pkg_description": pkg_dict["pkg_description"]
     }
+
+    entity = PackageMarsavin.by_package_id(package_id)
+
+    if entity:
+        pkg_marsavin_dict["id"] = entity.id
 
     package_marsavin = d.table_dict_save(pkg_marsavin_dict, PackageMarsavin,
                                          context)
@@ -39,17 +44,15 @@ def package_marsavin_delete(pkg_dict):
         entity.delete()
 
 
-def package_marsavin_get(pkg_dict):
+def package_marsavin_load(pkg_dict):
     package_id = _get_or_bust(pkg_dict, 'id')
 
     entity = PackageMarsavin.by_package_id(package_id)
     pkg_dict.update({
-        "associated_tasks": entity["associated_tasks"],
-        "collection_period": entity["collection_period"],
-        "geographical_area": entity["geographical_area"],
-        "number_of_instances": entity["number_of_instances"],
-        "number_of_missing_values": entity["number_of_missing_values"],
-        "pkg_description": entity["pkg_description"]
+        "associated_tasks": entity.associated_tasks,
+        "collection_period": entity.collection_period,
+        "geographical_area": entity.geographical_area,
+        "number_of_instances": entity.number_of_instances,
+        "number_of_missing_values": entity.number_of_missing_values,
+        "pkg_description": entity.pkg_description
     })
-
-    return pkg_dict
