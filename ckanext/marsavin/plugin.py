@@ -8,17 +8,32 @@ import actions
 from views.request_access import RequestAccessView
 from dictization import package_marsavin_save, package_marsavin_delete, \
     package_marsavin_load
+from views.marsavin import contact, terms, privacy
 log = logging.getLogger(__name__)
 
 
 class MarsavinPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
+    plugins.implements(plugins.IBlueprint)
 
     # IConfigurer
     def update_config(self, config_):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('fanstatic', 'marsavin')
+
+    # IBlueprint
+    def get_blueprint(self):
+        bp = Blueprint(u'marsavin', self.__module__)
+        util_rules = [
+            (u'/contact', contact),
+            (u'/terms', terms),
+            (u'/privacy', privacy)
+        ]
+        for rule, view_func in util_rules:
+            bp.add_url_rule(rule, view_func=view_func)
+
+        return bp
 
 
 class MarsavinRequestAccessPlugin(plugins.SingletonPlugin,

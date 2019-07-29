@@ -24,8 +24,9 @@
       {% block footer_nav_terms %}
         <ul class="list-unstyled">
           {% block footer_terms %}
-            <li><a href="{{ h.url_for(controller='home', action='terms') }}">Terms & Conditions</a></li>
-            <li><a href="{{ h.url_for(controller='home', action='privacy') }}">Privacy</a></li>
+            <li><a
+                    href="{{ h.url_for(controller='marsavin', action='terms') }}">Terms & Conditions</a></li>
+            <li><a href="{{ h.url_for(controller='marsavin', action='privacy') }}">Privacy</a></li>
           {% endblock %}
         </ul>
       {% endblock %}
