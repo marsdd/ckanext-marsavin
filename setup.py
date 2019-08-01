@@ -87,6 +87,9 @@ setup(
 
         [babel.extractors]
         ckan = ckan.lib.extract:extract_ckan
+        
+        [paste.paster_command]
+        marsavin=ckanext.marsavin.commands.marsavin:MarsavinCommand
     ''',
 
     # If you are changing from the default layout of your extension, you may
