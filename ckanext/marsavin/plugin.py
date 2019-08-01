@@ -3,7 +3,7 @@ import ckan.plugins.toolkit as toolkit
 from flask import Blueprint
 import os
 import logging
-from helpers import _mail_recipient
+from helpers import _mail_recipient, is_featured_organization
 import actions
 from views.request_access import RequestAccessView
 from dictization import package_marsavin_save, package_marsavin_delete, \
@@ -15,6 +15,9 @@ log = logging.getLogger(__name__)
 class MarsavinPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IBlueprint)
+
+    # add template helper functions
+    plugins.implements(plugins.ITemplateHelpers)
 
     # IConfigurer
     def update_config(self, config_):
@@ -34,6 +37,16 @@ class MarsavinPlugin(plugins.SingletonPlugin):
             bp.add_url_rule(rule, view_func=view_func)
 
         return bp
+
+    def get_helpers(self):
+        '''Register the most_popular_groups() function above as a template
+        helper function.
+
+        '''
+        # Template helper function names should begin with the name of the
+        # extension they belong to, to avoid clashing with functions from
+        # other extensions.
+        return {'is_featured_organization': is_featured_organization}
 
 
 class MarsavinRequestAccessPlugin(plugins.SingletonPlugin,

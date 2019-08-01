@@ -1,5 +1,6 @@
 import ckan.plugins.toolkit as toolkit
 import ckan.lib.mailer as mailer
+from ckan.common import config
 from six import text_type
 
 
@@ -15,6 +16,12 @@ def _mail_recipient(recipient=None, email_dict=None):
         mailer.mail_recipient(**email)
 
     except mailer.MailerException as e:
-        toolkit.h.flash_error(toolkit._('Could not send an email: %s') % text_type(e))
+        toolkit.h.flash_error(toolkit._('Could not send an email: %s') %
+                              text_type(e))
         raise
     return
+
+
+def is_featured_organization(name):
+    featured_orgs = config.get('ckan.featured_orgs', '').split()
+    return name in featured_orgs

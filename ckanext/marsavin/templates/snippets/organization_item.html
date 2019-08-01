@@ -1,0 +1,20 @@
+{% ckan_extends %}
+
+{% block organization_item_header_image %}
+  {% if h.is_featured_organization(organization.name) %}
+    {% set url_override = h.url_for(organization.type ~ '.about', id=organization.name) %}
+      <a class="module-image" href="{{ url_override }}">
+        <img src="{{ organization.image_display_url or h.url_for_static('/base/images/placeholder-organization.png') }}" alt="{{ organization.name }}" />
+      </a>
+  {% else %}
+    {{ super() }}
+  {% endif %}
+{% endblock %}
+{% block organization_item_header_title %}
+  {% if h.is_featured_organization(organization.name) %}
+    {% set url_override = h.url_for(organization.type ~ '.about',id=organization.name) %}
+    <h3 class="media-heading"><a href="{{ url_override }}">{{ organization.title or organization.name }}</a></h3>
+  {% else %}
+    {{ super() }}
+  {% endif %}
+{% endblock %}

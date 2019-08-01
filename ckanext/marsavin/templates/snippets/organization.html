@@ -1,0 +1,18 @@
+{% ckan_extends %}
+{% block description %}
+  {% if not h.is_featured_organization(organization.name) %}
+    {{ super() }}
+  {% endif %}
+{% endblock %}
+
+{% block nums %}
+  {% if not h.is_featured_organization(organization.name) %}
+    {{ super() }}
+  {% endif %}
+{% endblock %}
+
+{% block follow %}
+  {% if not h.is_featured_organization(organization.name) %}
+    {{ super() }}
+  {% endif %}
+{% endblock %}
