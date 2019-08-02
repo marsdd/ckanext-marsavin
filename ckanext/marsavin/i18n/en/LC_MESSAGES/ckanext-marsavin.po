@@ -1436,6 +1436,18 @@ msgid_plural "{n} new activities from {site_title}"
 msgstr[0] ""
 msgstr[1] ""
 
+#: ckan/templates/snippets/activities/new_group.html:4
+msgid "{actor} created the group {group}"
+msgstr "{actor} created the data category {group}"
+
+#: ckan/templates/snippets/activities/changed_group.html:4
+msgid "{actor} updated the group {group}"
+msgstr "{actor} updated the data category {group}"
+
+#: ckan/templates/snippets/activities/deleted_group.html:4
+msgid "{actor} deleted the group {group}"
+msgstr "{actor} deleted the data category {group}"
+
 #: ckan/lib/formatters.py:19
 msgid "January"
 msgstr ""
@@ -3066,14 +3078,18 @@ msgid "What are Groups?"
 msgstr "What are Data Categories?"
 
 #: ckan/templates/group/snippets/helper.html:8
-msgid "You can use CKAN Groups to create and manage collections of datasets."
-        "This could be to catalogue datasets for a particular project or team,"
-        "or on a particular theme, or as a very simple way to help people find"
-        "and search your own published datasets."
-msgstr "You can use CKAN Data categories to create and manage collections of datasets."
-        "This could be to catalogue datasets for a particular project or team,"
-        "or on a particular theme, or as a very simple way to help people find"
-        "and search your own published datasets."
+msgid ""
+"        You can use CKAN Groups to create and manage collections of datasets."
+"        This could be to catalogue datasets for a particular project or team,"
+"        or on a particular theme, or as a very simple way to help people find"
+"        and search your own published datasets."
+"      "
+msgstr ""
+"        You can use CKAN Data Categories to create and manage collections of datasets."
+"        This could be to catalogue datasets for a particular project or team,"
+"        or on a particular theme, or as a very simple way to help people find"
+"        and search your own published datasets."
+"      "
 
 #: ckan/templates/group/snippets/history_revisions.html:10
 #: ckan/templates/package/snippets/history_revisions.html:10
