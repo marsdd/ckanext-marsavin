@@ -3078,16 +3078,11 @@ msgid "What are Groups?"
 msgstr "What are Data Categories?"
 
 #: ckan/templates/group/snippets/helper.html:8
-msgid ""
-" You can use CKAN Groups to create and manage collections of datasets. This "
-"could be to catalogue datasets for a particular project or team, or on a "
-"particular theme, or as a very simple way to help people find and search your"
-" own published datasets. "
-msgstr ""
-" You can use CKAN Data Categories to create and manage collections of datasets. This "
-"could be to catalogue datasets for a particular project or team, or on a "
-"particular theme, or as a very simple way to help people find and search your"
-" own published datasets. "
+msgid "You can use CKAN Groups to create and manage collections of datasets. This could be to catalogue datasets for a particular project or team, or on a particular theme, or as a very simple way to help people find and search your own published datasets."
+msgstr "You can use CKAN Data Categories to create and manage collections of"
+"datasets. This could be to catalogue datasets for a particular project or "
+"team, or on a particular theme, or as a very simple way to help people find "
+"and search your own published datasets."
 
 
 #: ckan/templates/group/snippets/history_revisions.html:10
