@@ -6,17 +6,34 @@ import logging
 from helpers import _mail_recipient
 import actions
 from views.request_access import RequestAccessView
+from dictization import package_marsavin_save, package_marsavin_delete, \
+    package_marsavin_load
+from views.marsavin import contact, terms, privacy
 log = logging.getLogger(__name__)
 
 
 class MarsavinPlugin(plugins.SingletonPlugin):
     plugins.implements(plugins.IConfigurer)
+    plugins.implements(plugins.IBlueprint)
 
     # IConfigurer
     def update_config(self, config_):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('fanstatic', 'marsavin')
+
+    # IBlueprint
+    def get_blueprint(self):
+        bp = Blueprint(u'marsavin', self.__module__)
+        util_rules = [
+            (u'/contact', contact),
+            (u'/terms', terms),
+            (u'/privacy', privacy)
+        ]
+        for rule, view_func in util_rules:
+            bp.add_url_rule(rule, view_func=view_func)
+
+        return bp
 
 
 class MarsavinRequestAccessPlugin(plugins.SingletonPlugin,
@@ -268,6 +285,7 @@ class MarsavinPackagePlugin(plugins.SingletonPlugin):
             domain object, which may not include all fields). Also the newly
             created package id will be added to the dict.
         '''
+        package_marsavin_save(pkg_dict, context)
         pass
 
     def after_update(self, context, pkg_dict):
@@ -276,6 +294,7 @@ class MarsavinPackagePlugin(plugins.SingletonPlugin):
             has been updated (Note that the edit method will return a package
             domain object, which may not include all fields).
         '''
+        package_marsavin_save(pkg_dict, context)
         pass
 
     def after_delete(self, context, pkg_dict):
@@ -283,6 +302,7 @@ class MarsavinPackagePlugin(plugins.SingletonPlugin):
             Extensions will receive the data dict (tipically containing
             just the package id) after the package has been deleted.
         '''
+        package_marsavin_delete(pkg_dict)
         pass
 
     def after_show(self, context, pkg_dict):
@@ -291,6 +311,7 @@ class MarsavinPackagePlugin(plugins.SingletonPlugin):
             is ready for display (Note that the read method will return a
             package domain object, which may not include all fields).
         '''
+        package_marsavin_load(pkg_dict)
         pass
 
     def before_search(self, search_params):
