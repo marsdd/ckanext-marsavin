@@ -20,7 +20,7 @@
 
         {{ form.input('pkg_description', label=_('Package Description'), id='field-pkg-description', placeholder=_('Package Description'), value=data.pkg_description, error=errors.pkg_description, classes=['control-medium'], is_required=true) }}
 
-        {{ form.input('number_of_attributes', label=_('Has missing values'), id='field-number-of-attributes', placeholder=_('Has missing values'), value=data.number_of_attributes, error=errors.number_of_attributes, classes=['control-medium'], is_required=false) }}
+        {{ form.input('number_of_attributes', label=_('Number of Attributes'), id='field-number-of-attributes', placeholder=_('Number of Attributes'), value=data.number_of_attributes, error=errors.number_of_attributes, classes=['control-medium'], is_required=false) }}
 
         {{ form.input('creation_date', label=_('Creation Date'), id='field-creation-date', placeholder=_('YYYY-MM-DD HH:MM:SS'), type="date", value=data.creation_date, error=errors.creation_date, classes=['control-medium'], is_required=false) }}
 
