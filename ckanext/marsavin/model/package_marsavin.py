@@ -16,7 +16,7 @@ package_marsavin_table = Table('package_marsavin', meta.metadata,
     Column('number_of_attributes', types.UnicodeText),
     Column('creation_date', types.DateTime),
     Column('expiry_date', types.DateTime),
-    Column('missing_values', types.Boolean)
+    Column('has_missing_values', types.Boolean)
 )
 
 
