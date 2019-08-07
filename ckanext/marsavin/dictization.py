@@ -19,8 +19,11 @@ def package_marsavin_save(pkg_dict, context):
         "collection_period": pkg_dict["collection_period"],
         "geographical_area": pkg_dict["geographical_area"],
         "number_of_instances": pkg_dict["number_of_instances"],
-        "number_of_missing_values": pkg_dict["number_of_missing_values"],
-        "pkg_description": pkg_dict["pkg_description"]
+        "pkg_description": pkg_dict["pkg_description"],
+        "number_of_attributes": pkg_dict["number_of_attributes"],
+        "creation_date": pkg_dict["creation_date"],
+        "expiry_date": pkg_dict["expiry_date"],
+        "has_missing_values": pkg_dict["has_missing_values"]
     }
 
     entity = PackageMarsavin.by_package_id(package_id)
@@ -52,8 +55,11 @@ def package_marsavin_load(pkg_dict):
         "collection_period": u'',
         "geographical_area": u'',
         "number_of_instances": u'',
-        "number_of_missing_values": u'',
-        "pkg_description": u''
+        "pkg_description": u'',
+        "number_of_attributes": u'',
+        "creation_date": u'',
+        "expiry_date": u'',
+        "has_missing_values": u''
     }
 
     entity = PackageMarsavin.by_package_id(package_id)
@@ -63,7 +69,10 @@ def package_marsavin_load(pkg_dict):
             "collection_period": entity.collection_period,
             "geographical_area": entity.geographical_area,
             "number_of_instances": entity.number_of_instances,
-            "number_of_missing_values": entity.number_of_missing_values,
-            "pkg_description": entity.pkg_description
+            "pkg_description": entity.pkg_description,
+            "number_of_attributes": entity.number_of_attributes,
+            "creation_date": entity.creation_date,
+            "expiry_date": entity.expiry_date,
+            "has_missing_values": entity.has_missing_values
         }
     pkg_dict.update(entity_dict)
