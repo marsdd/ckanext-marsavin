@@ -1,4 +1,7 @@
 {% ckan_extends %}
+{% block package_metadata_fields_url %}
+    {{ form.input('url', label=_('Source'), id='field-url', placeholder='', value=data.url, error=errors.url, classes=['control-medium']) }}
+{% endblock %}
 {% block package_metadata_fields_maintainer %}
     <!-- a.s. required field -->
     {{ form.input('maintainer', label=_('Maintainer'), id='field-maintainer', placeholder=_('Joe Bloggs'), value=data.maintainer, error=errors.maintainer, classes=['control-medium'], is_required=true) }}
@@ -18,7 +21,7 @@
 
         {{ form.input('number_of_instances', label=_('Number of Instances'), id='field-number-of-instances', placeholder=_('Number of Instances'), value=data.number_of_instances, error=errors.number_of_instances, classes=['control-medium'], is_required=true) }}
 
-        {{ form.input('pkg_description', label=_('Package Description'), id='field-pkg-description', placeholder=_('Package Description'), value=data.pkg_description, error=errors.pkg_description, classes=['control-medium'], is_required=true) }}
+        {{ form.textarea('pkg_description', label=_('Package Description'), id='field-pkg-description', placeholder=_('Package Description'), value=data.pkg_description, error=errors.pkg_description, classes=['control-medium'], is_required=true) }}
 
         {{ form.input('number_of_attributes', label=_('Number of Attributes'), id='field-number-of-attributes', placeholder=_('Number of Attributes'), value=data.number_of_attributes, error=errors.number_of_attributes, classes=['control-medium'], is_required=false) }}
 
