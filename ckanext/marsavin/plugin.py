@@ -1,4 +1,5 @@
 import ckan.plugins as plugins
+from ckan.lib.plugins import DefaultTranslation
 import ckan.plugins.toolkit as toolkit
 from flask import Blueprint
 import os
@@ -12,9 +13,10 @@ from views.marsavin import contact, terms, privacy
 log = logging.getLogger(__name__)
 
 
-class MarsavinPlugin(plugins.SingletonPlugin):
+class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IBlueprint)
+    plugins.implements(plugins.ITranslation)
 
     # add template helper functions
     plugins.implements(plugins.ITemplateHelpers)
