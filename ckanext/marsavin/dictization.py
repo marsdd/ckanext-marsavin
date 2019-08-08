@@ -13,6 +13,7 @@ def reqaccess_dict_save(reqaccess_dict, context):
 
 def package_marsavin_save(pkg_dict, context):
     package_id = _get_or_bust(pkg_dict, 'id')
+
     pkg_marsavin_dict = {
         "package_id": pkg_dict["id"],
         "associated_tasks": pkg_dict["associated_tasks"],
@@ -21,10 +22,12 @@ def package_marsavin_save(pkg_dict, context):
         "number_of_instances": pkg_dict["number_of_instances"],
         "pkg_description": pkg_dict["pkg_description"],
         "number_of_attributes": pkg_dict["number_of_attributes"],
-        "creation_date": pkg_dict["creation_date"],
-        "expiry_date": pkg_dict["expiry_date"],
         "has_missing_values": pkg_dict["has_missing_values"]
     }
+    if pkg_dict["creation_date"]:
+        pkg_marsavin_dict["creation_date"] = pkg_dict["creation_date"]
+    if pkg_dict["expiry_date"]:
+        pkg_marsavin_dict["expiry_date"] = pkg_dict["expiry_date"]
 
     entity = PackageMarsavin.by_package_id(package_id)
 
