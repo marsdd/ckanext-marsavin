@@ -43,28 +43,28 @@
     {% if pkg_dict.number_of_attributes %}
       <tr>
         <th scope="row" class="dataset-label">{{ _('Number of Attributes') }}</th>
-          <td class="dataset-details">{{ pkg_dict.pkg_description }}</td>
+          <td class="dataset-details">{{ pkg_dict.number_of_attributes }}</td>
       </tr>
     {% endif %}
 
     {% if pkg_dict.creation_date %}
       <tr>
         <th scope="row" class="dataset-label">{{ _('Creation Date') }}</th>
-          <td class="dataset-details">{{ pkg_dict.pkg_description }}</td>
+          <td class="dataset-details">{{ pkg_dict.creation_date }}</td>
       </tr>
     {% endif %}
 
     {% if pkg_dict.expiry_date %}
       <tr>
         <th scope="row" class="dataset-label">{{ _('Expiry Date') }}</th>
-          <td class="dataset-details">{{ pkg_dict.pkg_description }}</td>
+          <td class="dataset-details">{{ pkg_dict.expiry_date }}</td>
       </tr>
     {% endif %}
 
-    {% if pkg_dict.has_missing_values %}
+    {% if pkg_dict.has_missing_values != '' %}
       <tr>
         <th scope="row" class="dataset-label">{{ _('Does it have missing values') }}</th>
-          <td class="dataset-details">{{ pkg_dict.pkg_description }}</td>
+          <td class="dataset-details">{{ pkg_dict.has_missing_values }}</td>
       </tr>
     {% endif %}
     {# s.h. /additional fields #}
