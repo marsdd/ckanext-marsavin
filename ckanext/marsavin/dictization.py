@@ -74,8 +74,11 @@ def package_marsavin_load(pkg_dict):
             "number_of_instances": entity.number_of_instances,
             "pkg_description": entity.pkg_description,
             "number_of_attributes": entity.number_of_attributes,
-            "creation_date": entity.creation_date,
-            "expiry_date": entity.expiry_date,
             "has_missing_values": entity.has_missing_values
         }
+        if not entity.creation_date:
+            entity_dict["creation_date"] = ""
+        if not entity.expiry_date:
+            entity_dict["expiry_date"] = ""
+
     pkg_dict.update(entity_dict)
