@@ -29,7 +29,7 @@
 
         {{ form.input('expiry_date', label=_('Expiry Date'), id='field-expiry-date', placeholder=_('YYYY-MM-DD HH:MM:SS'), type="date", value=data.expiry_date, error=errors.expiry_date, classes=['control-medium'], is_required=false) }}
 
-        {{ form.select('has_missing_values', label=_('Does it have missing values'), id='field-has-missing-values', options=({"Value": None, "text": ""}, {"value": False, "text": "False"}, {"value": True, "text": "True"}), selected=data.has_missing_values, error=errors.has_missing_values, classes=['control-medium'], is_required=false) }}
+        {{ form.select('has_missing_values', label=_('Dataset has missing values'), id='field-has-missing-values', options=({"Value": None, "text": ""}, {"value": False, "text": "False"}, {"value": True, "text": "True"}), selected=data.has_missing_values, error=errors.has_missing_values, classes=['control-medium'], is_required=false) }}
         <!-- a.s. -->
     {% endblock %}
     {{ super() }}
