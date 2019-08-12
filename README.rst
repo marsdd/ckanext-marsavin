@@ -1,48 +1,17 @@
-.. You should enable this project on travis-ci.org and coveralls.io to make
-   these badges work. The necessary Travis and Coverage config files have been
-   generated for you.
-
-.. image:: https://travis-ci.org//ckanext-marsavin.svg?branch=master
-    :target: https://travis-ci.org//ckanext-marsavin
-
-.. image:: https://coveralls.io/repos//ckanext-marsavin/badge.svg
-  :target: https://coveralls.io/r//ckanext-marsavin
-
-.. image:: https://pypip.in/download/ckanext-marsavin/badge.svg
-    :target: https://pypi.python.org/pypi//ckanext-marsavin/
-    :alt: Downloads
-
-.. image:: https://pypip.in/version/ckanext-marsavin/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-marsavin/
-    :alt: Latest Version
-
-.. image:: https://pypip.in/py_versions/ckanext-marsavin/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-marsavin/
-    :alt: Supported Python versions
-
-.. image:: https://pypip.in/status/ckanext-marsavin/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-marsavin/
-    :alt: Development Status
-
-.. image:: https://pypip.in/license/ckanext-marsavin/badge.svg
-    :target: https://pypi.python.org/pypi/ckanext-marsavin/
-    :alt: License
-
-=============
+================
 ckanext-marsavin
-=============
+================
 
-.. Put a description of your extension here:
-   What does it do? What features does it have?
-   Consider including some screenshots or embedding a video!
-
+.. Extension supports all the required modifications for Avin data hub
+   project.  It is supported by MaRS Discovery District IT.
 
 ------------
-Requirements
+To Do:
 ------------
-
-For example, you might want to mention here which versions of CKAN this
-extension works with.
+#. Figure out how to migrate db changes required by the plugin
+#. Figure out how to handle deployments without changing the general docker
+   provided by upstream (low priority)
+#. Figure out how to manage the ini file for dev / production (low priority)
 
 
 ------------
@@ -53,114 +22,40 @@ Installation
    For example installing any non-Python dependencies or adding any required
    config settings.
 
-To install ckanext-marsavin:
+To install ckanext-marsavin (local environment):
 
 1. Activate your CKAN virtual environment, for example::
 
-     . /usr/lib/ckan/default/bin/activate
+     . /path/to/ckan/venv/bin/activate
 
 2. Install the ckanext-marsavin Python package into your virtual environment::
 
-     pip install ckanext-marsavin
+     pip install /path/to/project/ckanext-marsavin
 
 3. Add ``marsavin`` to the ``ckan.plugins`` setting in your CKAN
    config file (by default the config file is located at
-   ``/etc/ckan/default/production.ini``).
+   ``/path/to/config.ini``).
 
-4. Restart CKAN. For example if you've deployed CKAN with Apache on Ubuntu::
+4. initialize database::
 
-     sudo service apache2 reload
+      paster --plugin=ckanext-marsavin init --config=/path/to/config.ini
 
+5. Restart CKAN
+      sh /path/to/ckan/contrib/docker/ckan-entrypoint.sh
 
----------------
-Config Settings
----------------
+---------------------
+Installation (docker)
+---------------------
 
-Document any optional config settings here. For example::
+Add following in the docker file anywhere before the entrypoint but after
+ckan installation section
 
-    # The minimum number of hours to wait before re-checking a resource
-    # (optional, default: 24).
-    ckanext.marsavin.some_setting = some_default_value
+ARG MARS_PLUGIN_VERSION
 
-
-------------------------
-Development Installation
-------------------------
-
-To install ckanext-marsavin for development, activate your CKAN virtualenv and
-do::
-
-    git clone https://github.com//ckanext-marsavin.git
-    cd ckanext-marsavin
-    python setup.py develop
-    pip install -r dev-requirements.txt
+     ckan-pip install https://github.com/marsdd/ckanext-marsavin/archive/$MARS_PLUGIN_VERSION.zip
 
 
------------------
-Running the Tests
------------------
+Then rebuild witht he build arg::
 
-To run the tests, do::
+   docker build -f /path/to/ckan/Dockerfile --build-arg MARS_PLUGIN_VERSION=<name-of-branch-or-tag>
 
-    nosetests --nologcapture --with-pylons=test.ini
-
-To run the tests and produce a coverage report, first make sure you have
-coverage installed in your virtualenv (``pip install coverage``) then run::
-
-    nosetests --nologcapture --with-pylons=test.ini --with-coverage --cover-package=ckanext.marsavin --cover-inclusive --cover-erase --cover-tests
-
-
----------------------------------
-Registering ckanext-marsavin on PyPI
----------------------------------
-
-ckanext-marsavin should be availabe on PyPI as
-https://pypi.python.org/pypi/ckanext-marsavin. If that link doesn't work, then
-you can register the project on PyPI for the first time by following these
-steps:
-
-1. Create a source distribution of the project::
-
-     python setup.py sdist
-
-2. Register the project::
-
-     python setup.py register
-
-3. Upload the source distribution to PyPI::
-
-     python setup.py sdist upload
-
-4. Tag the first release of the project on GitHub with the version number from
-   the ``setup.py`` file. For example if the version number in ``setup.py`` is
-   0.0.1 then do::
-
-       git tag 0.0.1
-       git push --tags
-
-
-----------------------------------------
-Releasing a New Version of ckanext-marsavin
-----------------------------------------
-
-ckanext-marsavin is availabe on PyPI as https://pypi.python.org/pypi/ckanext-marsavin.
-To publish a new version to PyPI follow these steps:
-
-1. Update the version number in the ``setup.py`` file.
-   See `PEP 440 <http://legacy.python.org/dev/peps/pep-0440/#public-version-identifiers>`_
-   for how to choose version numbers.
-
-2. Create a source distribution of the new version::
-
-     python setup.py sdist
-
-3. Upload the source distribution to PyPI::
-
-     python setup.py sdist upload
-
-4. Tag the new release of the project on GitHub with the version number from
-   the ``setup.py`` file. For example if the version number in ``setup.py`` is
-   0.0.2 then do::
-
-       git tag 0.0.2
-       git push --tags

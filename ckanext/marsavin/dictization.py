@@ -13,15 +13,21 @@ def reqaccess_dict_save(reqaccess_dict, context):
 
 def package_marsavin_save(pkg_dict, context):
     package_id = _get_or_bust(pkg_dict, 'id')
+
     pkg_marsavin_dict = {
         "package_id": pkg_dict["id"],
         "associated_tasks": pkg_dict["associated_tasks"],
         "collection_period": pkg_dict["collection_period"],
         "geographical_area": pkg_dict["geographical_area"],
         "number_of_instances": pkg_dict["number_of_instances"],
-        "number_of_missing_values": pkg_dict["number_of_missing_values"],
-        "pkg_description": pkg_dict["pkg_description"]
+        "pkg_description": pkg_dict["pkg_description"],
+        "number_of_attributes": pkg_dict["number_of_attributes"],
+        "has_missing_values": pkg_dict["has_missing_values"]
     }
+    if pkg_dict["creation_date"]:
+        pkg_marsavin_dict["creation_date"] = pkg_dict["creation_date"]
+    if pkg_dict["expiry_date"]:
+        pkg_marsavin_dict["expiry_date"] = pkg_dict["expiry_date"]
 
     entity = PackageMarsavin.by_package_id(package_id)
 
@@ -52,8 +58,11 @@ def package_marsavin_load(pkg_dict):
         "collection_period": u'',
         "geographical_area": u'',
         "number_of_instances": u'',
-        "number_of_missing_values": u'',
-        "pkg_description": u''
+        "pkg_description": u'',
+        "number_of_attributes": u'',
+        "creation_date": u'',
+        "expiry_date": u'',
+        "has_missing_values": u''
     }
 
     entity = PackageMarsavin.by_package_id(package_id)
@@ -63,7 +72,13 @@ def package_marsavin_load(pkg_dict):
             "collection_period": entity.collection_period,
             "geographical_area": entity.geographical_area,
             "number_of_instances": entity.number_of_instances,
-            "number_of_missing_values": entity.number_of_missing_values,
-            "pkg_description": entity.pkg_description
+            "pkg_description": entity.pkg_description,
+            "number_of_attributes": entity.number_of_attributes,
+            "has_missing_values": entity.has_missing_values
         }
+        if not entity.creation_date:
+            entity_dict["creation_date"] = ""
+        if not entity.expiry_date:
+            entity_dict["expiry_date"] = ""
+
     pkg_dict.update(entity_dict)

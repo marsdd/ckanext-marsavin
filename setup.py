@@ -15,13 +15,13 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # http://packaging.python.org/en/latest/tutorial.html#version
-    version='0.2.0',
+    version='0.3.0',
 
     description='''''',
     long_description=long_description,
 
     # The project's main homepage.
-    url='https://github.com//ckanext-marsavin',
+    url='https://github.com/marsdd/ckanext-marsavin',
 
     # Author details
     author='''''',
@@ -80,16 +80,16 @@ setup(
     # pip to create the appropriate form of executable for the target platform.
     entry_points='''
         [ckan.plugins]
-        marsavin=ckanext.marsavin.plugin:MarsavinPlugin
-        marsavinResource=ckanext.marsavin.plugin:MarsavinResourcePlugin
-        marsavinPackage=ckanext.marsavin.plugin:MarsavinPackagePlugin
-        MarsavinRequestAccess=ckanext.marsavin.plugin:MarsavinRequestAccessPlugin
+        marsavin = ckanext.marsavin.plugin:MarsavinPlugin
+        marsavinResource = ckanext.marsavin.plugin:MarsavinResourcePlugin
+        marsavinPackage = ckanext.marsavin.plugin:MarsavinPackagePlugin
+        MarsavinRequestAccess = ckanext.marsavin.plugin:MarsavinRequestAccessPlugin
 
         [babel.extractors]
         ckan = ckan.lib.extract:extract_ckan
         
         [paste.paster_command]
-        marsavin=ckanext.marsavin.commands.marsavin:MarsavinCommand
+        db = ckanext.marsavin.commands.marsavin:DatabaseCommand
     ''',
 
     # If you are changing from the default layout of your extension, you may

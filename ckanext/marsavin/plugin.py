@@ -79,11 +79,12 @@ class MarsavinRequestAccessPlugin(plugins.SingletonPlugin,
                                   toolkit.get_validator('unicode_safe')],
             'number_of_instances': [toolkit.get_validator('not_empty'),
                                     toolkit.get_validator('unicode_safe')],
-            'number_of_missing_values': [toolkit.get_validator(
-                'ignore_missing'),
-                toolkit.get_validator('unicode_safe')],
             'pkg_description': [toolkit.get_validator('not_empty'),
                                 toolkit.get_validator('unicode_safe')],
+            'number_of_attributes': [toolkit.get_validator('unicode_safe')],
+            'creation_date': [toolkit.get_validator('unicode_safe')],
+            'expiry_date': [toolkit.get_validator('unicode_safe')],
+            'has_missing_values': [toolkit.get_validator('boolean_validator')],
         })
         return schema
 
