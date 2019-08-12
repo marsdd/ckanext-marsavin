@@ -26,6 +26,7 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation):
         toolkit.add_template_directory(config_, 'templates')
         toolkit.add_public_directory(config_, 'public')
         toolkit.add_resource('fanstatic', 'marsavin')
+        config_['ckan.favicon'] = "/images/avin.ico"
 
     # IBlueprint
     def get_blueprint(self):
