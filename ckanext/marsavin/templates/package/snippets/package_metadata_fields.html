@@ -21,15 +21,15 @@
 
         {{ form.input('number_of_instances', label=_('Number of Instances'), id='field-number-of-instances', placeholder=_('Number of Instances'), value=data.number_of_instances, error=errors.number_of_instances, classes=['control-medium'], is_required=true) }}
 
-        {{ form.textarea('pkg_description', label=_('Package Description'), id='field-pkg-description', placeholder=_('Package Description'), value=data.pkg_description, error=errors.pkg_description, classes=['control-medium'], is_required=true) }}
-
         {{ form.input('number_of_attributes', label=_('Number of Attributes'), id='field-number-of-attributes', placeholder=_('Number of Attributes'), value=data.number_of_attributes, error=errors.number_of_attributes, classes=['control-medium'], is_required=false) }}
+
+        {{ form.textarea('pkg_description', label=_('Package Description'), id='field-pkg-description', placeholder=_('Package Description'), value=data.pkg_description, error=errors.pkg_description, classes=['control-medium'], is_required=true) }}
 
         {{ form.input('creation_date', label=_('Creation Date'), id='field-creation-date', placeholder=_('YYYY-MM-DD HH:MM:SS'), type="date", value=data.creation_date, error=errors.creation_date, classes=['control-medium'], is_required=false) }}
 
         {{ form.input('expiry_date', label=_('Expiry Date'), id='field-expiry-date', placeholder=_('YYYY-MM-DD HH:MM:SS'), type="date", value=data.expiry_date, error=errors.expiry_date, classes=['control-medium'], is_required=false) }}
 
-        {{ form.select('has_missing_values', label=_('Dataset has missing values'), id='field-has-missing-values', options=({"Value": None, "text": ""}, {"value": False, "text": "False"}, {"value": True, "text": "True"}), selected=data.has_missing_values, error=errors.has_missing_values, classes=['control-medium'], is_required=false) }}
+        {{ form.select('has_missing_values', label=_('Dataset has missing values'), id='field-has-missing-values', options=({"Value": None, "text": ""}, {"value": False, "text": "False"}, {"value": True, "text": "True"}), selected=data.has_missing_values, error=errors.has_missing_values, classes=['control-medium', 'control-label-question'], is_required=false) }}
         <!-- a.s. -->
     {% endblock %}
     {{ super() }}
