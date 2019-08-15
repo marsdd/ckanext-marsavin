@@ -13,10 +13,12 @@ from views.marsavin import contact, terms, privacy
 log = logging.getLogger(__name__)
 
 
-class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation):
+class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
+                     toolkit.DefaultDatasetForm):
     plugins.implements(plugins.IConfigurer)
     plugins.implements(plugins.IBlueprint)
     plugins.implements(plugins.ITranslation)
+    plugins.implements(plugins.IDatasetForm)
 
     # add template helper functions
     plugins.implements(plugins.ITemplateHelpers)
@@ -51,19 +53,6 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation):
         # other extensions.
         return {'is_featured_organization': is_featured_organization}
 
-
-class MarsavinRequestAccessPlugin(plugins.SingletonPlugin,
-                                  toolkit.DefaultDatasetForm):
-    plugins.implements(plugins.IActions)
-    plugins.implements(plugins.IDatasetForm)
-    plugins.implements(plugins.IBlueprint)
-
-    # IActions
-    def get_actions(self):
-        return {
-            "reqaccess_create": actions.reqaccess_create
-        }
-
     def _get_schema_updates(self, schema):
         schema.update({
             # a.s. validate maintainer fields aren't empty
@@ -79,10 +68,12 @@ class MarsavinRequestAccessPlugin(plugins.SingletonPlugin,
             'geographical_area': [toolkit.get_validator('ignore_missing'),
                                   toolkit.get_validator('unicode_safe')],
             'number_of_instances': [toolkit.get_validator('not_empty'),
-                                    toolkit.get_validator('unicode_safe')],
+                                    toolkit.get_validator('unicode_safe'),
+                                    toolkit.get_validator('is_positive_integer')],
             'pkg_description': [toolkit.get_validator('not_empty'),
                                 toolkit.get_validator('unicode_safe')],
-            'number_of_attributes': [toolkit.get_validator('unicode_safe')],
+            'number_of_attributes': [toolkit.get_validator('unicode_safe'),
+                                     toolkit.get_validator('is_positive_integer')],
             'creation_date': [toolkit.get_validator('unicode_safe')],
             'expiry_date': [toolkit.get_validator('unicode_safe')],
             'has_missing_values': [toolkit.get_validator('boolean_validator')],
@@ -91,22 +82,19 @@ class MarsavinRequestAccessPlugin(plugins.SingletonPlugin,
 
     def create_package_schema(self):
         # let's grab the default schema in our plugin
-        schema = super(MarsavinRequestAccessPlugin,
-                        self).create_package_schema()
+        schema = super(MarsavinPlugin, self).create_package_schema()
 
         return self._get_schema_updates(schema)
 
     def update_package_schema(self):
         # let's grab the default schema in our plugin
-        schema = super(MarsavinRequestAccessPlugin,
-                       self).update_package_schema()
+        schema = super(MarsavinPlugin, self).update_package_schema()
 
         return self._get_schema_updates(schema)
 
     def show_package_schema(self):
         # let's grab the default schema in our plugin
-        schema = super(MarsavinRequestAccessPlugin,
-                       self).show_package_schema()
+        schema = super(MarsavinPlugin, self).show_package_schema()
 
         return self._get_schema_updates(schema)
 
@@ -119,6 +107,17 @@ class MarsavinRequestAccessPlugin(plugins.SingletonPlugin,
         # This plugin doesn't handle any special package types, it just
         # registers itself as the default (above).
         return []
+
+
+class MarsavinRequestAccessPlugin(plugins.SingletonPlugin):
+    plugins.implements(plugins.IActions)
+    plugins.implements(plugins.IBlueprint)
+
+    # IActions
+    def get_actions(self):
+        return {
+            "reqaccess_create": actions.reqaccess_create
+        }
 
     # IBlueprint
     def get_blueprint(self):
