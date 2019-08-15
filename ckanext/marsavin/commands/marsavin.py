@@ -5,20 +5,23 @@ from __future__ import print_function
 
 from ckan import model
 import logging
+import datetime
 # from ckan.logic import get_action, ValidationError
 # from ckan.plugins import toolkit
 
-from ckan.plugins.toolkit import CkanCommand
+from ckan.plugins.toolkit import CkanCommand, get_action, _
 import migrate.versioning.api as mig
 from ckanext.marsavin import migrate
+from ckanext.marsavin.model.package_marsavin import PackageMarsavin
+from ckan.lib.search import rebuild
 
 log = logging.getLogger("ckanext_marsavin")
 
 
 class DatabaseCommand(CkanCommand):
-    '''Command to take care of MaRS Avin related things
+    '''Command to take care of MaRS Avin Database migrations
         Usage:
-          harvester initdb
+          ckanext_marsavin initdb
             - Creates the necessary tables in the database
           harvester source {name} {url} {type} [{title}] [{active}] [{owner_org}] [{frequency}] [{config}]
             - create new harvest source
@@ -35,11 +38,6 @@ class DatabaseCommand(CkanCommand):
 
     def command(self):
         self._load_config()
-
-        # We'll need a sysadmin user to perform most of the actions
-        # We will use the sysadmin site user (named as the site_id)
-        context = {'model': model, 'session': model.Session,
-                   'ignore_auth': True}
 
         cmd = self.args[0]
 
@@ -76,3 +74,47 @@ class DatabaseCommand(CkanCommand):
             version = None
 
         return version
+
+
+class PackageCommand(CkanCommand):
+    '''Command to take care of MaRS Avin Database migrations
+        Usage:
+          ckanext_marsavin initdb
+            - Creates the necessary tables in the database
+          harvester source {name} {url} {type} [{title}] [{active}] [{owner_org}] [{frequency}] [{config}]
+            - create new harvest source
+    '''
+
+    summary = __doc__.split('\n')[0]
+    usage = __doc__
+    max_args = None
+    min_args = None
+
+    def __init__(self, name):
+        super(PackageCommand, self).__init__(name)
+
+    def command(self):
+        self._load_config()
+
+        cmd = self.args[0]
+
+        if cmd == "delete_expired":
+            query = model.Session.query(model.Package, PackageMarsavin).filter(
+                model.Package.id == PackageMarsavin.package_id
+            ).filter(
+                model.Package.state == "active"
+            ).filter(
+                PackageMarsavin.expiry_date < datetime.date.today()
+            )
+
+            expired_packages = query.all()
+
+            if expired_packages:
+                rev = model.repo.new_revision()
+                rev.message = _(u'CLI Command: Delete expired Packages')
+                for package in expired_packages:
+                    # model.package
+                    package[0].delete()
+                    rebuild(package[0].id)
+
+            model.repo.commit()
