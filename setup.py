@@ -90,6 +90,7 @@ setup(
         
         [paste.paster_command]
         db = ckanext.marsavin.commands.marsavin:DatabaseCommand
+        package = ckanext.marsavin.commands.marsavin:PackageCommand
     ''',
 
     # If you are changing from the default layout of your extension, you may
