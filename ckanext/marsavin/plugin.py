@@ -10,7 +10,9 @@ from views.request_access import RequestAccessView
 from dictization import package_marsavin_save, package_marsavin_delete, \
     package_marsavin_load
 from views.marsavin import contact, terms, privacy
-log = logging.getLogger(__name__)
+from model.package_marsavin import PackageMarsavin
+from ckan.lib.search import rebuild
+log = logging.getLogger("ckanext")
 
 
 class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
@@ -19,6 +21,7 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
     plugins.implements(plugins.IBlueprint)
     plugins.implements(plugins.ITranslation)
     plugins.implements(plugins.IDatasetForm)
+    plugins.implements(plugins.ISession, inherit=True)
 
     # add template helper functions
     plugins.implements(plugins.ITemplateHelpers)
@@ -107,6 +110,38 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
         # This plugin doesn't handle any special package types, it just
         # registers itself as the default (above).
         return []
+
+    # ISession
+    def before_commit(self, session):
+        if not hasattr(session, '_object_cache'):
+            return
+
+        new = session._object_cache["new"]
+        changed = session._object_cache["changed"]
+        deleted = session._object_cache["deleted"]
+
+        for model_obj in set(new):
+            if not isinstance(model_obj, PackageMarsavin):
+                continue
+            log.debug("New Object: {the_object}".format(the_object=model_obj))
+            rebuild(package_id=model_obj.package_id)
+
+        for model_obj in set(changed):
+            if not isinstance(model_obj, PackageMarsavin):
+                continue
+            log.debug("Changed Object: {the_object}".format(
+                the_object=model_obj))
+            rebuild(package_id=model_obj.package_id)
+
+        for model_obj in set(deleted):
+            if not isinstance(model_obj, PackageMarsavin):
+                continue
+            log.debug("Deleted Object: {the_object}".format(
+                the_object=model_obj))
+            rebuild(package_id=model_obj.package_id)
+
+    def after_commit(self, session):
+        pass
 
 
 class MarsavinRequestAccessPlugin(plugins.SingletonPlugin):

@@ -91,5 +91,4 @@ def package_marsavin_load(pkg_dict):
             else:
                 entity_dict["expiry_date"] = entity.creation_date
 
-
     pkg_dict.update(entity_dict)
