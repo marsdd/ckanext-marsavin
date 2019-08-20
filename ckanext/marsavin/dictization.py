@@ -90,7 +90,7 @@ def package_marsavin_load(pkg_dict, cached_entity=None):
                 entity_dict["creation_date"] = entity.creation_date
 
         if entity.expiry_date:
-            if isinstance(entity.creation_date, date):
+            if isinstance(entity.expiry_date, date):
                 entity_dict["expiry_date"] = entity.expiry_date.isoformat()
             else:
                 entity_dict["expiry_date"] = entity.expiry_date
