@@ -35,3 +35,7 @@
   color: #133c55;
   text-shadow: none;
 }
+
+.control-label-question label:after {
+    content: "?";
+}
