@@ -1,6 +1,11 @@
 from sqlalchemy import types, Column, Table, ForeignKey
+from sqlalchemy.orm import relationship
 
-from ckan.model import meta, domain_object, types as _types
+from ckan.model import meta, domain_object, types as _types, Package, tag, \
+    extension
+from ckan.model.package import package_table, package_revision_table
+from sqlalchemy import orm
+import vdm
 
 __all__ = ['PackageMarsavin', 'package_marsavin_table']
 

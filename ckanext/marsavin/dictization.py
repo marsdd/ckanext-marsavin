@@ -51,7 +51,7 @@ def package_marsavin_delete(pkg_dict):
         entity.delete()
 
 
-def package_marsavin_load(pkg_dict):
+def package_marsavin_load(pkg_dict, cached_entity=None):
     package_id = _get_or_bust(pkg_dict, 'id')
 
     entity_dict = {
@@ -66,7 +66,11 @@ def package_marsavin_load(pkg_dict):
         "has_missing_values": u''
     }
 
-    entity = PackageMarsavin.by_package_id(package_id)
+    if isinstance(cached_entity, PackageMarsavin):
+        entity = cached_entity
+    else:
+        entity = PackageMarsavin.by_package_id(package_id)
+
     if entity:
         entity_dict = {
             "associated_tasks": entity.associated_tasks,
@@ -89,6 +93,6 @@ def package_marsavin_load(pkg_dict):
             if isinstance(entity.creation_date, date):
                 entity_dict["expiry_date"] = entity.expiry_date.isoformat()
             else:
-                entity_dict["expiry_date"] = entity.creation_date
+                entity_dict["expiry_date"] = entity.expiry_date
 
     pkg_dict.update(entity_dict)

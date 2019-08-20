@@ -11,7 +11,8 @@ from dictization import package_marsavin_save, package_marsavin_delete, \
     package_marsavin_load
 from views.marsavin import contact, terms, privacy
 from model.package_marsavin import PackageMarsavin
-from ckan.lib.search import rebuild
+import ckan.model as ckan_model
+from ckan.lib.search import index_for
 log = logging.getLogger("ckanext")
 
 
@@ -116,29 +117,25 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
         if not hasattr(session, '_object_cache'):
             return
 
-        new = session._object_cache["new"]
         changed = session._object_cache["changed"]
-        deleted = session._object_cache["deleted"]
-
-        for model_obj in set(new):
-            if not isinstance(model_obj, PackageMarsavin):
-                continue
-            log.debug("New Object: {the_object}".format(the_object=model_obj))
-            rebuild(package_id=model_obj.package_id)
+        context = {
+            "model": ckan_model
+        }
+        package_index = index_for(ckan_model.Package)
 
         for model_obj in set(changed):
             if not isinstance(model_obj, PackageMarsavin):
                 continue
             log.debug("Changed Object: {the_object}".format(
                 the_object=model_obj))
-            rebuild(package_id=model_obj.package_id)
-
-        for model_obj in set(deleted):
-            if not isinstance(model_obj, PackageMarsavin):
-                continue
-            log.debug("Deleted Object: {the_object}".format(
-                the_object=model_obj))
-            rebuild(package_id=model_obj.package_id)
+            package_id = model_obj.package_id
+            pkg_dict = toolkit.get_action('package_show')(context,
+                                                          {'id': package_id})
+            # since we have an update on our secondary table, we want to send
+            # this updated data to the search index
+            log.info('Indexing just package %r...', pkg_dict['name'])
+            package_index.remove_dict(pkg_dict)
+            package_index.insert_dict(pkg_dict)
 
     def after_commit(self, session):
         pass
