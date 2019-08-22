@@ -324,3 +324,6 @@ msgstr "termes et conditions"
 msgid "Privacy"
 msgstr "Intimité"
 
+#: ckan/templates/header.html
+msgid "Contact Us"
+msgstr "Contactez nous"
