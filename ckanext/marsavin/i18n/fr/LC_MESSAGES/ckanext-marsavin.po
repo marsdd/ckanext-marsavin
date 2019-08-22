@@ -375,3 +375,17 @@ msgstr "<h3>Stimuler la croissance d’un écosystème dynamique et diversifié"
 #: ckanext/marsavin/templates/footer.html
 msgid "About"
 msgstr "À propos du programme RIVA"
+
+# ckanext-marsavin/ckanext/marsavin/templates/home/snippets/promoted.html
+msgid "Welcome to CKAN"
+msgstr "Bienvenue au Répertoire de données RIVA"
+
+# ckanext-marsavin/ckanext/marsavin/templates/home/snippets/promoted.html
+msgid "<a href=\"https://www.avindata.ca\">AVIN</a>'s four distinct programs focus on supporting the development and demonstration of C/AV technologies, including infrastructure, related to: commercially ready technologies for application in mass light vehicles (e.g., cars, trucks, and vans), heavy-duty vehicles (including commercial vehicles, trucks, buses, recreational vehicles (RVs) and others used for goods movement), transportation infrastructure, intelligent transportation systems (ITS) and transit-supportive systems and vehicles in Ontario."
+msgstr "Le Réseau d’innovation pour les <a href=\"https://www.avindata.ca\">"
+" véhicules automatisés (RIVA)</a> permet de garantir que l’Ontario demeure"
+" un chef de file du secteur mondial de l’automobile et des transports et un"
+" fabricant et fournisseur de calibre mondial. Ce répertoire de données"
+" centralisé permet de partager des ensembles de données pertinentes pour"
+" appuyer la recherche, le développement et l’essai de produits et de"
+" solutions de véhicules connectés et automatisés (VCA)."
