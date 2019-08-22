@@ -316,3 +316,11 @@ msgstr "Vous n'êtes membre d'aucune catégorie de données."
 msgid "Create datasets, groups and other exciting things"
 msgstr "Créer des jeux de données, des catégories de données et d'autres éléments intéressants"
 
+#: ckan/templates/footer.html
+msgid "Terms & Conditions"
+msgstr "termes et conditions"
+
+#: ckan/templates/footer.html
+msgid "Privacy"
+msgstr "Intimité"
+
