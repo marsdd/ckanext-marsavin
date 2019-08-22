@@ -39,3 +39,7 @@
 .control-label-question label:after {
     content: "?";
 }
+
+.contact .email-label ::after {
+    content: ": "
+}

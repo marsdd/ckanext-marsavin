@@ -1,4 +1,4 @@
-# English translations for ckan.
+# French translations for ckan.
 # Copyright (C) 2019 MaRS Discovery District
 # This file is distributed under the same license as the ckan project.
 # FIRST AUTHOR <shasan@marsdd.com>, 2019.
@@ -21,33 +21,33 @@ msgstr ""
 #: ckanext/example_theme_docs/v10_custom_snippet/templates/snippets/example_theme_most_popular_groups.html:20
 #: ckanext/example_theme_docs/v11_HTML_and_CSS/templates/snippets/example_theme_most_popular_groups.html:19
 msgid "This group has no description"
-msgstr "This data category has no description"
+msgstr "Ce groupe n'a pas de description"
 
 #: ckanext/reclineview/theme/templates/recline_graph_form.html:7
 msgid "Group (Axis 1)"
-msgstr "Data Category (Axis 1)"
+msgstr "Catégorie de données (axe 1)"
 
 #: ckan/templates/snippets/activities/new_group.html:4
 msgid "{actor} created the group {group}"
-msgstr "{actor} created the data category {group}"
+msgstr "{actor} a créé la catégorie de données {group}"
 
 #: ckan/templates/snippets/activities/changed_group.html:4
 msgid "{actor} updated the group {group}"
-msgstr "{actor} updated the data category {group}"
+msgstr "{actor} a mis à jour la catégorie de données {group}"
 
 #: ckan/templates/snippets/activities/deleted_group.html:4
 msgid "{actor} deleted the group {group}"
-msgstr "{actor} deleted the data category {group}"
+msgstr "{actor} manny a supprimé la catégorie de données {group}"
 
 #: ckanext/stats/templates/ckanext/stats/index.html:108
 #: ckanext/stats/templates/ckanext/stats/index.html:182
 msgid "Largest Groups"
-msgstr "Largest Data Category"
+msgstr "Plus grande catégorie de données"
 
 #: ckan/logic/converters.py:171 ckan/logic/validators.py:244
 #: ckanext/stats/templates/ckanext/stats/index.html:113
 msgid "Group"
-msgstr "Data Category"
+msgstr "Catégorie de données"
 #: ckan/controllers/feed.py:233 ckan/controllers/group.py:137
 #: ckan/controllers/group.py:225 ckan/controllers/group.py:393
 #: ckan/controllers/group.py:503 ckan/controllers/group.py:536
@@ -58,11 +58,11 @@ msgstr "Data Category"
 #: ckan/controllers/group.py:926 ckan/controllers/package.py:1243
 #: ckan/controllers/package.py:1258 ckan/logic/action/create.py:1396
 msgid "Group not found"
-msgstr "Data Category not found"
+msgstr "Catégorie de données non trouvée"
 
 #: ckan/controllers/group.py:139 ckan/controllers/group.py:580
 msgid "Incorrect group type"
-msgstr "Incorrect data category type"
+msgstr "Type de catégorie de données incorrect"
 
 #: ckan/controllers/group.py:306 ckan/controllers/home.py:62
 #: ckan/controllers/package.py:241 ckan/lib/helpers.py:834
@@ -75,32 +75,32 @@ msgstr "Incorrect data category type"
 #: ckan/templates/package/read_base.html:20
 #: ckan/templates/revision/diff.html:16 ckan/templates/revision/read.html:84
 msgid "Groups"
-msgstr "Data Categories"
+msgstr "Catégories de données"
 
 #: ckan/controllers/group.py:460
 msgid "Unauthorized to create a group"
-msgstr "Unauthorized to create a data category"
+msgstr "Non autorisé à créer une catégorie de données"
 
 #: ckan/controllers/group.py:622
 msgid "Group has been deleted."
-msgstr "Data Category has been deleted."
+msgstr "La catégorie de données a été supprimée."
 
 #: ckan/controllers/group.py:724 ckan/controllers/group.py:737
 #, python-format
 msgid "Unauthorized to delete group %s members"
-msgstr "Unauthorized to delete data category %s members"
+msgstr "Non autorisé à supprimer des membres du groupe %s"
 
 #: ckan/controllers/group.py:731
 msgid "Group member has been deleted."
-msgstr "Data category member has been deleted."
+msgstr "Le membre de la catégorie de données a été supprimé."
 
 #: ckan/controllers/group.py:779
 msgid "CKAN Group Revision History"
-msgstr "CKAN Data Category Revision History"
+msgstr "Historique de révision de la catégorie de données CKAN"
 
 #: ckan/controllers/group.py:783
 msgid "Recent changes to CKAN Group: "
-msgstr "Recent changes to CKAN Data Category: "
+msgstr "Changements récents à la catégorie de données CKAN: "
 
 #: ckan/lib/activity_streams.py:63
 msgid "{actor} updated the group {group}"
