@@ -32,9 +32,14 @@ msgid "{actor} created the group {group}"
 msgstr "{actor} created the data category {group}"
 
 #: ckan/templates/snippets/activities/changed_group.html:4
+#: ckan/lib/activity_streams.py:63
+#: ckan/templates/snippets/activities/changed_group.html:4
 msgid "{actor} updated the group {group}"
 msgstr "{actor} updated the data category {group}"
 
+#: ckan/templates/snippets/activities/deleted_group.html:4
+#: ckan/lib/activity_streams.py:81
+#: ckan/lib/activity_streams.py:97
 #: ckan/templates/snippets/activities/deleted_group.html:4
 msgid "{actor} deleted the group {group}"
 msgstr "{actor} deleted the data category {group}"
@@ -102,30 +107,6 @@ msgstr "CKAN Data Category Revision History"
 msgid "Recent changes to CKAN Group: "
 msgstr "Recent changes to CKAN Data Category: "
 
-#: ckan/lib/activity_streams.py:63
-msgid "{actor} updated the group {group}"
-msgstr "{actor} updated the data category {group}"
-
-#: ckan/lib/activity_streams.py:81
-msgid "{actor} deleted the group {group}"
-msgstr "{actor} deleted the data category {group}"
-
-#: ckan/lib/activity_streams.py:97
-msgid "{actor} deleted the group {group}"
-msgstr "{actor} deleted the data category {group}"
-
-#: ckan/templates/snippets/activities/new_group.html:4
-msgid "{actor} created the group {group}"
-msgstr "{actor} created the data category {group}"
-
-#: ckan/templates/snippets/activities/changed_group.html:4
-msgid "{actor} updated the group {group}"
-msgstr "{actor} updated the data category {group}"
-
-#: ckan/templates/snippets/activities/deleted_group.html:4
-msgid "{actor} deleted the group {group}"
-msgstr "{actor} deleted the data category {group}"
-
 #: ckan/lib/mailer.py:128 ckan/templates/home/snippets/stats.html:23
 msgid "group"
 msgstr "data category"
@@ -149,7 +130,7 @@ msgstr "You must be logged in to follow a data category."
 #: ckan/logic/auth/create.py:31 ckan/logic/auth/update.py:45
 #, python-format
 msgid "User %s not authorized to edit these groups"
-msgstr "User %s not authorized to edit these data category"
+msgstr "User %s not authorized to edit these data categories"
 
 #: ckan/logic/auth/create.py:119
 #, python-format

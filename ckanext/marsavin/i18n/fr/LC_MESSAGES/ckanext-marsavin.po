@@ -32,9 +32,14 @@ msgid "{actor} created the group {group}"
 msgstr "{actor} a créé la catégorie de données {group}"
 
 #: ckan/templates/snippets/activities/changed_group.html:4
+#: ckan/lib/activity_streams.py:63
+#: ckan/templates/snippets/activities/changed_group.html:4
 msgid "{actor} updated the group {group}"
 msgstr "{actor} a mis à jour la catégorie de données {group}"
 
+#: ckan/templates/snippets/activities/deleted_group.html:4
+#: ckan/lib/activity_streams.py:81
+#: ckan/lib/activity_streams.py:97
 #: ckan/templates/snippets/activities/deleted_group.html:4
 msgid "{actor} deleted the group {group}"
 msgstr "{actor} manny a supprimé la catégorie de données {group}"
@@ -102,72 +107,48 @@ msgstr "Historique de révision de la catégorie de données CKAN"
 msgid "Recent changes to CKAN Group: "
 msgstr "Changements récents à la catégorie de données CKAN: "
 
-#: ckan/lib/activity_streams.py:63
-msgid "{actor} updated the group {group}"
-msgstr "{actor} updated the data category {group}"
-
-#: ckan/lib/activity_streams.py:81
-msgid "{actor} deleted the group {group}"
-msgstr "{actor} deleted the data category {group}"
-
-#: ckan/lib/activity_streams.py:97
-msgid "{actor} deleted the group {group}"
-msgstr "{actor} deleted the data category {group}"
-
-#: ckan/templates/snippets/activities/new_group.html:4
-msgid "{actor} created the group {group}"
-msgstr "{actor} created the data category {group}"
-
-#: ckan/templates/snippets/activities/changed_group.html:4
-msgid "{actor} updated the group {group}"
-msgstr "{actor} updated the data category {group}"
-
-#: ckan/templates/snippets/activities/deleted_group.html:4
-msgid "{actor} deleted the group {group}"
-msgstr "{actor} deleted the data category {group}"
-
 #: ckan/lib/mailer.py:128 ckan/templates/home/snippets/stats.html:23
 msgid "group"
-msgstr "data category"
+msgstr "catégorie de données"
 
 #: ckan/logic/validators.py:254
 msgid "That group name or ID does not exist."
-msgstr "That data category name or ID does not exist."
+msgstr "Ce nom ou identifiant de catégorie de données n'existe pas."
 
 #: ckan/logic/validators.py:410
 msgid "Group name already exists in database"
-msgstr "Data Category name already exists in database"
+msgstr "Ce nom ou identifiant de catégorie de données n'existe pas."
 
 #: ckan/logic/action/create.py:804
 msgid "Trying to create an organization as a group"
-msgstr "Trying to create an organization as a data category"
+msgstr "Ce nom ou identifiant de catégorie de données n'existe pas."
 
 #: ckan/logic/action/create.py:1477 ckan/logic/action/create.py:1485
 msgid "You must be logged in to follow a group."
-msgstr "You must be logged in to follow a data category."
+msgstr "Vous devez être connecté pour suivre une catégorie de données."
 
 #: ckan/logic/auth/create.py:31 ckan/logic/auth/update.py:45
 #, python-format
 msgid "User %s not authorized to edit these groups"
-msgstr "User %s not authorized to edit these data category"
+msgstr "%s non autorisé à éditer ces catégories de données"
 
 #: ckan/logic/auth/create.py:119
 #, python-format
 msgid "User %s not authorized to create groups"
-msgstr "User %s not authorized to create data categories"
+msgstr "%s utilisateur non autorisé à créer des catégories de données"
 
 #: ckan/logic/auth/create.py:189
 msgid "Group was not found."
-msgstr "Data Categories was not found."
+msgstr "Catégories de données n'a pas été trouvé."
 
 #: ckan/logic/auth/create.py:217
 msgid "Valid API key needed to create a group"
-msgstr "Valid API key needed to create a data categories"
+msgstr "Clé d'API valide nécessaire pour créer une catégorie de données"
 
 #: ckan/logic/auth/create.py:261 ckan/logic/auth/update.py:115
 #, python-format
 msgid "User %s not authorized to edit group %s"
-msgstr "User %s not authorized to edit data categories %s"
+msgstr "Utilisateur %s non autorisé à modifier les catégories de données %s"
 
 #: ckan/logic/auth/delete.py:82
 #, python-format
@@ -177,12 +158,12 @@ msgstr "User %s not authorized to delete data categories"
 #: ckan/logic/auth/delete.py:86
 #, python-format
 msgid "User %s not authorized to delete group %s"
-msgstr "User %s not authorized to delete data categories %s"
+msgstr "Utilisateur %s pas autorisé à supprimer des catégories de données %s"
 
 #: ckan/logic/auth/get.py:170
 #, python-format
 msgid "User %s not authorized to read group %s"
-msgstr "User %s not authorized to read data categories %s"
+msgstr "%s non autorisé à lire les catégories de données %s"
 
 #: ckan/logic/auth/update.py:145
 #, python-format
@@ -192,40 +173,40 @@ msgstr "User %s not authorized to change state of data category %s"
 #: ckan/logic/auth/update.py:162
 #, python-format
 msgid "User %s not authorized to edit permissions of group %s"
-msgstr "User %s not authorized to edit permissions of data category %s"
+msgstr "L'utilisateur %s n'est pas autorisé à changer l'état de la catégorie de données %s"
 
 #: ckan/logic/auth/update.py:272
 msgid "Valid API key needed to edit a group"
-msgstr "Valid API key needed to edit a data category"
+msgstr "Clé API valide nécessaire pour modifier une catégorie de données"
 
 #: ckan/templates/group/base_form_page.html:7
 msgid "Add a Group"
-msgstr "Add a Data Category"
+msgstr "Ajouter une catégorie de données"
 
 #: ckan/templates/group/base_form_page.html:11
 msgid "Group Form"
-msgstr "Data Category Form"
+msgstr "Formulaire de catégorie de données"
 
 #: ckan/templates/group/confirm_delete.html:11
 msgid "Are you sure you want to delete group - {name}?"
-msgstr "Are you sure you want to delete data category - {name}?"
+msgstr "Êtes-vous sûr de vouloir supprimer la catégorie de données - {name}?"
 
 #: ckan/templates/group/edit.html:12
 msgid "Edit Group"
-msgstr "Edit Data Category"
+msgstr "Modifier la catégorie de données"
 
 #: ckan/templates/group/index.html:13
 #: ckan/templates/user/dashboard_groups.html:7
 msgid "Add Group"
-msgstr "Add Data Category"
+msgstr "Ajouter une catégorie de données"
 
 #: ckan/templates/group/index.html:20
 msgid "Search groups..."
-msgstr "Search data categories..."
+msgstr "Rechercher des catégories de données..."
 
 #: ckan/templates/group/index.html:29
 msgid "There are currently no groups for this site"
-msgstr "There are currently no data categories for this site"
+msgstr "Il n'y a actuellement aucune catégorie de données pour ce site."
 
 #: ckan/templates/group/member_new.html:80
 msgid ""
@@ -233,26 +214,26 @@ msgid ""
 " organization members.</p> <p><strong>Member:</strong> Can add/remove "
 "datasets from groups</p> "
 msgstr ""
-" <p><strong>Admin:</strong> Can edit data category information, as well as manage"
-" organization members.</p> <p><strong>Member:</strong> Can add/remove "
-"datasets from data categories</p> "
+" <p><strong>Admin:</strong>: peut modifier les informations de catégorie"
+" de données, ainsi que gérer membres de l'organisation.</p> <p>Membre: peut"
+" ajouter / supprimer ensembles de données de catégories de données</p>"
 
 #: ckan/templates/group/new.html:3 ckan/templates/group/new.html:5
 #: ckan/templates/group/new.html:7
 msgid "Create a Group"
-msgstr "Create a Data Category"
+msgstr "Créer une catégorie de données"
 
 #: ckan/templates/group/new_group_form.html:17
 msgid "Update Group"
-msgstr "Update Data Category"
+msgstr "Mise à jour de la catégorie de données"
 
 #: ckan/templates/group/new_group_form.html:19
 msgid "Create Group"
-msgstr "Create Data Category"
+msgstr "Créer une catégorie de données"
 
 #: ckan/templates/group/snippets/feeds.html:3
 msgid "Datasets in group: {group}"
-msgstr "Datasets in Data Category: {group}"
+msgstr "Jeux de données dans la catégorie de données: {group}"
 
 #: ckan/templates/group/snippets/group_form.html:18
 msgid "my-group"
@@ -260,7 +241,7 @@ msgstr "my-data-category"
 
 #: ckan/templates/group/snippets/group_form.html:20
 msgid "A little information about my group..."
-msgstr "A little information about my data category..."
+msgstr "Quelques informations sur ma catégorie de données..."
 
 #: ckan/templates/group/snippets/group_form.html:60
 msgid "Are you sure you want to delete this Group?"
@@ -287,7 +268,7 @@ msgstr "You can use CKAN Data Categories to create and manage collections of "
 
 #: ckan/templates/home/snippets/stats.html:23
 msgid "groups"
-msgstr "data categories"
+msgstr "catégories de données"
 
 #: ckan/templates/package/group_list.html:14
 msgid "Associate this group with this dataset"
@@ -295,42 +276,42 @@ msgstr "Associate this data category with this dataset"
 
 #: ckan/templates/package/group_list.html:14
 msgid "Add to group"
-msgstr "Add to data category"
+msgstr "ajouter à la catégorie de données"
 
 #: ckan/templates/package/group_list.html:23
 msgid "There are no groups associated with this dataset"
-msgstr "There are no data categories associated with this dataset"
+msgstr "Aucune catégorie de données n'est associée à cet ensemble de données."
 
 #: ckan/templates/snippets/search_result_text.html:21
 msgid "{number} group found for \"{query}\""
 msgid_plural "{number} groups found for \"{query}\""
-msgstr[0] "{number} data category found for \"{query}\""
-msgstr[1] "{number} data categories found for \"{query}\""
+msgstr[0] "{number} catégorie de données trouvée pour \"{query}\""
+msgstr[1] "{number} catégories de données trouvée pour \"{query}\""
 
 #: ckan/templates/snippets/search_result_text.html:22
 msgid "No groups found for \"{query}\""
-msgstr "No data categories found for \"{query}\""
+msgstr "Aucune catégorie de données trouvée pour \"{query}\""
 
 #: ckan/templates/snippets/search_result_text.html:23
 msgid "{number} group found"
 msgid_plural "{number} groups found"
-msgstr[0] "{number} data category found"
-msgstr[1] "{number} data categories found"
+msgstr[0] "{number} catégorie de données trouvée"
+msgstr[1] "{number} catégories de données trouvées"
 
 #: ckan/templates/snippets/search_result_text.html:24
 msgid "No groups found"
-msgstr "No data categories found"
+msgstr "Aucune catégorie de données trouvée"
 
 #: ckan/templates/user/dashboard.html:22
 #: ckan/templates/user/dashboard_groups.html:12
 msgid "My Groups"
-msgstr "My Data Categories"
+msgstr "Mes catégories de données"
 
 #: ckan/templates/user/dashboard_groups.html:20
 msgid "You are not a member of any groups."
-msgstr "You are not a member of any data categories."
+msgstr "Vous n'êtes membre d'aucune catégorie de données."
 
 #: ckan/templates/user/new.html:28
 msgid "Create datasets, groups and other exciting things"
-msgstr "Create datasets, data categories and other exciting things"
+msgstr "Créer des jeux de données, des catégories de données et d'autres éléments intéressants"
 
