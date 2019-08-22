@@ -315,3 +315,6 @@ msgstr "You are not a member of any data categories."
 msgid "Create datasets, groups and other exciting things"
 msgstr "Create datasets, data categories and other exciting things"
 
+#: ckanext/marsavin/templates/footer.html
+msgid "About"
+msgstr "Welcome to the AVIN Data Index"
