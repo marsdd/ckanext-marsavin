@@ -326,4 +326,23 @@ msgstr "Intimité"
 
 #: ckan/templates/header.html
 msgid "Contact Us"
-msgstr "Contactez nous"
+msgstr "Communiquez avec nous"
+
+#: ckanext/marsavin/templates/home/snippets/contact_text.html
+msgid "Sherin is the Technical Data and Global Trends Research Analyst of AVIN and the manager of the AVIN’s data strategy. For data-related inquiries or information, please contact her at the address below."
+msgstr "Sherin est analyste de la recherche sur les données techniques et"
+" les tendances mondiales et gestionnaire de la stratégie de données du"
+" programme RIVA. Pour toute demande de renseignements sur les données ou"
+" pour obtenir plus d’information, veuillez communiquer avec elle à"
+" l’adresse ci-dessous."
+
+#: ckanext/marsavin/templates/home/snippets/contact_text.html
+msgid "Steve is an Associate at MaRS Discovery District and the product manager for the AVIN Data Catalogue. For requests or information regarding technical issues, errors, or improvements to functionality, please contact him at the address below."
+msgstr "Steve est collaborateur à MaRS Discovery District et gestionnaire de"
+" produits du Répertoire de données RAVI. Pour toute demande concernant des"
+" problèmes techniques, erreurs ou améliorations de la fonctionnalité,"
+" veuillez communiquer avec lui à l’adresse ci-dessous."
+
+#: ckanext/marsavin/templates/home/snippets/contact_text.html
+msgid "Email:"
+msgstr "Coouriel:"
