@@ -245,26 +245,27 @@ msgstr "Quelques informations sur ma catégorie de données..."
 
 #: ckan/templates/group/snippets/group_form.html:60
 msgid "Are you sure you want to delete this Group?"
-msgstr "Are you sure you want to delete this Data Category?"
+msgstr "Êtes-vous sûr de vouloir supprimer cette catégorie de données?"
 
 #: ckan/templates/group/snippets/group_form.html:63
 msgid "Save Group"
-msgstr "Save Data Category"
+msgstr "Enregistrer la catégorie de données"
 
 #: ckan/templates/group/snippets/group_item.html:43
 msgid "Remove dataset from this group"
-msgstr "Remove dataset from this data category"
+msgstr "Supprimer le jeu de données de cette catégorie de données"
 
 #: ckan/templates/group/snippets/helper.html:4
 msgid "What are Groups?"
-msgstr "What are Data Categories?"
+msgstr "Que sont les catégories de données?"
 
 #: ckan/templates/group/snippets/helper.html:8
 msgid "You can use CKAN Groups to create and manage collections of datasets. This could be to catalogue datasets for a particular project or team, or on a particular theme, or as a very simple way to help people find and search your own published datasets."
-msgstr "You can use CKAN Data Categories to create and manage collections of "
-"datasets. This could be to catalogue datasets for a particular project or "
-"team, or on a particular theme, or as a very simple way to help people find "
-"and search your own published datasets."
+msgstr "Vous pouvez utiliser les catégories de données CKAN pour créer et "
+"gérer des collections de jeux de données. Cela peut consister à cataloguer "
+"des jeux de données pour un projet ou une équipe en particulier, ou sur "
+"un thème particulier, ou comme un moyen très simple d'aider les gens à "
+"trouver et à rechercher vos propres jeux de données publiés."
 
 #: ckan/templates/home/snippets/stats.html:23
 msgid "groups"
@@ -272,7 +273,7 @@ msgstr "catégories de données"
 
 #: ckan/templates/package/group_list.html:14
 msgid "Associate this group with this dataset"
-msgstr "Associate this data category with this dataset"
+msgstr "Associer cette catégorie de données à cet ensemble de données"
 
 #: ckan/templates/package/group_list.html:14
 msgid "Add to group"
