@@ -1,0 +1,5 @@
+mars_avin:
+  output: css/%(version)s_marsavin.css
+  filters: cssrewrite
+  contents:
+    - mars_avin.css
