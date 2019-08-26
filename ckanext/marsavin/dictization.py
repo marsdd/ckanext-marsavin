@@ -1,7 +1,8 @@
 import ckan.lib.dictization as d
-from ckan.logic import get_or_bust as _get_or_bust, NotFound
+from ckan.logic import get_or_bust as _get_or_bust
 from ckanext.marsavin.model.access_requests import AccessRequests
 from ckanext.marsavin.model.package_marsavin import PackageMarsavin
+from datetime import date
 
 
 # a.s.
@@ -50,7 +51,7 @@ def package_marsavin_delete(pkg_dict):
         entity.delete()
 
 
-def package_marsavin_load(pkg_dict):
+def package_marsavin_load(pkg_dict, cached_entity=None):
     package_id = _get_or_bust(pkg_dict, 'id')
 
     entity_dict = {
@@ -65,7 +66,11 @@ def package_marsavin_load(pkg_dict):
         "has_missing_values": u''
     }
 
-    entity = PackageMarsavin.by_package_id(package_id)
+    if isinstance(cached_entity, PackageMarsavin):
+        entity = cached_entity
+    else:
+        entity = PackageMarsavin.by_package_id(package_id)
+
     if entity:
         entity_dict = {
             "associated_tasks": entity.associated_tasks,
@@ -79,8 +84,15 @@ def package_marsavin_load(pkg_dict):
             "expiry_date": ""
         }
         if entity.creation_date:
-            entity_dict["creation_date"] = entity.creation_date.isoformat()
+            if isinstance(entity.creation_date, date):
+                entity_dict["creation_date"] = entity.creation_date.isoformat()
+            else:
+                entity_dict["creation_date"] = entity.creation_date
+
         if entity.expiry_date:
-            entity_dict["expiry_date"] = entity.expiry_date.isoformat()
+            if isinstance(entity.expiry_date, date):
+                entity_dict["expiry_date"] = entity.expiry_date.isoformat()
+            else:
+                entity_dict["expiry_date"] = entity.expiry_date
 
     pkg_dict.update(entity_dict)
