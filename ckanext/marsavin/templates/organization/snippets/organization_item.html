@@ -1,9 +1,10 @@
 {% ckan_extends %}
 
+{% block datasets %}
+{% endblock %}
 {% block link %}
   {% if h.is_featured_organization(organization.name) %}
-    {% set url_override = h.url_for(organization.type ~ '.about',
-id=organization.name) %}
+    {% set url_override = h.url_for(organization.type ~ '.about', id=organization.name) %}
      <a href="{{ url_override }}"
         title="{{ _('View {organization_name}').format(organization_name=organization.display_name) }}" class="media-view">
        <span>{{ _('View {organization_name}').format(organization_name=organization.display_name) }}</span>
