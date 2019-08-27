@@ -1,20 +1,32 @@
 /* a.s. */
-.homepage .stats ul li a strong {
-  display: block;
-  font-size: 36px;
-  line-height: 1.5;
-}
-
-.homepage.layout-1 .stats {
-  margin-top: 20px;
-}
-
 .homepage.layout-1 .row1 .col2 {
-    /* a.s. move search box to the top on the home page */
-    position: static;
-    bottom: 0;
-    right: 0;
+  /* a.s. move search box to the top on the home page */
+  position: static;
+  bottom: 0;
+  right: 0;
+}
+
+.homepage .module-search {
+  padding: 0px;
+  background: transparent;
+  border: 0px;
+  margin: auto;
+}
+
+.homepage .module-search .module-content {
+  background-color: initial;
+}
+
+.homepage .container .col-search {
+  margin-top: 16.666666667%;
+}
+
+@media (min-width: 992px) {
+  .homepage [role=main] {
+    padding: 0;
   }
+}
+
 .masthead {
   margin-bottom: initial;
   padding: 10px 0;
@@ -38,4 +50,23 @@
 
 .control-label-question label:after {
     content: "?";
+}
+
+.hero .container {
+  min-height: 600px;
+}
+.hero .container .hero-image {
+  position: absolute;
+  width: 100%;
+  min-height: 600px;
+  opacity: 0.25;
+  background-image: url("../images/home/search-background-hero.png");
+  background-color: black;
+}
+
+/* s.h. Home page layout chages */
+@media (min-width: 768px) {
+  .hero {
+    background-image: initial;
+  }
 }

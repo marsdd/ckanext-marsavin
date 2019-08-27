@@ -1,24 +1,23 @@
 <div role="main" class="hero">
   <div class="container">
     <div class="row row1">
-      <div class="col-md-6 col1">
-        {% block promoted %}
-          {% snippet 'home/snippets/promoted.html' %}
-        {% endblock %}
-      </div>
-      <div class="col-md-6 col2">
+      <div class="hero-image col-md-12">&nbsp;</div>
+      <div class="col-md-8 col-md-offset-2 col-search">
         {% block search %}
           {% snippet 'home/snippets/search.html' %}
         {% endblock %}
       </div>
-
-      {# a.s. #}
-      <div class="col-md-6 col2">
-        {% block stats %}
-          {% snippet 'home/snippets/stats.html' %}
+    </div>
+  </div>
+</div>
+<div role="main">
+  <div class="container">
+    <div class="row row1">
+      <div class="col-md-12">
+        {% block promoted %}
+          {% snippet 'home/snippets/promoted.html' %}
         {% endblock %}
       </div>
-
     </div>
   </div>
 </div>
