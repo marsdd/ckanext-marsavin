@@ -25,3 +25,14 @@ def _mail_recipient(recipient=None, email_dict=None):
 def is_featured_organization(name):
     featured_orgs = config.get('ckan.featured_orgs', '').split()
     return name in featured_orgs
+
+
+def get_homepage_featured_organizations():
+    featured_orgs = config.get('ckan.featured_orgs_homepage', '').split()
+    org_list = toolkit.get_action("organization_list")({}, {
+        "all_fields": True,
+        "limit": 3,
+        "organizations": featured_orgs,
+        "sort": "name desc"
+    })
+    return org_list

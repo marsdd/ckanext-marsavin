@@ -110,13 +110,18 @@
 }
 
 .homepage .featured-organization .row1 {
-  margin-top:6.6666667%;
+  margin-top:5.5%;
 }
 
 .homepage .featured-organization .row div h2 {
   color: #F9FAFB;
   font-size: 48px;
   font-weight: initial;
+  text-align: center;
+}
+
+.homepage .featured-organization .organization-item {
+  clear: right;
 }
 
 .search-form .search-input button i {
