@@ -104,10 +104,20 @@
 .homepage [role=main] {
   padding:0;
 }
+
 .homepage .featured-organization {
   background-color: #3BA6DD;
 }
 
+.homepage .featured-organization .row1 {
+  margin-top:6.6666667%;
+}
+
+.homepage .featured-organization .row div h2 {
+  color: #F9FAFB;
+  font-size: 48px;
+  font-weight: initial;
+}
 
 .search-form .search-input button i {
   color: #3BA6DD;

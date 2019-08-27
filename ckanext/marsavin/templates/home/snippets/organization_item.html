@@ -5,15 +5,26 @@ organization - A organization dict.
 
 Example:
 
-    <ul class="media-grid">
-      {% for organization in organizations %}
-        {% snippet "organization/snippets/organization_item.html", organization=organization %}
-      {% endfor %}
-    </ul>
+    {% set organizations = h.get_featured_organizations() %}
+
+{% block organization_list %}
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h2>{{ _("Featured Organizations") }}</h2>
+  </div>
+</div>
+<div class="row">
+  {% block organization_list_inner %}
+    {% for organization in organizations %}
+      {% snippet "home/snippets/organization_item.html", organization=organization, position=loop.index, show_capacity=false %}
+    {% endfor %}
+  {% endblock %}
+</div>
+{% endblock %}
 #}
 {% set url = h.url_for(organization.type ~ '.read', id=organization.name) %}
 {% block item %}
-<div class="col-md-12">
+<div class="col-md-4 organization-item">
   {% block item_inner %}
     {% block link %}
     <a href="{{ url }}" title="{{ _('View {organization_name}').format(organization_name=organization.display_name) }}">
