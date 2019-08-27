@@ -1,0 +1,11 @@
+{% set organizations = h.get_featured_organizations() %}
+
+{% block organization_list %}
+<div class="row row1">
+  {% block organization_list_inner %}
+    {% for organization in organizations %}
+      {% snippet "home/snippets/organization_item.html", organization=organization, position=loop.index, show_capacity=false %}
+    {% endfor %}
+  {% endblock %}
+</div>
+{% endblock %}

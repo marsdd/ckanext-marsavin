@@ -52,10 +52,9 @@
   margin-top: 14%;
 }
 
-@media (min-width: 992px) {
-  .homepage [role=main] {
-    padding: 0;
-  }
+.site-footer,
+.account-masthead {
+  background-color: #002844;
 }
 
 .masthead {
@@ -96,8 +95,21 @@
 }
 
 /* s.h. Home page layout chages */
-@media (min-width: 768px) {
-  .hero {
-    background-image: initial;
-  }
+.homepage .hero {
+  background-image: initial;
+  padding: 0;
+  background-color: #002844;
+}
+
+.homepage [role=main] {
+  padding:0;
+}
+.homepage .featured-organization {
+  background-color: #3BA6DD;
+}
+
+
+.search-form .search-input button i {
+  color: #3BA6DD;
+  font-weight: initial;
 }
