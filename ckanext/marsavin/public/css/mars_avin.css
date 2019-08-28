@@ -106,6 +106,7 @@
 }
 
 .homepage .featured-organization {
+  color: #F9FAFB;
   background-color: #3BA6DD;
 }
 
@@ -113,15 +114,24 @@
   margin-top:5.5%;
 }
 
-.homepage .featured-organization .row div h2 {
-  color: #F9FAFB;
+.homepage .featured-organization .row div h2,
+.homepage .featured-group .row div h2 {
   font-size: 48px;
   font-weight: initial;
   text-align: center;
 }
 
-.homepage .featured-organization .organization-item {
-  clear: right;
+
+
+.homepage .featured-organization .organization-item,
+.homepage .featured-group .group-item {
+  height: 130px;
+  margin-bottom: 5%;
+}
+
+.homepage .featured-organization .organization-item .media-image,
+.homepage .featured-group .group-item .media-image {
+  max-height: 100%;
 }
 
 .search-form .search-input button i {

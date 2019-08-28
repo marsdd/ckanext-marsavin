@@ -24,8 +24,9 @@ Example:
 #}
 {% set url = h.url_for(group.type ~ '.read', id=group.name) %}
 {% block item %}
-<div class="col-md-4 group-item">
+<div class="col-md-4">
   {% block item_inner %}
+  <div class="group-item">
     {% block link %}
     <a href="{{ url }}" title="{{ _('View {group_name}').format(group_name=group.display_name) }}">
       {% block image %}
@@ -33,6 +34,7 @@ Example:
       {% endblock %}
     </a>
     {% endblock %}
+  </div>
   {% endblock %}
 </div>
 {% endblock %}

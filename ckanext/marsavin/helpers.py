@@ -38,13 +38,14 @@ def get_homepage_featured_organizations():
 @cacheable
 def get_homepage_featured_groups():
     featured_list = config.get('ckan.featured_groups_homepage', '').split()
-    return _get_homepage_featured_orgs_groups("group_list", featured_list)
+    return _get_homepage_featured_orgs_groups("group_list", featured_list,
+                                              limit=6)
 
 
-def _get_homepage_featured_orgs_groups(action_name, featured_list):
+def _get_homepage_featured_orgs_groups(action_name, featured_list, **kwargs):
     org_list = toolkit.get_action(action_name)({}, {
         "all_fields": True,
-        "limit": 3,
+        "limit": kwargs.get("limit", 3),
         "organizations": featured_list,
         "sort": "name desc"
     })

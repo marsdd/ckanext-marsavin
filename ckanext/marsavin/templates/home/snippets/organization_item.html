@@ -26,6 +26,7 @@ Example:
 {% block item %}
 <div class="col-md-4 organization-item">
   {% block item_inner %}
+  <div class="organization-item">
     {% block link %}
     <a href="{{ url }}" title="{{ _('View {organization_name}').format(organization_name=organization.display_name) }}">
       {% block image %}
@@ -33,6 +34,7 @@ Example:
       {% endblock %}
     </a>
     {% endblock %}
+  </div>
   {% endblock %}
 </div>
 {% endblock %}
