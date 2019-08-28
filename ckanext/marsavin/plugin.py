@@ -5,7 +5,7 @@ from flask import Blueprint
 import os
 import logging
 from helpers import _mail_recipient, is_featured_organization, \
-    get_homepage_featured_organizations
+    get_homepage_featured_organizations, get_homepage_featured_groups
 import actions
 from views.request_access import RequestAccessView
 from dictization import package_marsavin_save, package_marsavin_delete, \
@@ -59,7 +59,8 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
         return {
             'is_featured_organization': is_featured_organization,
             'get_homepage_featured_organizations':
-                get_homepage_featured_organizations
+                get_homepage_featured_organizations,
+            'get_homepage_featured_groups': get_homepage_featured_groups
         }
 
     def _get_schema_updates(self, schema):

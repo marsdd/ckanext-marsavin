@@ -30,11 +30,22 @@ def is_featured_organization(name):
 
 @cacheable
 def get_homepage_featured_organizations():
-    featured_orgs = config.get('ckan.featured_orgs_homepage', '').split()
-    org_list = toolkit.get_action("organization_list")({}, {
+    featured_list = config.get('ckan.featured_orgs_homepage', '').split()
+    return _get_homepage_featured_orgs_groups("organization_list",
+                                              featured_list)
+
+
+@cacheable
+def get_homepage_featured_groups():
+    featured_list = config.get('ckan.featured_groups_homepage', '').split()
+    return _get_homepage_featured_orgs_groups("group_list", featured_list)
+
+
+def _get_homepage_featured_orgs_groups(action_name, featured_list):
+    org_list = toolkit.get_action(action_name)({}, {
         "all_fields": True,
         "limit": 3,
-        "organizations": featured_orgs,
+        "organizations": featured_list,
         "sort": "name desc"
     })
     return org_list

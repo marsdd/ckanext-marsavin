@@ -1,7 +1,16 @@
-{% set groups = h.get_featured_groups() %}
+{% set groups = h.get_homepage_featured_groups() %}
 
-{% for group in groups %}
-  <div class="box">
-    {% snippet 'snippets/group_item.html', group=group, truncate=50, truncate_title=35 %}
+{% block group_list %}
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h2>{{ _("Featured groups") }}</h2>
   </div>
-{% endfor %}
+</div>
+<div class="row row1">
+  {% block group_list_inner %}
+    {% for group in groups %}
+      {% snippet "home/snippets/group_item.html", group=group, show_capacity=false %}
+    {% endfor %}
+  {% endblock %}
+</div>
+{% endblock %}

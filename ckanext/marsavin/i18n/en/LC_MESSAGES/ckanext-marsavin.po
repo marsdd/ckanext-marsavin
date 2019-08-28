@@ -4558,3 +4558,6 @@ msgstr ""
 msgid "Search Users"
 msgstr ""
 
+#: ckanext/marsavin/templates/home/snippets/featured_group.html
+msgid "Featured groups"
+msgstr "Featured Data Categories"
