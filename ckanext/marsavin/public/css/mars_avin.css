@@ -110,6 +110,10 @@
   background-color: #3BA6DD;
 }
 
+.homepage .featured-group {
+  background-color: #F9FAFB;
+}
+
 .homepage .featured-organization .row1 {
   margin-top:5.5%;
 }
@@ -121,17 +125,22 @@
   text-align: center;
 }
 
-
-
-.homepage .featured-organization .organization-item,
 .homepage .featured-group .group-item {
   height: 130px;
-  margin-bottom: 5%;
+  width: 130px;
+  margin: auto auto 7.777778% auto;
+}
+
+.homepage .featured-organization .organization-item {
+  height: 130px;
+  width: 300px;
+  margin: auto auto 7.777778% auto;
 }
 
 .homepage .featured-organization .organization-item .media-image,
 .homepage .featured-group .group-item .media-image {
   max-height: 100%;
+  margin:auto;
 }
 
 .search-form .search-input button i {
