@@ -127,9 +127,24 @@
 }
 
 .homepage .featured-group .group-item {
-  height: 130px;
-  width: 130px;
+  height: 230px;
+  width: 230px;
   margin: auto auto 7.777778% auto;
+}
+
+.homepage .featured-group .group-item a {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.homepage .featured-group .group-item h3.group-heading {
+  font-size: 15px;
+  font-weight: normal;
+  text-align: center;
+  color: #254A62;
 }
 
 .homepage .featured-organization .organization-item {

@@ -27,12 +27,14 @@ Example:
 <div class="col-md-4">
   {% block item_inner %}
   <div class="group-item">
+    {% block image %}
+      <img src="{{ group.image_display_url or h.url_for_static('/base/images/placeholder-group.png') }}" alt="{{ group.name }}" class="img-responsive media-image">
+    {% endblock %}
+    {% block heading %}
+      <h3 class="group-heading">{{ _('{group_name}').format(group_name=group.display_name) }}</h3>
+    {% endblock %}
     {% block link %}
-    <a href="{{ url }}" title="{{ _('View {group_name}').format(group_name=group.display_name) }}">
-      {% block image %}
-        <img src="{{ group.image_display_url or h.url_for_static('/base/images/placeholder-group.png') }}" alt="{{ group.name }}" class="img-responsive media-image">
-      {% endblock %}
-    </a>
+    <a href="{{ url }}" title="{{ _('View {group_name}').format(group_name=group.display_name) }}"></a>
     {% endblock %}
   </div>
   {% endblock %}
