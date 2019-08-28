@@ -144,18 +144,21 @@
   margin:auto;
 }
 
-.homepage .intro-text .learn-more {
-  /*margin: auto 0px auto auto;*/
-}
-
 .homepage .intro-text .module-content h1.page-heading {
   text-align: center;
 }
 .homepage .intro-text .learn-more a {
-  font-size: 24px;
-  font-weight: normal;
+  font-size: 12px;
+  font-weight: 400;
   color: #F8F9FA;
   background-color: #3BA6DD;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-transform: uppercase;
+}
+
+.homepage .intro-text .learn-more a:hover {
+  text-decoration: none;
 }
 
 .search-form .search-input button i {
