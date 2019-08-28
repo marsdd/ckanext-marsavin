@@ -2,6 +2,7 @@ import ckan.plugins.toolkit as toolkit
 import ckan.lib.mailer as mailer
 from ckan.common import config
 from six import text_type
+from cache import cacheable
 
 
 def _mail_recipient(recipient=None, email_dict=None):
@@ -27,6 +28,7 @@ def is_featured_organization(name):
     return name in featured_orgs
 
 
+@cacheable
 def get_homepage_featured_organizations():
     featured_orgs = config.get('ckan.featured_orgs_homepage', '').split()
     org_list = toolkit.get_action("organization_list")({}, {
