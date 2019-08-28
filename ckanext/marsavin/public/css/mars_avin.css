@@ -110,7 +110,8 @@
   background-color: #3BA6DD;
 }
 
-.homepage .featured-group {
+.homepage .featured-group,
+.homepage .intro-text {
   background-color: #F8F9FA;
 }
 
@@ -143,7 +144,25 @@
   margin:auto;
 }
 
+.homepage .intro-text .learn-more {
+  /*margin: auto 0px auto auto;*/
+}
+
+.homepage .intro-text .module-content h1.page-heading {
+  text-align: center;
+}
+.homepage .intro-text .learn-more a {
+  font-size: 24px;
+  font-weight: normal;
+  color: #F8F9FA;
+  background-color: #3BA6DD;
+}
+
 .search-form .search-input button i {
   color: #3BA6DD;
   font-weight: initial;
+}
+
+html, body {
+  background-color: #002844;
 }
