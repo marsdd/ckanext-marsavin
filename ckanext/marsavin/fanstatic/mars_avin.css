@@ -63,6 +63,24 @@
   text-decoration: none;
 }
 
+.site-footer .btn-lang {
+  background-color: transparent;
+  border: none;
+  color: #F8F9FA;
+  font-weight: normal;
+}
+
+.site-footer .btn-lang i.fa-globe {
+  margin-right: 7%;
+}
+
+.site-footer .btn-lang i.fa-angle-down {
+  margin-left: 8%;
+  font-size: 22px;
+  color: #3BA6DD;
+}
+
+
 .masthead {
   margin-bottom: initial;
   padding: 10px 0;
@@ -193,9 +211,4 @@ html, body {
 
 .footer-links .world-icon {
   content: ""
-}
-
-.btn-lang {
-  background-color: transparent;
-  color: #F8F9FA;
 }
