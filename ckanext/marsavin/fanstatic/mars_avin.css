@@ -57,6 +57,12 @@
   background-color: #002844;
 }
 
+.site-footer-link a {
+  color: #D7D7D7;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
 .masthead {
   margin-bottom: initial;
   padding: 10px 0;
@@ -90,7 +96,7 @@
   width: 100%;
   min-height: 600px;
   opacity: 0.25;
-  background-image: url("../images/home/search-background-hero.png");
+  background-image: url("../public/images/home/search-background-hero.png");
   background-color: transparent;
 }
 
@@ -183,4 +189,13 @@
 
 html, body {
   background-color: #002844;
+}
+
+.footer-links .world-icon {
+  content: ""
+}
+
+.btn-lang {
+  background-color: transparent;
+  color: #F8F9FA;
 }
