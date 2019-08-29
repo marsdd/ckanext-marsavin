@@ -56,6 +56,9 @@
 .account-masthead {
   background-color: #002844;
 }
+.site-footer {
+  padding-bottom: 2%;
+}
 
 .site-footer-link a {
   color: #D7D7D7;
@@ -80,6 +83,23 @@
   color: #3BA6DD;
 }
 
+.site-footer-secondary {
+  background-color: #F8F9FA;
+}
+
+.site-footer-secondary-logo {
+  min-height: 50px;
+}
+
+.site-footer-secondary-logo img {
+  margin-top: 25%;
+}
+
+@media (max-width: 767px) {
+  .site-footer-secondary-logo img {
+    margin-top: 9%;
+  }
+}
 
 .masthead {
   margin-bottom: initial;
@@ -114,7 +134,7 @@
   width: 100%;
   min-height: 600px;
   opacity: 0.25;
-  background-image: url("../public/images/home/search-background-hero.png");
+  background-image: url("/images/home/search-background-hero.png");
   background-color: transparent;
 }
 
@@ -209,16 +229,18 @@ html, body {
   background-color: #F8F9FA;
 }
 
-.site-footer-secondary-logo {
-  min-height: 50px;
-}
-
-.site-footer-secondary-logo img {
-  margin-top: 25%;
+.header-search {
+  background-color: #F8F9FA;
 }
 
 @media (max-width: 767px) {
-  .site-footer-secondary-logo img {
-    margin-top: 9%;
+  .header-search {
+    display: none;
+  }
+}
+@media (min-width: 992px) {
+  .header-search .btn-search {
+    display: block;
+    color: #3BA6DD;
   }
 }

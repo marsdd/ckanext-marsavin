@@ -1,1 +1,21 @@
 {% ckan_extends %}
+
+
+{% block header_site_search %}
+<div class="section header-search">
+    <button class="btn btn-search" data-toggle="collapse" data-target=".header-search-multi-collapse"
+            aria-expanded="false" aria-controls="header-search-collapse">
+        <i class="fa fa-search"></i>
+    </button>
+</div>
+<div class="section collapse header-search-multi-collapse">
+    <form class="section site-search simple-input" action="{% url_for 'dataset.search' %}" method="get"
+          onblur="$('.header-search-multi-collapse').collapse();">
+        <div class="field">
+            <label for="field-sitewide-search">{% block header_site_search_label %}{{ _('Search Datasets') }}{% endblock %}</label>
+            <input id="field-sitewide-search" type="text" class="form-control" name="q" placeholder="{{ _('Search') }}" />
+            <button class="btn-search" type="submit"><i class="fa fa-search"></i></button>
+        </div>
+    </form>
+</div>
+{% endblock %}
