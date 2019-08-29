@@ -206,9 +206,19 @@
 }
 
 html, body {
-  background-color: #002844;
+  background-color: #F8F9FA;
 }
 
-.footer-links .world-icon {
-  content: ""
+.site-footer-secondary-logo {
+  min-height: 50px;
+}
+
+.site-footer-secondary-logo img {
+  margin-top: 25%;
+}
+
+@media (max-width: 767px) {
+  .site-footer-secondary-logo img {
+    margin-top: 9%;
+  }
 }
