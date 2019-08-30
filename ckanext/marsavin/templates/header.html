@@ -3,16 +3,11 @@
 
 {% block header_site_search %}
 <div class="section header-search">
-    <a class="btn btn-search" href="{{ h.url_for('dataset.search') }}">
+    <a class="btn btn-search" href="{{ h.url_for('dataset.search') }}" title="{{ _('Search Datasets') }}">
         <i class="fa fa-search"></i>
     </a>
 </div>
 {% if c.userobj %}
-<!--<div class="">-->
-<!--    <a href="{{ h.url_for('user.read', id=c.userobj.name) }}" class="image" title="{{ _('View profile') }}">-->
-
-<!--    </a>-->
-<!--</div>-->
 <div class="section header-user-account dropdown">
   <button class="btn btn-profile dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
     {{ h.gravatar((c.userobj.email_hash if c and c.userobj else ''), size=22) }}
