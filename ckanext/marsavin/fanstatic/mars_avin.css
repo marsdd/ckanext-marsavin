@@ -105,7 +105,7 @@
   margin-bottom: initial;
   padding: 10px 0;
   color: #000;
-  background: #ffffff url("/base/images/bg.png");
+  background: #F8F9FA;
 }
 .masthead .navigation .nav-pills li a:hover,
 .masthead .navigation .nav-pills li a:focus,
@@ -229,12 +229,12 @@ html, body {
   background-color: #F8F9FA;
 }
 
-.header-search {
-  background-color: #F8F9FA;
+.account-masthead {
+  display: none;
 }
 
-@media (max-width: 767px) {
-  .header-search {
+@media (max-width: 992px) {
+  .header-search, .header-user-account {
     display: none;
   }
 }
@@ -242,5 +242,21 @@ html, body {
   .header-search .btn-search {
     display: block;
     color: #3BA6DD;
+    background-color: transparent;
+    margin-top: 3px;
+  }
+  .header-user-account {
+    margin-top: 2px;
+  }
+  .header-user-account .btn-profile {
+    background-color: transparent;
+  }
+  .header-user-account .fa-sign-in {
+    font-size: 20px;
+    color: #133c55;
+    margin-top: 7px;
   }
 }
+
+
+
