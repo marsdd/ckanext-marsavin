@@ -110,7 +110,9 @@
 .masthead .navigation .nav-pills li a:hover,
 .masthead .navigation .nav-pills li a:focus,
 .masthead .navigation .nav-pills li.active a {
-  background-color: #eaeaea;
+  color: #386FA4;
+  background-color: transparent;
+  text-shadow: none;
 }
 .masthead .nav>li>a,
 .masthead .nav>li>a:focus,
@@ -118,7 +120,7 @@
 .masthead .nav>.active>a,
 .masthead .nav>.active>a:hover,
 .masthead .nav>.active>a:focus {
-  color: #133c55;
+  color: #ADAEAF;
   text-shadow: none;
 }
 
@@ -232,6 +234,7 @@ html, body {
 .account-masthead {
   display: none;
 }
+
 
 @media (max-width: 992px) {
   .header-search, .header-user-account {
