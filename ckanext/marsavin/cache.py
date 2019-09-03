@@ -16,7 +16,7 @@ def cacheable(cacheable_func, **cacheable_kwargs):
             return json.loads(conn.get(cache_key))
 
         value = cacheable_func(*args, **kwargs)
-        conn.setex(cache_key, json.dumps(value), expiry)
+        conn.setex(name=cache_key, value=json.dumps(value), time=expiry)
         return value
 
     return cacheable_wrapper
