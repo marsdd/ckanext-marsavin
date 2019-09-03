@@ -45,9 +45,7 @@
 </div>
 {% else %}
 <div class="section header-user-account">
-  <a href="{{ h.url_for(controller='user', action='login') }}" title="{{ _('Log in') }}">
-    <i class="fa fa-sign-in" aria-hidden="true"></i>
-  </a>
+  <a href="{{ h.url_for(controller='user', action='login') }}" title="{{ _('Log in') }}" class="btn btn-primary">{{ _('Log in') }}</a>
 </div>
 {% endif %}
 {% endblock %}
