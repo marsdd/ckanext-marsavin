@@ -43,10 +43,11 @@ def get_homepage_featured_groups():
 
 
 def _get_homepage_featured_orgs_groups(action_name, featured_list, **kwargs):
+    featured_list_key = "groups" if action_name == "group_list" else "organizations"
     org_list = toolkit.get_action(action_name)({}, {
         "all_fields": True,
         "limit": kwargs.get("limit", 3),
-        "organizations": featured_list,
+        featured_list_key: featured_list,
         "sort": "name desc"
     })
     return org_list
