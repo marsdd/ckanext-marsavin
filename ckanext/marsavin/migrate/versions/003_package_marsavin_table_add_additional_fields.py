@@ -8,6 +8,6 @@ def upgrade(migrate_engine):
         ALTER TABLE public.package_marsavin add column if not exists creation_date date;
         ALTER TABLE public.package_marsavin add column if not exists expiry_date date;
         ALTER TABLE public.package_marsavin add column if not exists has_missing_values boolean;
-        ALTER TABLE public.package_marsavin ADD CONSTRAINT if not exists package_id_unique unique (package_id);
+        ALTER TABLE public.package_marsavin ADD CONSTRAINT package_id_unique unique (package_id);
         '''
     )
