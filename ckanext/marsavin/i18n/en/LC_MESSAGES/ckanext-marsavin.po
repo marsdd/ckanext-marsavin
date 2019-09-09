@@ -4271,6 +4271,9 @@ msgstr ""
 msgid "My Groups"
 msgstr "My Data Categories"
 
+msgid "My Group"
+msgstr "My Data Category"
+
 #: ckan/templates/user/dashboard.html:39
 msgid "Activity from items that I'm following"
 msgstr ""
@@ -4558,3 +4561,6 @@ msgstr ""
 msgid "Search Users"
 msgstr ""
 
+#: ckanext/marsavin/templates/home/snippets/featured_group.html
+msgid "Featured groups"
+msgstr "Featured Data Categories"

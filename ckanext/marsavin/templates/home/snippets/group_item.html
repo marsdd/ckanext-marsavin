@@ -1,0 +1,42 @@
+{#
+Renders a media item for a group. This should be used in a list.
+
+group - A group dict.
+
+Example:
+
+    {% set groups = h.get_featured_groups() %}
+
+{% block group_list %}
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <h2>{{ _("Featured groups") }}</h2>
+  </div>
+</div>
+<div class="row">
+  {% block group_list_inner %}
+    {% for group in groups %}
+      {% snippet "home/snippets/group_item.html", group=group, position=loop.index, show_capacity=false %}
+    {% endfor %}
+  {% endblock %}
+</div>
+{% endblock %}
+#}
+{% set url = h.url_for(group.type ~ '.read', id=group.name) %}
+{% block item %}
+<div class="col-md-4">
+  {% block item_inner %}
+  <div class="group-item">
+    {% block image %}
+      <img src="{{ group.image_display_url or h.url_for_static('/base/images/placeholder-group.png') }}" alt="{{ group.name }}" class="img-responsive media-image">
+    {% endblock %}
+    {% block heading %}
+      <h3 class="group-heading">{{ _('{group_name}').format(group_name=group.display_name) }}</h3>
+    {% endblock %}
+    {% block link %}
+    <a href="{{ url }}" title="{{ _('View {group_name}').format(group_name=group.display_name) }}"></a>
+    {% endblock %}
+  </div>
+  {% endblock %}
+</div>
+{% endblock %}
