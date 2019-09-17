@@ -51,3 +51,20 @@ def _get_homepage_featured_orgs_groups(action_name, featured_list, **kwargs):
         "sort": "name desc"
     })
     return org_list
+
+
+def get_package_resource_format_split(resource_formats):
+    updated_res_formats = []
+    if isinstance(resource_formats, list):
+        for format in resource_formats:
+            if u"," in format:
+                updated_res_formats.extend(format.split(u","))
+            else:
+                updated_res_formats.append(format)
+    return updated_res_formats
+
+
+def get_resource_data_format(resource_formats):
+    if u"," in resource_formats:
+        return resource_formats.split(u",")
+    return resource_formats

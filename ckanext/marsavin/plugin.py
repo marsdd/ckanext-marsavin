@@ -5,7 +5,8 @@ from flask import Blueprint
 import os
 import logging
 from helpers import _mail_recipient, is_featured_organization, \
-    get_homepage_featured_organizations, get_homepage_featured_groups
+    get_homepage_featured_organizations, get_homepage_featured_groups, \
+    get_package_resource_format_split, get_resource_data_format
 import actions
 from views.request_access import RequestAccessView
 from dictization import package_marsavin_save, package_marsavin_delete, \
@@ -60,7 +61,10 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
             'is_featured_organization': is_featured_organization,
             'get_homepage_featured_organizations':
                 get_homepage_featured_organizations,
-            'get_homepage_featured_groups': get_homepage_featured_groups
+            'get_homepage_featured_groups': get_homepage_featured_groups,
+            'get_package_resource_format_split':
+                get_package_resource_format_split,
+            'get_resource_data_format': get_resource_data_format
         }
 
     def _get_schema_updates(self, schema):
@@ -407,6 +411,15 @@ class MarsavinPackagePlugin(plugins.SingletonPlugin):
              the indexer. The extension can modify this by returning an
              altered version.
         '''
+        try:
+            if pkg_dict['res_format']:
+                updated_res_formats = []
+                if pkg_dict['res_format'][0] != u"":
+                    updated_res_formats = get_package_resource_format_split(
+                        pkg_dict['res_format'])
+                pkg_dict['res_format'] = updated_res_formats
+        except KeyError:
+            pass
         return pkg_dict
 
     def before_view(self, pkg_dict):
