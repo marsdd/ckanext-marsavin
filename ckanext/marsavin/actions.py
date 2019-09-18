@@ -1,10 +1,15 @@
-from helpers import _mail_recipient
+from helpers import _mail_recipient, get_package_resource_format_split
 import ckan.logic as logic
 import ckan
 from ckanext.marsavin.dictization import reqaccess_dict_save
 import logging
 from ckan.plugins import toolkit
 from ckanext.marsavin.schema import default_reqaccess_schema
+import sqlalchemy
+from sqlalchemy import text
+
+_func = sqlalchemy.func
+_and_ = sqlalchemy.and_
 
 # Define some shortcuts
 # Ensure they are module-private so that they don't get loaded as available
@@ -42,7 +47,8 @@ def reqaccess_create(context, data_dict):
     '''
 
     model = context['model']
-    # schema = context.get('schema') or ckan.logic.schema.default_reqaccess_schema()
+    # schema = context.get('schema') or ckan.logic.schema.default
+    # reqaccess_schema()
     schema = default_reqaccess_schema()
     session = context['session']
 
@@ -80,3 +86,52 @@ def reqaccess_create(context, data_dict):
     log.info('create.py: a.s. - email to a maintainer enqueued')
 
     return data_dict
+
+
+@logic.validate(logic.schema.default_autocomplete_schema)
+def format_autocomplete(context, data_dict):
+    '''Return a list of resource formats whose names contain a string.
+    it overrides the default in order to modify the output for
+    multi format per resource instead of a single format per resource.
+
+    :param q: the string to search for
+    :type q: string
+    :param limit: the maximum number of resource formats to return (optional,
+        default: ``5``)
+    :type limit: int
+
+    :rtype: list of strings
+
+    '''
+    model = context['model']
+    session = context['session']
+
+    _check_access('format_autocomplete', context, data_dict)
+
+    q = data_dict['q']
+    limit = data_dict.get('limit', 5)
+
+    like_q = u'%' + q + u'%'
+
+    query = (session.query(
+        model.Resource.format,
+        _func.count(model.Resource.format).label('total'))
+        .filter(_and_(
+            model.Resource.state == 'active',
+        ))
+        .filter(model.Resource.format.ilike(like_q))
+        .group_by(model.Resource.format)
+        .order_by(text('total DESC'))
+        .limit(limit))
+
+    # We want to split the csv items for the resources into individual list
+    # items
+    output_list = get_package_resource_format_split(
+        [resource.format.lower() for resource in query]
+    )
+
+    # We need to make sure the output matches the query as we are extracting
+    # the value post database query
+    output_list = list(filter(lambda format_string: q.lower() in format_string,
+                              output_list))
+    return output_list

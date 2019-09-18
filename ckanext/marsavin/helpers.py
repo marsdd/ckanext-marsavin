@@ -61,6 +61,8 @@ def get_package_resource_format_split(resource_formats):
                 updated_res_formats.extend(format.split(u","))
             else:
                 updated_res_formats.append(format)
+    if updated_res_formats:
+        updated_res_formats = list(set(updated_res_formats))
     return updated_res_formats
 
 

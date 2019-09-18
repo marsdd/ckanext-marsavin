@@ -25,6 +25,13 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
     plugins.implements(plugins.ITranslation)
     plugins.implements(plugins.IDatasetForm)
     plugins.implements(plugins.ISession, inherit=True)
+    plugins.implements(plugins.IActions)
+
+    # IActions
+    def get_actions(self):
+        return {
+            "format_autocomplete": actions.format_autocomplete
+        }
 
     # add template helper functions
     plugins.implements(plugins.ITemplateHelpers)
