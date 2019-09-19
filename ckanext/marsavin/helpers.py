@@ -66,7 +66,15 @@ def get_package_resource_format_split(resource_formats):
     return updated_res_formats
 
 
-def get_resource_data_format(resource_formats):
+def render_resource_format(resource_formats):
+    """
+    Takes a csv and formats it to add the space
+    :param resource_formats: the resource format string
+    :type resource_formats: str
+    :return: str
+    """
     if u"," in resource_formats:
-        return resource_formats.split(u",")
+        return u", ".join(map(lambda x: x.strip(),
+                              resource_formats.split(u",")))
+    
     return resource_formats

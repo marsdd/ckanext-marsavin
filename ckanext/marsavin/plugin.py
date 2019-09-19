@@ -6,7 +6,7 @@ import os
 import logging
 from helpers import _mail_recipient, is_featured_organization, \
     get_homepage_featured_organizations, get_homepage_featured_groups, \
-    get_package_resource_format_split, get_resource_data_format
+    get_package_resource_format_split, render_resource_format
 import actions
 from views.request_access import RequestAccessView
 from dictization import package_marsavin_save, package_marsavin_delete, \
@@ -71,7 +71,7 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
             'get_homepage_featured_groups': get_homepage_featured_groups,
             'get_package_resource_format_split':
                 get_package_resource_format_split,
-            'get_resource_data_format': get_resource_data_format
+            'render_resource_format': render_resource_format
         }
 
     def _get_schema_updates(self, schema):
