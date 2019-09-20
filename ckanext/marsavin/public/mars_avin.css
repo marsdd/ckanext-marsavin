@@ -1,3 +1,30 @@
+@import url("https://use.typekit.net/ynu5xxf.css");
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+html, body {
+  background-color: #F8F9FA;
+  font-family: 'Open Sans Regular', sans-serif;
+}
+h1, .h1 {
+  font-size: 56pt;
+  font-family: futura-pt, sans-serif;
+}
+h2, .h2 {
+  font-weight: 500;
+  font-size: 44pt;
+  font-family: futura-pt, sans-serif;
+}
+
+h3, .h3 {
+  font-family: futura-pt-bold, sans-serif;
+  font-size: 18pt;
+}
+
+h4, .h4 {
+  font-family: 'Open Sans Semibold', sans-serif;
+  font-size: 14pt;
+}
+
 /* a.s. */
 .homepage.layout-1 .row1 .col2 {
   /* a.s. move search box to the top on the home page */
@@ -161,16 +188,22 @@
   background-color: #F8F9FA;
 }
 
-.homepage .featured-organization .row1 {
+.homepage .featured-organization .row1{
   margin-top:5.5%;
 }
 
+.homepage .intro-text .row1 {
+  margin-top:2.0%;
+}
+
 .homepage .featured-organization .row div h2,
-.homepage .featured-group .row div h2 {
-  font-size: 48px;
+.homepage .featured-group .row div h2,
+.homepage .intro-text .row div h2 {
+  font-size: 40px;
   font-weight: initial;
   text-align: center;
 }
+
 
 .homepage .featured-group .group-item {
   height: 230px;
@@ -205,16 +238,18 @@
   margin:auto;
 }
 
-.homepage .intro-text .module-content h1.page-heading {
-  text-align: center;
+.homepage .intro-text p {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }
 .homepage .intro-text .learn-more a {
   font-size: 12px;
   font-weight: 400;
   color: #F8F9FA;
   background-color: #3BA6DD;
-  padding: 10px 20px;
-  border-radius: 25px;
+  padding: 16px 20px;
+  border-radius: 30px;
   text-transform: uppercase;
 }
 
@@ -222,19 +257,19 @@
   text-decoration: none;
 }
 
+.homepage .intro-text .learn-more div {
+  width: fit-content;
+  margin: 18px auto;
+}
+
 .search-form .search-input button i {
   color: #3BA6DD;
   font-weight: initial;
 }
 
-html, body {
-  background-color: #F8F9FA;
-}
-
 .account-masthead {
   display: none;
 }
-
 
 @media (max-width: 992px) {
   .header-search, .header-user-account {
