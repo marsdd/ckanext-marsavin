@@ -2,17 +2,17 @@
 
 {% block footer_content %}
   <div class="row">
-    <div class="site-footer-link col-md-1 col-md-offset-4">
+    <div class="site-footer-link col-md-2 col-md-offset-3">
       {% block footer_nav_contact_us %}
         <a href="{{ h.url_for(controller='marsavin', action='contact') }}">{{ _("Contact Us") }}</a>
       {% endblock %}
     </div>
-    <div class="site-footer-link col-md-1 col-md-offset-1">
+    <div class="site-footer-link col-md-2">
       {% block footer_nav_terms %}
         <a href="{{ h.url_for(controller='marsavin', action='terms') }}">{{ _("Terms of use") }}</a>
       {% endblock %}
     </div>
-    <div class="site-footer-link col-md-1 col-md-offset-1">
+    <div class="site-footer-link col-md-2">
       {% block footer_nav_privacy %}
         <a href="{{ h.url_for(controller='marsavin', action='privacy') }}">{{ _("Privacy Policy") }}</a>
       {% endblock %}
