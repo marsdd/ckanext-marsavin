@@ -13,23 +13,24 @@
     {{ h.gravatar((c.userobj.email_hash if c and c.userobj else ''), size=22) }}
   </button>
   <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    <li class="user">
+      <h4>{{ c.userobj.name }}</h4>
+      <span class="user-email">{{ c.userobj.email }}</span>
+    </li>
     <li>
       <a href="{{ h.url_for('user.edit', id=c.userobj.name) }}" title="{{ _('Edit settings') }}">
-        <i class="fa fa-cog" aria-hidden="true"></i>
         <span class="text">{{ _('Settings') }}</span>
       </a>
     </li>
     <li>
       <a href="{{ h.url_for('user.read', id=c.userobj.name) }}" class="image" title="{{ _('View profile') }}">
-        <i class="fa fa-user" aria-hidden="true"></i>
-        <span class="username">{{ _('View  Profile') }}</span>
+        <span class="text">{{ _('Account') }}</span>
       </a>
     </li>
     {% if c.userobj.sysadmin %}
     <li role="separator" class="divider"></li>
     <li>
       <a href="{{ h.url_for(controller='admin', action='index') }}" title="{{ _('Sysadmin settings') }}">
-        <i class="fa fa-gavel" aria-hidden="true"></i>
         <span class="text">{{ _('Admin') }}</span>
       </a>
     </li>
@@ -37,8 +38,7 @@
     <li role="separator" class="divider"></li>
     <li>
       <a href="{{ h.url_for('/user/_logout') }}" title="{{ _('Log out') }}">
-        <i class="fa fa-sign-out" aria-hidden="true"></i>
-        <span class="text">{{ _('Log out') }}</span>
+        <span class="log-out">{{ _('Log out') }}</span>
       </a>
     </li>
   </ul>
