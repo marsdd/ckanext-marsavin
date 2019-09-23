@@ -51,3 +51,30 @@ def _get_homepage_featured_orgs_groups(action_name, featured_list, **kwargs):
         "sort": "name desc"
     })
     return org_list
+
+
+def get_package_resource_format_split(resource_formats):
+    updated_res_formats = []
+    if isinstance(resource_formats, list):
+        for format in resource_formats:
+            if u"," in format:
+                updated_res_formats.extend(format.split(u","))
+            else:
+                updated_res_formats.append(format)
+    if updated_res_formats:
+        updated_res_formats = list(set(updated_res_formats))
+    return updated_res_formats
+
+
+def render_resource_format(resource_formats):
+    """
+    Takes a csv and formats it to add the space
+    :param resource_formats: the resource format string
+    :type resource_formats: str
+    :return: str
+    """
+    if u"," in resource_formats:
+        return u", ".join(map(lambda x: x.strip(),
+                              resource_formats.split(u",")))
+    
+    return resource_formats
