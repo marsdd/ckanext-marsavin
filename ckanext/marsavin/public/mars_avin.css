@@ -223,13 +223,22 @@ h4, .h4 {
 .hero .container {
   min-height: 600px;
 }
-.hero .container .hero-image {
+
+@media (max-width: 1440px) {
+  .hero .container {
+    min-height: 774px;
+  }
+  .hero .hero-image {
+    background-image: url("/images/home/search-background-hero.png");
+    min-height: 774px;
+  }
+}
+.hero .hero-image {
   position: absolute;
   width: 100%;
-  min-height: 600px;
   opacity: 0.25;
-  background-image: url("/images/home/search-background-hero.png");
   background-color: transparent;
+  background-repeat: no-repeat;
 }
 
 /* s.h. Home page layout chages */
