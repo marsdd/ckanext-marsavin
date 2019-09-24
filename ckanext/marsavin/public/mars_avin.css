@@ -285,12 +285,14 @@ h4, .h4 {
   margin: auto auto 7.777778% auto;
 }
 
-.homepage .featured-group .group-item a {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+.homepage .featured-group .group-item a:hover,
+.homepage .featured-group .group-item a:active {
+  text-decoration: none;
+}
+
+.homepage .featured-group .group-item img:hover,
+.homepage .featured-group .group-item img:active {
+  transform: scale(1.15);
 }
 
 .homepage .featured-group .group-item h3.group-heading {
