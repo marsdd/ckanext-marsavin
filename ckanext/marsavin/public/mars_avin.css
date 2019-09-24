@@ -129,11 +129,14 @@ h4, .h4 {
 }
 .dropdown-menu > li {
   min-width: 188px;
-  margin: 0px 5px;
+  padding: 0px 5px;
 }
 .dropdown-menu > li > a,
 .dropdown-menu > li > span.user-email {
   color: #B5B5B5;
+}
+.dropdown-menu > li > span.user-email {
+  font-size: 12px;
 }
 .dropdown-menu > li.user {
   margin-bottom: 10px;
@@ -143,8 +146,10 @@ h4, .h4 {
 }
 .dropdown-menu .log-out {
   font-family: 'Open Sans Semibold', sans-serif;
-  font-weight: 500;
+  font-weight: 600;
 }
+.dropdown-menu > li:not(.user):not(.divider):hover,
+.dropdown-menu > li:not(.user):not(.divider):focus,
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus,
 .dropdown-menu > .active > a,
