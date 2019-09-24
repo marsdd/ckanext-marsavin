@@ -12,7 +12,8 @@
   <button class="btn btn-profile dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
     {{ h.gravatar((c.userobj.email_hash if c and c.userobj else ''), size=22) }}
   </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+  <ul class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenu1">
+    <span class="dropdown-menu-arrow"></span>
     <li class="user">
       <h4>{{ c.userobj.name }}</h4>
       <span class="user-email">{{ c.userobj.email }}</span>

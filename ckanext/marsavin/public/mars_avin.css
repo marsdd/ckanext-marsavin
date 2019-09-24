@@ -127,13 +127,23 @@ h4, .h4 {
     margin-top: 9%;
   }
 }
-
+.dropdown-menu > li {
+  min-width: 188px;
+  margin: 0px 5px;
+}
 .dropdown-menu > li > a,
 .dropdown-menu > li > span.user-email {
   color: #B5B5B5;
 }
 .dropdown-menu > li.user {
   margin-bottom: 10px;
+}
+.dropdown-menu .user h4 {
+  margin: 0;
+}
+.dropdown-menu .log-out {
+  font-family: 'Open Sans Semibold', sans-serif;
+  font-weight: 500;
 }
 .dropdown-menu > li > a:hover,
 .dropdown-menu > li > a:focus,
@@ -146,6 +156,36 @@ h4, .h4 {
 
 .dropdown-menu {
   text-align: center;
+}
+
+.dropdown-menu-arrow {
+  top: -25px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  position: relative;
+}
+.dropdown-menu-arrow:before,
+.dropdown-menu-arrow:after {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-width: 7px 8px;
+  border-style: solid;
+  border-color: transparent;
+  z-index: 1001;
+}
+.dropdown-menu-arrow:after {
+  bottom: -20px;
+  right: 15px;
+  border-bottom-color: #fff;
+}
+.dropdown-menu-arrow:before {
+  bottom: -19px;
+  right: 15px;
+  border-bottom-color: rgba(0,0,0,.15);
 }
 
 .masthead {
