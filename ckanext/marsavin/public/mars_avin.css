@@ -147,6 +147,7 @@ h4, .h4 {
 .dropdown-menu .log-out {
   font-family: 'Open Sans Semibold', sans-serif;
   font-weight: 600;
+  text-transform: uppercase;
 }
 .dropdown-menu > li:not(.user):not(.divider):hover,
 .dropdown-menu > li:not(.user):not(.divider):focus,
