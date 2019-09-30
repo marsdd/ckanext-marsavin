@@ -1,0 +1,17 @@
+{% ckan_extends %}
+
+{% block about %}
+    {% if g.site_about %}
+        {{ h.render_markdown(g.site_about) }}
+    {% else %}
+        <h1 class="page-heading">{{ _('About AVIN') }}</h1>
+        {% snippet 'home/snippets/about_text.html' %}
+    {% endif %}
+    {% block about_page_link %}
+         <div class="row">
+            <div class="col-md-12 learn-more">
+                <div><a class="btn btn-primary" href="https://www.avinhub.ca" title="{{ _('About AVIN Data Catalogue') }}">{{ _("Learn more about avin") }}</a></div>
+            </div>
+         </div>
+    {% endblock %}
+{% endblock %}

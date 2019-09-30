@@ -6,23 +6,23 @@ html, body {
   font-family: 'Open Sans Regular', sans-serif;
 }
 h1, .h1 {
-  font-size: 48px;
+  font-size: 34px;
   font-family: futura-pt, sans-serif;
 }
 h2, .h2 {
   font-weight: 500;
-  font-size: 44px;
+  font-size: 28px;
   font-family: futura-pt, sans-serif;
 }
 
 h3, .h3 {
   font-family: futura-pt-bold, sans-serif;
-  font-size: 18pt;
+  font-size: 22px;
 }
 
 h4, .h4 {
   font-family: 'Open Sans Semibold', sans-serif;
-  font-size: 14pt;
+  font-size: 18px;
 }
 
 /* a.s. */
@@ -332,7 +332,8 @@ h4, .h4 {
 }
 
 .homepage .intro-text .learn-more a:hover,
-.homepage .intro-text .learn-more a:active {
+.homepage .intro-text .learn-more a:active,
+.homepage .intro-text .learn-more a:focus {
   text-decoration: none;
   font-family: 'Open Sans', sans-serif;
   background-color: #50A5D8;
@@ -408,6 +409,16 @@ h4, .h4 {
   background-color: #84D2F6;
   border-color: #84D2F6;;
   text-transform: uppercase;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 16px 20px;
+  border-radius: 30px;
+}
+
+.resource-item .btn-primary {
+  padding: 6px 12px;
+  border-radius: 4px;
 }
 
 .btn-primary:active,
@@ -430,9 +441,3 @@ h4, .h4 {
   background-color: #50A5D8;
   border-color: #50A5D8;
 }
-
-.dataset-heading {
-  font-size: 18pt;
-}
-
-
