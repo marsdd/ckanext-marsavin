@@ -235,25 +235,38 @@ h2.module-heading {
     min-height: 774px;
   }
   .hero .hero-image {
-    background-image: url("/images/home/mobile-hero.png");
     min-height: 774px;
+  }
+  html.webplossless .hero .hero-image {
+    background-image: url("/images/home/mobile-hero.webp");
+  }
+  html.no-webplossless .hero .hero-image {
+    background-image: url("/images/home/mobile-hero.png");
   }
 }
 
 @media (min-width: 768px) and (max-width: 1440px) {
   .hero .hero-image {
-    background-image: url("/images/home/desktop-1440-hero.png");
     min-height: 600px;
+  }
+  html.webplossless .hero .hero-image {
+    background-image: url("/images/home/desktop-1440-hero.webp");
+  }
+  html.no-webplossless .hero .hero-image {
+    background-image: url("/images/home/desktop-1440-hero.png");
   }
 }
 
 @media (min-width: 1440px) {
-  .hero .container {
+  .hero .container,
+  .hero .hero-image {
     min-height: 600px;
   }
-  .hero .hero-image {
+  html.webplossless .hero .hero-image {
+    background-image: url("/images/home/desktop-1920-hero.webp");
+  }
+  html.no-webplossless .hero .hero-image {
     background-image: url("/images/home/desktop-1920-hero.png");
-    min-height: 600px;
   }
 }
 
