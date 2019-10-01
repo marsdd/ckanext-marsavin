@@ -43,7 +43,9 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
         toolkit.add_resource('public/javascript', 'marsavin')
         toolkit.add_resource('public/css', 'marsavin')
         config_['ckan.favicon'] = "/images/avin.ico"
+        
         if "ckan.redis.url" in config_:
+            # ckan sessions in redis to allow for container idempotency
             config_['beaker.session.type'] = "ext:redis"
             config_['beaker.session.url'] = config_["ckan.redis.url"]
 
