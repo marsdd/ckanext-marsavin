@@ -230,21 +230,40 @@ h2.module-heading {
   min-height: 600px;
 }
 
-@media (max-width: 1440px) {
+@media (max-width: 768px) {
   .hero .container {
     min-height: 774px;
   }
   .hero .hero-image {
-    background-image: url("/images/home/search-background-hero.png");
+    background-image: url("/images/home/mobile-hero.png");
     min-height: 774px;
   }
 }
+
+@media (min-width: 768px) and (max-width: 1440px) {
+  .hero .hero-image {
+    background-image: url("/images/home/desktop-1440-hero.png");
+    min-height: 600px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .hero .container {
+    min-height: 600px;
+  }
+  .hero .hero-image {
+    background-image: url("/images/home/desktop-1920-hero.png");
+    min-height: 600px;
+  }
+}
+
 .hero .hero-image {
   position: absolute;
   width: 100%;
   opacity: 0.25;
   background-color: transparent;
   background-repeat: no-repeat;
+  background-position: center;
 }
 
 /* s.h. Home page layout chages */
@@ -267,6 +286,14 @@ h2.module-heading {
 .homepage .intro-text {
   background-color: #FFFFFF;
 }
+
+@media (max-width: 768px) {
+  .homepage.intro-text
+  {
+    min-height: 400px;
+  }
+}
+
 
 .homepage .featured-organization .row1{
   margin-top:5.5%;
