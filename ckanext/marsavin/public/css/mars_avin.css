@@ -414,7 +414,7 @@ h2.module-heading {
     background-color: transparent;
     margin-top: 3px;
   }
-  .header-search .btn-search :hover, :active {
+  .header-search .btn-search :hover, .header-search .btn-search :active {
     color: #386FA4;
   }
   .header-user-account {
