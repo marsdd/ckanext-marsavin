@@ -1,5 +1,9 @@
 {% ckan_extends %}
 
+{% block breadcrumb_content %}
+  <li class="active">{% link_for _('About AVIN'), 'home.about' %}</li>
+{% endblock %}
+
 {% block about %}
     {% if g.site_about %}
         {{ h.render_markdown(g.site_about) }}

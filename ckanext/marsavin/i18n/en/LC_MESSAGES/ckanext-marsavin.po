@@ -697,7 +697,7 @@ msgstr ""
 #: ckan/templates/organization/read_base.html:19
 #: ckan/templates/user/edit_user_form.html:14
 msgid "About"
-msgstr "About AVIN"
+msgstr ""
 
 #: ckan/controllers/admin.py:55
 msgid "About page text"

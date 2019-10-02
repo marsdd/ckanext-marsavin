@@ -1,6 +1,12 @@
 {% ckan_extends %}
 
-
+{% block header_site_navigation_tabs %}
+  {{ h.build_nav_main(
+      ('dataset.search', _('Datasets')),
+      ('organization.index', _('Organizations')),
+      ('group.index', _('Groups')),
+      ('home.about', _('About AVIN')) ) }}
+{% endblock %}
 {% block header_site_search %}
 <div class="section header-search">
     <a class="btn btn-search" href="{{ h.url_for('dataset.search') }}" title="{{ _('Search Datasets') }}">
