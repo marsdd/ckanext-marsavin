@@ -48,6 +48,7 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
             # ckan sessions in redis to allow for container idempotency
             config_['beaker.session.type'] = "ext:redis"
             config_['beaker.session.url'] = config_["ckan.redis.url"]
+            config_['beaker.session.timeout'] = 300
 
     # IBlueprint
     def get_blueprint(self):
