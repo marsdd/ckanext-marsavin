@@ -1,12 +1,12 @@
 {% set groups = h.get_homepage_featured_groups() %}
 
 {% block group_list %}
-<div class="row ro1">
+<div class="row">
   <div class="col-md-8 col-md-offset-2">
     <h2>{{ _("Groups") }}</h2>
   </div>
 </div>
-<div class="row row1">
+<div class="row">
   {% block group_list_inner %}
     {% for group in groups %}
       {% snippet "home/snippets/group_item.html", group=group, show_capacity=false %}

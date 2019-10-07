@@ -24,17 +24,18 @@ Example:
 #}
 {% set url = h.url_for(group.type ~ '.read', id=group.name) %}
 {% block item %}
-<div class="col-md-4">
+<div class="col-md-4 col-xs-6">
   {% block item_inner %}
   <div class="group-item">
-    {% block image %}
-      <img src="{{ group.image_display_url or h.url_for_static('/base/images/placeholder-group.png') }}" alt="{{ group.name }}" class="img-responsive media-image">
-    {% endblock %}
-    {% block heading %}
-      <h3 class="group-heading">{{ _('{group_name}').format(group_name=group.display_name) }}</h3>
-    {% endblock %}
     {% block link %}
-    <a href="{{ url }}" title="{{ _('View {group_name}').format(group_name=group.display_name) }}"></a>
+    <a href="{{ url }}" title="{{ _('View {group_name}').format(group_name=group.display_name) }}">
+      {% block image %}
+        <img src="{{ group.image_display_url or h.url_for_static('/base/images/placeholder-group.png') }}" alt="{{ group.name }}" class="img-responsive media-image">
+      {% endblock %}
+      {% block heading %}
+        <h3 class="group-heading">{{ _('{group_name}').format(group_name=group.display_name) }}</h3>
+      {% endblock %}
+    </a>
     {% endblock %}
   </div>
   {% endblock %}

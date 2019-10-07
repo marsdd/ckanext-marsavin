@@ -40,6 +40,10 @@ To install ckanext-marsavin (local environment):
 
       paster --plugin=ckanext-marsavin init --config=/path/to/config.ini
 
+6. make sure to update Solr search schema::
+
+      cd /usr/lib/ckan/venv/src/ckan && ckan-paster --plugin=ckanext-marsavin package update_search_schema -c "${CKAN_CONFIG}/production.ini"
+
 5. Restart CKAN
       sh /path/to/ckan/contrib/docker/ckan-entrypoint.sh
 
@@ -55,7 +59,6 @@ ARG MARS_PLUGIN_VERSION
      ckan-pip install https://github.com/marsdd/ckanext-marsavin/archive/$MARS_PLUGIN_VERSION.zip
 
 
-Then rebuild witht he build arg::
+Then rebuild with the build arg::
 
    docker build -f /path/to/ckan/Dockerfile --build-arg MARS_PLUGIN_VERSION=<name-of-branch-or-tag>
-

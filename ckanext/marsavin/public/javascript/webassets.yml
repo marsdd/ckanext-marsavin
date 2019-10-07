@@ -1,0 +1,5 @@
+mars_avin_js:
+  filters: rjsmin
+  output: javascript/%(version)s_mars_avin.js
+  contents:
+    - modernizr-custom.js
