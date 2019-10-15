@@ -50,7 +50,7 @@ h4, .h4 {
   margin-bottom: 6%;
   text-align: center;
   width: 66.666667%;
-  font-weight: initial;
+  font-weight: 600;
 }
 
 .homepage .module-search .tags {
@@ -326,7 +326,7 @@ h2.module-heading {
 .homepage .featured-group .row div h2,
 .homepage .intro-text .row div h2 {
   font-size: 40px;
-  font-weight: initial;
+  font-weight: 600;
   text-align: center;
 }
 
@@ -342,9 +342,20 @@ h2.module-heading {
   text-decoration: none;
 }
 
-.homepage .featured-group .group-item img:hover,
-.homepage .featured-group .group-item img:active {
-  transform: scale(1.15);
+@media (min-width: 992px) {
+  .homepage .featured-group .group-item img,
+  .homepage .featured-organization .organization-item img {
+    transform: scale(0.85);
+    transition-duration: 500ms;
+  }
+
+  .homepage .featured-group .group-item img:hover,
+  .homepage .featured-group .group-item img:active,
+  .homepage .featured-organization .organization-item img:hover,
+  .homepage .featured-organization .organization-item img:active {
+    transform: scale(1.00);
+    transition-duration: 500ms;
+  }
 }
 
 .homepage .featured-group .group-item h3.group-heading {
