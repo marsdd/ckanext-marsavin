@@ -1,6 +1,6 @@
 {% set current_lang = request.environ.CKAN_LANG %}
 {% set available_locales = h.get_locales_dict() %}
-<div class="btn-group">
+<div class="btn-group language-dropdown-container">
   <button type="button" class="btn btn-default btn-lang dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
     <i class="fa fa-globe"></i> {{ available_locales[current_lang].display_name or available_locales[current_lang].english_name }} <i class="fa fa-angle-down" aria-hidden="true"></i>
   </button>

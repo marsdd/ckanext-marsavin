@@ -99,6 +99,12 @@ h2.module-heading {
 .site-footer-link {
   line-height: 36px;
 }
+
+.site-footer-link .language-dropdown-container {
+  float: right;
+  margin-right: 12px;
+}
+
 .site-footer-link a {
   color: #D7D7D7;
   text-transform: uppercase;
@@ -123,15 +129,28 @@ h2.module-heading {
 }
 
 .site-footer-secondary {
-  background-color: #F8F9FA;
+  background-color: #FFFFFF;
 }
 
+
 .site-footer-secondary-logo {
-  min-height: 50px;
+  min-height: 30px;
+  margin-top: 1%;
+  color: #ADAEAF;
 }
 
 .site-footer-secondary-logo img {
-  margin-top: 25%;
+  height: 20px;
+  vertical-align: text-bottom;
+}
+
+.site-footer-secondary-logo span {
+  margin-right: 1%;
+}
+
+.site-footer-secondary-logo .site-footer-secondary-logo-container {
+  float: right;
+  min-width: 186px;
 }
 
 @media (max-width: 767px) {
