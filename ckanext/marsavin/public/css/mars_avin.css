@@ -50,7 +50,7 @@ h4, .h4 {
   margin-bottom: 6%;
   text-align: center;
   width: 66.666667%;
-  font-weight: initial;
+  font-weight: 600;
 }
 
 .homepage .module-search .tags {
@@ -68,11 +68,14 @@ h4, .h4 {
   font-weight: 300;
 }
 
-.homepage .module-search .tags a.tag:hover {
+.homepage .module-search .tags a.tag:hover,
+.homepage .module-search .tags a.tag:focus,
+.homepage .module-search .tags a.tag:active {
   background-color: #3BA6DD;
   border: 1px solid #235767;
   -webkit-box-shadow: inset 0 1px 0 #3d97b3;
   box-shadow: inset 0 1px 0 #3d97b3;
+  text-decoration: none;
 }
 
 .homepage .container .col-search {
@@ -89,7 +92,17 @@ h2.module-heading {
   background-color: #002844;
 }
 .site-footer {
-  padding-bottom: 2%;
+  padding-bottom: 1.0%;
+  padding-top: 1.0%;
+}
+
+.site-footer-link {
+  line-height: 36px;
+}
+
+.site-footer-link .language-dropdown-container {
+  float: right;
+  margin-right: 12px;
 }
 
 .site-footer-link a {
@@ -116,15 +129,28 @@ h2.module-heading {
 }
 
 .site-footer-secondary {
-  background-color: #F8F9FA;
+  background-color: #FFFFFF;
 }
 
+
 .site-footer-secondary-logo {
-  min-height: 50px;
+  min-height: 30px;
+  margin-top: 1%;
+  color: #ADAEAF;
 }
 
 .site-footer-secondary-logo img {
-  margin-top: 25%;
+  height: 20px;
+  vertical-align: text-bottom;
+}
+
+.site-footer-secondary-logo span {
+  margin-right: 1%;
+}
+
+.site-footer-secondary-logo .site-footer-secondary-logo-container {
+  float: right;
+  min-width: 186px;
 }
 
 @media (max-width: 767px) {
@@ -203,7 +229,9 @@ h2.module-heading {
   margin-bottom: initial;
   padding: 10px 0;
   color: #000;
-  background: #F8F9FA;
+  background: #FFFFFF;
+  background-image: none;
+
 }
 .masthead .navigation .nav-pills li a:hover,
 .masthead .navigation .nav-pills li a:focus,
@@ -234,60 +262,56 @@ h2.module-heading {
   .hero .container {
     min-height: 774px;
   }
-  .hero .hero-image {
+  .hero {
     min-height: 774px;
   }
-  html.webplossless .hero .hero-image {
+  html.webplossless .hero {
     background-image: url("/images/home/mobile-hero.webp");
   }
-  html.no-webplossless .hero .hero-image {
+  html.no-webplossless .hero {
     background-image: url("/images/home/mobile-hero.png");
   }
 }
 
-@media (min-width: 768px) and (max-width: 1440px) {
-  .hero .hero-image {
-    min-height: 600px;
+@media (min-width: 768px) {
+  .hero {
+    min-height: 700px;
   }
-  html.webplossless .hero .hero-image {
+}
+@media (min-width: 768px) and (max-width: 1440px) {
+  html.webplossless .hero {
     background-image: url("/images/home/desktop-1440-hero.webp");
   }
-  html.no-webplossless .hero .hero-image {
+  html.no-webplossless .hero {
     background-image: url("/images/home/desktop-1440-hero.png");
   }
 }
 
 @media (min-width: 1440px) {
-  .hero .container,
-  .hero .hero-image {
-    min-height: 600px;
-  }
-  html.webplossless .hero .hero-image {
+  html.webplossless .hero  {
     background-image: url("/images/home/desktop-1920-hero.webp");
   }
-  html.no-webplossless .hero .hero-image {
+  html.no-webplossless .hero {
     background-image: url("/images/home/desktop-1920-hero.png");
   }
 }
 
-.hero .hero-image {
-  position: absolute;
-  width: 100%;
-  opacity: 0.25;
-  background-color: transparent;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
 /* s.h. Home page layout chages */
 .homepage .hero {
-  background-image: initial;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 100%;
   padding: 0;
-  background-color: #002844;
+  /*background-color: #002844;*/
 }
 
-.homepage [role=main] {
-  padding:0;
+.homepage [role=main] h1,
+.homepage [role=main] .h1,
+.homepage [role=main] h2,
+.homepage [role=main] .h2,
+.homepage [role=main] h3,
+.homepage [role=main] .h3 {
+    margin-bottom: 20px;
 }
 
 .homepage .featured-organization {
@@ -298,6 +322,7 @@ h2.module-heading {
 .homepage .featured-group,
 .homepage .intro-text {
   background-color: #FFFFFF;
+  background-image: none;
 }
 
 @media (max-width: 768px) {
@@ -309,18 +334,18 @@ h2.module-heading {
 
 
 .homepage .featured-organization .row1{
-  margin-top:5.5%;
+  margin-top: 2.5%;
 }
 
 .homepage .intro-text .row1 {
-  margin-top:2.0%;
+  margin-top: 2.0%;
 }
 
 .homepage .featured-organization .row div h2,
 .homepage .featured-group .row div h2,
 .homepage .intro-text .row div h2 {
   font-size: 40px;
-  font-weight: initial;
+  font-weight: 600;
   text-align: center;
 }
 
@@ -336,9 +361,20 @@ h2.module-heading {
   text-decoration: none;
 }
 
-.homepage .featured-group .group-item img:hover,
-.homepage .featured-group .group-item img:active {
-  transform: scale(1.15);
+@media (min-width: 992px) {
+  .homepage .featured-group .group-item img,
+  .homepage .featured-organization .organization-item img {
+    transform: scale(0.85);
+    transition-duration: 500ms;
+  }
+
+  .homepage .featured-group .group-item img:hover,
+  .homepage .featured-group .group-item img:active,
+  .homepage .featured-organization .organization-item img:hover,
+  .homepage .featured-organization .organization-item img:active {
+    transform: scale(1.00);
+    transition-duration: 500ms;
+  }
 }
 
 .homepage .featured-group .group-item h3.group-heading {
@@ -385,7 +421,7 @@ h2.module-heading {
 }
 .homepage .intro-text .learn-more div {
   width: fit-content;
-  margin: 18px auto;
+  margin: 25px auto;
 }
 
 .search-form .search-input button i {
