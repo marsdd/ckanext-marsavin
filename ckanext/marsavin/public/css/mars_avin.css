@@ -113,6 +113,13 @@ h2.module-heading {
   line-height: 36px;
 }
 
+.site-footer-link a:hover,
+.site-footer-link a:focus {
+  color: #386FA4;
+  background-color: transparent;
+  text-shadow: none;
+}
+
 .site-footer-link .language-dropdown-container {
   float: right;
   margin-right: 12px;
