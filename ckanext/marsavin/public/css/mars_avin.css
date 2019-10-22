@@ -46,7 +46,7 @@ h4, .h4 {
 
 .homepage .module-search .module-content {
   background-color: initial;
-  padding-bottom: 0px;
+  padding-bottom: 5px;
 }
 
 .homepage .module-search .module-content .heading {
@@ -72,6 +72,12 @@ h4, .h4 {
   -moz-box-shadow: none;
   box-shadow: none;
   font-weight: normal;
+  line-height: 30px;
+  padding: 1px 20px;
+}
+
+.homepage .module-search .tags h3 {
+  color: #ADAEAF;
 }
 
 .homepage .module-search .tags a.tag:hover,
