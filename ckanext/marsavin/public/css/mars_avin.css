@@ -4,6 +4,7 @@
 html, body {
   background-color: #F8F9FA;
   font-family: 'Open Sans Regular', sans-serif;
+  font-kerning: normal;
 }
 h1, .h1 {
   font-size: 34px;
@@ -150,6 +151,7 @@ h2.module-heading {
 
 .site-footer-secondary {
   background-color: #FFFFFF;
+  min-height: 60px;
 }
 
 
@@ -166,11 +168,12 @@ h2.module-heading {
 
 .site-footer-secondary-logo span {
   margin-right: 1%;
+  font-size: 16px;
 }
 
 .site-footer-secondary-logo .site-footer-secondary-logo-container {
   float: right;
-  min-width: 186px;
+  min-width: 211px;
 }
 
 @media (max-width: 767px) {
@@ -444,6 +447,38 @@ h2.module-heading {
   margin: 25px auto;
 }
 
+/* s.h. this area is for the spacing of the home page items for desktop */
+@media (min-width: 768px) {
+  .homepage .featured-group,
+  .homepage .intro-text {
+    padding-top: 100px;
+  }
+  .homepage .featured-organization {
+    padding-top: 40px;
+  }
+  .homepage .featured-group .container,
+  .homepage .featured-organization .container,
+  .homepage .intro-text .container {
+    padding-bottom: 70px;
+  }
+  .homepage .featured-group .row div h2,
+  .homepage .featured-organization .row div h2,
+  .homepage .intro-text .row div h2 {
+    margin-top: 40px;
+    margin-bottom: 80px;
+  }
+  .homepage .featured-group .row .group-item,
+  .homepage .featured-group .row .organization-item {
+    margin: auto auto 70px auto;
+  }
+  .homepage .intro-text .learn-more div {
+    margin-top: 50px;
+  }
+  .site-footer {
+    margin-top: 40px;
+  }
+}
+
 .search-form .search-input button i {
   color: #3BA6DD;
   font-weight: initial;
@@ -484,8 +519,10 @@ h2.module-heading {
     color: #133c55;
     margin-top: 7px;
   }
+  .site-footer-secondary-logo {
+    margin-top: 20px;
+  }
 }
-
 
 .btn-default,
 .masthead a.btn-default {
