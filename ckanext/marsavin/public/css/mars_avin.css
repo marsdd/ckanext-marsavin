@@ -422,7 +422,15 @@ h2.module-heading {
 .homepage .intro-text p {
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
+  width: 90%;
+}
+
+@media (min-width: 768px) {
+  .homepage .intro-text p {
+    width: 65%;
+    font-size: 22px;
+    line-height: 37px;
+  }
 }
 .homepage .intro-text .learn-more a {
   font-family: 'Open Sans', sans-serif;
