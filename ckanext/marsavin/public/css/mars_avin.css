@@ -135,7 +135,7 @@ h2.module-heading {
 .site-footer .btn-lang {
   background-color: transparent;
   border: none;
-  color: #F8F9FA;
+  color: #647987;
   font-weight: normal;
 }
 
@@ -158,7 +158,7 @@ h2.module-heading {
 .site-footer-secondary-logo {
   min-height: 30px;
   margin-top: 1%;
-  color: #ADAEAF;
+  color: #647987;
 }
 
 .site-footer-secondary-logo img {
@@ -269,7 +269,7 @@ h2.module-heading {
 .masthead .nav>.active>a,
 .masthead .nav>.active>a:hover,
 .masthead .nav>.active>a:focus {
-  color: #ADAEAF;
+  color: #647987;
   text-shadow: none;
 }
 
@@ -577,4 +577,35 @@ h2.module-heading {
   text-decoration: none;
   background-color: #50A5D8;
   border-color: #50A5D8;
+}
+
+.badge {
+  background-color: #555555;
+}
+.pagination > .disabled > span, .pagination > .disabled > span:hover,
+.pagination > .disabled > span:focus, .pagination > .disabled > a, .pagination > .disabled > a:hover,
+.pagination > .disabled > a:focus {
+  color: #757575;
+}
+
+.empty {
+  color: #757575;
+}
+
+.dataset-resources .label-default {
+  color: #2B2B2B;
+}
+
+.label[data-format=pdf], .label[data-format*=pdf] {
+  color: #FFFFFF;
+  background-color: #AE0514;
+}
+
+.label[data-format=json], .label[data-format*=json] {
+  color: #FFFFFF;
+  background-color: #8A4200;
+}
+
+.media-item span.count {
+    color: #595959;
 }
