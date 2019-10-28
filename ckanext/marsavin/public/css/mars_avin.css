@@ -515,9 +515,11 @@ h2.module-heading {
     min-height: 400px;
   }
   .homepage .intro-text .container,
-  .site-footer .container,
-  .site-footer-secondary {
+  .site-footer .container{
     max-width: 90%;
+  }
+  .site-footer-secondary {
+    width: 100%;
   }
   .hero .container {
     min-height: 774px;
@@ -547,6 +549,10 @@ h2.module-heading {
   }
   .site-footer-link .language-dropdown-container {
       float: none;
+  }
+  .site-footer-secondary .container {
+    width: 100%;
+    padding-right: 0px;
   }
 }
 
