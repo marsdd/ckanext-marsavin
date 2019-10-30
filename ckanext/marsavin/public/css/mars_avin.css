@@ -410,25 +410,25 @@ h2.module-heading {
     line-height: 37px;
   }
 }
-.homepage .intro-text .learn-more a {
+.learn-more a {
   font-family: 'Open Sans', sans-serif;
   font-size: 12px;
   font-weight: 400;
   color: #FFFFFF;
-  background-color: #84D2F6;
+  background-color: #59A5D8;
   padding: 16px 20px;
   border-radius: 30px;
   text-transform: uppercase;
 }
 
-.homepage .intro-text .learn-more a:hover,
-.homepage .intro-text .learn-more a:active,
-.homepage .intro-text .learn-more a:focus {
+.learn-more a:hover,
+.learn-more a:active,
+.learn-more a:focus {
   text-decoration: none;
   font-family: 'Open Sans', sans-serif;
-  background-color: #50A5D8;
+  background-color: #386FA4;
 }
-.homepage .intro-text .learn-more div {
+ .learn-more div {
   width: fit-content;
   margin: 25px auto;
 }
@@ -457,7 +457,7 @@ h2.module-heading {
   .homepage .featured-group .row .organization-item {
     margin: auto auto 70px auto;
   }
-  .homepage .intro-text .learn-more div {
+  .learn-more div {
     margin-top: 50px;
   }
   .site-footer {
@@ -572,43 +572,6 @@ h2.module-heading {
   color: #FFFFFF;
   background-color: #386FA4;
   border-color: #6F97BD;
-}
-
-.btn-primary {
-  color: #FFFFFF;
-  background-color: #84D2F6;
-  border-color: #84D2F6;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 12px;
-  font-weight: 400;
-  padding: 16px 20px;
-  border-radius: 30px;
-}
-
-.resource-item .btn-primary {
-  padding: 6px 12px;
-  border-radius: 4px;
-}
-
-.btn-primary:active,
-.btn-primary.active,
-.open > .dropdown-toggle.btn-primary,
-.btn-primary:active:hover,
-.btn-primary.active:hover,
-.open > .dropdown-toggle.btn-primary:hover,
-.btn-primary:active:focus,
-.btn-primary.active:focus,
-.open > .dropdown-toggle.btn-primary:focus,
-.btn-primary:active.focus,
-.btn-primary.active.focus,
-.open > .dropdown-toggle.btn-primary.focus,
-.btn-primary:focus,
-.btn-primary.focus,
-.btn-primary:hover
-{
-  text-decoration: none;
-  background-color: #50A5D8;
-  border-color: #50A5D8;
 }
 
 .badge {
