@@ -170,7 +170,7 @@ h2.module-heading {
 
 .site-footer-secondary-logo span {
   margin-right: 1%;
-  font-size: 16px;
+  font-size: 12px;
 }
 
 .site-footer-secondary-logo .site-footer-secondary-logo-container {
@@ -407,7 +407,7 @@ h2.module-heading {
 @media (min-width: 768px) {
   .homepage .intro-text p {
     width: 65%;
-    font-size: 22px;
+    font-size: 16px;
     line-height: 37px;
   }
 }
@@ -417,7 +417,7 @@ h2.module-heading {
   font-weight: 400;
   color: #FFFFFF;
   background-color: #386FA4;
-  padding: 16px 20px;
+  padding: 16px 56px;
   border-radius: 30px;
   text-transform: uppercase;
 }
