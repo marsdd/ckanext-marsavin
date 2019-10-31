@@ -68,7 +68,7 @@ h4, .h4 {
   font-family: 'Open Sans Regular', sans-serif;
   color: #FFFFFF;
   background-color: transparent;
-  border-color: #8D979D;
+  border-color: #8F979C;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
@@ -84,8 +84,9 @@ h4, .h4 {
 .homepage .module-search .tags a.tag:hover,
 .homepage .module-search .tags a.tag:focus,
 .homepage .module-search .tags a.tag:active {
-  background-color: #3BA6DD;
-  border: 1px solid #3BA6DD;
+  background-color: #84D2F6;
+  border: 1px solid #84D2F6;
+  color: #133C55;
   -webkit-box-shadow: none;
   box-shadow: none;
   text-decoration: none;
@@ -429,7 +430,7 @@ h2.module-heading {
   font-size: 12px;
   font-weight: 400;
   color: #FFFFFF;
-  background-color: #59A5D8;
+  background-color: #386FA4;
   padding: 16px 20px;
   border-radius: 30px;
   text-transform: uppercase;
@@ -440,7 +441,7 @@ h2.module-heading {
 .learn-more a:focus {
   text-decoration: none;
   font-family: 'Open Sans', sans-serif;
-  background-color: #386FA4;
+  background-color: #133C55;
 }
  .learn-more div {
   width: fit-content;
