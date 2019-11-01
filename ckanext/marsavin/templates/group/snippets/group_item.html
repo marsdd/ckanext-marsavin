@@ -1,5 +1,10 @@
 {% ckan_extends %}
 
+{% block image %}
+    <div class="media-image-wrapper">
+        {{ super() }}
+    </div>
+{% endblock %}
 {% block link %}
   <a href="{{ url }}" title="{{ _('View {name}').format(name=group.display_name) }}" class="media-view"
      aria-label="{{ _('View {name}').format(name=group.display_name) }}">
