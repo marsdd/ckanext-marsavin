@@ -2,7 +2,8 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
 html, body {
-  background-color: #F8F9FA;
+  background-color: #FFFFFF;
+  background-image: none;
   font-family: 'Open Sans Regular', sans-serif;
   font-kerning: normal;
 }
@@ -108,7 +109,7 @@ h2.module-heading {
 .site-footer {
   padding-bottom: 1.0%;
   padding-top: 1.0%;
-  height: 190px;
+  min-height: 190px;
 }
 
 .site-footer-link {
@@ -169,7 +170,7 @@ h2.module-heading {
 
 .site-footer-secondary-logo span {
   margin-right: 1%;
-  font-size: 16px;
+  font-size: 12px;
 }
 
 .site-footer-secondary-logo .site-footer-secondary-logo-container {
@@ -282,21 +283,6 @@ h2.module-heading {
   min-height: 600px;
 }
 
-@media (max-width: 768px) {
-  .hero .container {
-    min-height: 774px;
-  }
-  .hero {
-    min-height: 774px;
-  }
-  html.webplossless .hero {
-    background-image: url("/images/home/mobile-hero.webp");
-  }
-  html.no-webplossless .hero {
-    background-image: url("/images/home/mobile-hero.png");
-  }
-}
-
 @media (min-width: 768px) {
   .hero {
     min-height: 700px;
@@ -348,14 +334,6 @@ h2.module-heading {
   background-color: #FFFFFF;
   background-image: none;
 }
-
-@media (max-width: 768px) {
-  .homepage.intro-text
-  {
-    min-height: 400px;
-  }
-}
-
 
 .homepage .featured-organization .row1{
   margin-top: 2.5%;
@@ -423,7 +401,15 @@ h2.module-heading {
 .homepage .intro-text p {
   margin-left: auto;
   margin-right: auto;
-  width: 50%;
+  width: 90%;
+}
+
+@media (min-width: 768px) {
+  .homepage .intro-text p {
+    width: 65%;
+    font-size: 16px;
+    line-height: 37px;
+  }
 }
 .learn-more a {
   font-family: 'Open Sans', sans-serif;
@@ -431,7 +417,7 @@ h2.module-heading {
   font-weight: 400;
   color: #FFFFFF;
   background-color: #386FA4;
-  padding: 16px 20px;
+  padding: 16px 56px;
   border-radius: 30px;
   text-transform: uppercase;
 }
@@ -522,6 +508,52 @@ h2.module-heading {
   }
   .site-footer-secondary-logo {
     margin-top: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .homepage .intro-text {
+    min-height: 400px;
+  }
+  .homepage .intro-text .container,
+  .site-footer .container{
+    max-width: 90%;
+  }
+  .site-footer-secondary {
+    width: 100%;
+  }
+  .hero .container {
+    min-height: 774px;
+  }
+  .hero {
+    min-height: 774px;
+  }
+  html.webplossless .hero {
+    background-image: url("/images/home/mobile-hero.webp");
+  }
+  html.no-webplossless .hero {
+    background-image: url("/images/home/mobile-hero.png");
+  }
+  .homepage .featured-group .group-item {
+    max-width: 50%;
+  }
+  .homepage .featured-organization .organization-item {
+    max-width: 60%;
+  }
+  .site-footer {
+    padding-bottom: 5.0%;
+    padding-top: 5.0%;
+  }
+  .site-footer-link {
+    text-align: center;
+    padding-bottom: 10px;
+  }
+  .site-footer-link .language-dropdown-container {
+      float: none;
+  }
+  .site-footer-secondary .container {
+    width: 100%;
+    padding-right: 0px;
   }
 }
 
