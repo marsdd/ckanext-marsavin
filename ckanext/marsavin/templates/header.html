@@ -9,7 +9,8 @@
 {% endblock %}
 {% block header_site_search %}
 <div class="section header-search">
-    <a class="btn btn-search" href="{{ h.url_for('dataset.search') }}" title="{{ _('Search Datasets') }}">
+    <a class="btn btn-search" href="{{ h.url_for('dataset.search') }}" title="{{ _('Search Datasets') }}"
+       aria-label="{{ _('Search Datasets') }}">
         <i class="fa fa-search"></i>
     </a>
 </div>
