@@ -2,6 +2,11 @@
 
 {% block datasets %}
 {% endblock %}
+{% block image %}
+    <div class="media-image-wrapper">
+        {{ super() }}
+    </div>
+{% endblock %}
 {% block link %}
   {% if h.is_featured_organization(organization.name) %}
     {% set url_override = h.url_for(organization.type ~ '.about', id=organization.name) %}
