@@ -3696,16 +3696,18 @@ msgstr ""
 
 #: ckan/templates/package/search.html:56
 #, python-format
-msgid ""
-" You can also access this registry using the %(api_link)s (see "
-"%(api_doc_link)s) or download a %(dump_link)s. "
+msgid "\n"
+"            You can also access this registry using the %(api_link)s (see "
+"%(api_doc_link)s) or download a %(dump_link)s.\n"
+"          "
 msgstr ""
 
 #: ckan/templates/package/search.html:60
 #, python-format
-msgid ""
-" You can also access this registry using the %(api_link)s (see "
-"%(api_doc_link)s). "
+msgid "\n"
+"            You can also access this registry using the %(api_link)s (see "
+"%(api_doc_link)s).\n"
+"          "
 msgstr ""
 
 #: ckan/templates/package/view_edit_base.html:9

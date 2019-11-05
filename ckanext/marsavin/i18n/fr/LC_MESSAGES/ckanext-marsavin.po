@@ -1,0 +1,33 @@
+# English translations for ckan.
+# Copyright (C) 2017 ORGANIZATION
+# This file is distributed under the same license as the ckan project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ckan 2.9.0a0\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2017-06-21 15:47+0100\n"
+"PO-Revision-Date: 2019-08-02 10:44-0400\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: en\n"
+"Language-Team: en <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.3.4\n"
+
+#: ckan/templates/package/search.html:56
+#, python-format
+msgid "You can also access this registry using the %(api_link)s (see %(api_doc_link)s) or download a %(dump_link)s."
+msgstr ""
+" Vous pouvez aussi accéder à ce catalogue en utilisant %(api_link)s (cf "
+"%(api_doc_link)s) ou télécharger %(dump_link)s. "
+
+#: ckan/templates/package/search.html:60
+#, python-format
+msgid "You can also access this registry using the %(api_link)s (see %(api_doc_link)s)."
+msgstr ""
+"Vous pouvez également accéder à ce catalogue en utilisant %(api_link)s (cf "
+"%(api_doc_link)s). "
