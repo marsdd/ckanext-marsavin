@@ -31,3 +31,24 @@ msgid "You can also access this registry using the %(api_link)s (see %(api_doc_l
 msgstr ""
 "Vous pouvez également accéder à ce catalogue en utilisant %(api_link)s (cf "
 "%(api_doc_link)s). "
+
+
+#: ckan/templates/organization/snippets/helper.html:8
+msgid "CKAN Organizations are used to create, manage and publish collections of datasets. Users can have different roles within an Organization, depending on their level of authorisation to create, edit and publish."
+msgstr ""
+"Les Organisations CKAN sont utilisées pour créer, gérer et publier des "
+"collections de jeux de données. Les utilisateurs peuvent avoir différents "
+"rôles au sein d'une Organisation, en fonction de leur niveau d'autorisation "
+"pour créer, éditer et publier."
+
+#: ckan/templates/group/snippets/helper.html:8
+msgid ""
+"You can use CKAN Groups to create and manage collections of datasets. "
+"This could be to catalogue datasets for a particular project or team, or on a particular theme, "
+"or as a very simple way to help people find and search your own published datasets."
+msgstr ""
+"Vous pouvez utiliser les groupes CKAN pour créer et gérer des collections de"
+" jeux de données. Cela peut être pour cataloguer des jeux de données pour un"
+" projet ou une équipe en particulier, ou autour d'un thème spécifique, ou "
+"comme moyen très simple d'aider à parcourir et découvrir vos jeux de données"
+" publiés."
