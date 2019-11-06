@@ -32,7 +32,6 @@ msgstr ""
 "Vous pouvez également accéder à ce catalogue en utilisant %(api_link)s (cf "
 "%(api_doc_link)s). "
 
-
 #: ckan/templates/organization/snippets/helper.html:8
 msgid "CKAN Organizations are used to create, manage and publish collections of datasets. Users can have different roles within an Organization, depending on their level of authorisation to create, edit and publish."
 msgstr ""
@@ -52,3 +51,30 @@ msgstr ""
 " projet ou une équipe en particulier, ou autour d'un thème spécifique, ou "
 "comme moyen très simple d'aider à parcourir et découvrir vos jeux de données"
 " publiés."
+
+#: ckan/templates/package/snippets/package_basic_fields.html:45
+#, python-format
+msgid ""
+"License definitions and additional information can be found at <a "
+"href=\"http://opendefinition.org/licenses/\">opendefinition.org</a>"
+msgstr ""
+"Les définitions de la licence et des informations complémentaires peuvent "
+"être trouvées chez <a "
+"href=\"http://opendefinition.org/licenses/\">opendefinition.org</a>"
+
+
+#: ckan/templates/package/snippets/package_form.html:28
+msgid ""
+"The <i>data license</i> you select above only applies to the contents "
+"of any resource files that you add to this dataset. By submitting "
+"this form, you agree to release the <i>metadata</i> values that you "
+"enter into the form under the "
+"<a href=\"http://opendatacommons.org/licenses/odbl/1-0/\">Open Database License</a>."
+msgstr ""
+"La <i>licence des données</ i> que vous sélectionnez ci-dessus ne vaut que "
+"pour le contenu de tous les fichiers de ressources que vous ajoutez à cet "
+"ensemble de données. En soumettant ce formulaire, vous vous engagez à "
+"libérer les valeurs des <i>métadonnées</ i> que vous entrez dans le "
+"formulaire en vertu de la <a "
+"href=\"http://opendatacommons.org/licenses/odbl/1-0/\">Licence de base de "
+"données ouvertes</a>."
