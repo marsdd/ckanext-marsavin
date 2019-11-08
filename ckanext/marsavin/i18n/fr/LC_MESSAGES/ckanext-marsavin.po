@@ -127,12 +127,17 @@ msgstr ""
 "Répertoire de données RIVA. Pour toute demande concernant des problèmes techniques, "
 "erreurs ou améliorations de la fonctionnalité, veuillez communiquer avec lui à l’adresse ci-dessous."
 
-
+#: ckanext/marsavin/templates/home/snippets/promoted.html
+#, python-format
 msgid ""
 "The Autonomous Vehicle Innovation Network (AVIN) is ensuring that Ontario continues to lead in the "
 "global automotive and transportation sector and remains a world-leading manufacturing and supply "
-"jurisdiction. This data catalogue provides a central location for sharing relevant datasets that "
+"jurisdiction.  This data catalogue provides a central location for sharing relevant datasets that "
 "will support the research, development and testing of products and solutions for connected and "
 "autonomous vehicles (C/AVs)"
 msgstr ""
-
+"Le Réseau d’innovation pour les véhicules automatisés (RIVA) permet de garantir que l’Ontario "
+"demeure un chef de file du secteur mondial de l’automobile et des transports et un fabricant et "
+"fournisseur de calibre mondial. Ce répertoire de données centralisé permet de partager des ensembles "
+"de données pertinentes pour appuyer la recherche, le développement et l’essai de produits et de "
+"solutions de véhicules connectés et automatisés (VCA)."
