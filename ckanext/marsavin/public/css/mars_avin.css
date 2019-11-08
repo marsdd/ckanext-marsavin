@@ -114,6 +114,26 @@ h2.module-heading {
 
 .site-footer-link {
   line-height: 36px;
+  width: fit-content;
+  float: left;
+}
+
+@media (min-width: 768px) and (max-width: 1200px) {
+  .site-footer-link {
+    margin-left: 8%;
+  }
+  .site-footer .container {
+    padding-left: 5%;
+  }
+}
+
+@media (min-width: 1200px) {
+  .site-footer-link {
+    margin-left: 10%;
+  }
+  .site-footer .container {
+    padding-left: 10%;
+  }
 }
 
 .site-footer-link a:hover,
@@ -175,6 +195,7 @@ h2.module-heading {
 
 .site-footer-secondary-logo .site-footer-secondary-logo-container {
   float: right;
+  text-align: right;
   min-width: 211px;
 }
 
@@ -434,6 +455,8 @@ h2.module-heading {
   margin: 25px auto;
 }
 
+
+
 /* s.h. this area is for the spacing of the home page items for desktop */
 @media (min-width: 768px) {
   .homepage .featured-group,
@@ -547,6 +570,8 @@ h2.module-heading {
   .site-footer-link {
     text-align: center;
     padding-bottom: 10px;
+    clear: both;
+    width: 100%;
   }
   .site-footer-link .language-dropdown-container {
       float: none;

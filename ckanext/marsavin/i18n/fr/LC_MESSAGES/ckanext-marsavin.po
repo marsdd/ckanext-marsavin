@@ -106,3 +106,33 @@ msgstr "À propos du programme RIVA"
 #: ckanext/marsavin/templates/home/contact.html:21
 msgid "Contact Us"
 msgstr "Communiquez avec nous"
+
+#: ckan/templates/snippets/subscribe.html:4
+#: ckan/templates/user/edit_user_form.html:12
+#: ckan/templates/user/new_user_form.html:7
+#: ckan/templates/user/read_base.html:82
+#: ckanext/marsavin/templates/home/snippets/contact_text.html:10
+#: ckanext/marsavin/templates/home/snippets/contact_text.html:24
+msgid "Email"
+msgstr "Courriel"
+
+#: ckanext-marsavin/ckanext/marsavin/templates/home/snippets/contact_text.html:23
+#, python-format
+msgid ""
+"Steve is an Associate at MaRS Discovery District and the product manager "
+"for the AVIN Data Catalogue. For requests or information regarding technical issues, "
+"errors, or improvements to functionality, please contact him at the address below."
+msgstr ""
+"Steve est collaborateur à MaRS Discovery District et gestionnaire de produits du "
+"Répertoire de données RIVA. Pour toute demande concernant des problèmes techniques, "
+"erreurs ou améliorations de la fonctionnalité, veuillez communiquer avec lui à l’adresse ci-dessous."
+
+
+msgid ""
+"The Autonomous Vehicle Innovation Network (AVIN) is ensuring that Ontario continues to lead in the "
+"global automotive and transportation sector and remains a world-leading manufacturing and supply "
+"jurisdiction. This data catalogue provides a central location for sharing relevant datasets that "
+"will support the research, development and testing of products and solutions for connected and "
+"autonomous vehicles (C/AVs)"
+msgstr ""
+
