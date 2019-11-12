@@ -116,6 +116,16 @@ msgstr "Communiquez avec nous"
 msgid "Email"
 msgstr "Courriel"
 
+#: ckanext-marsavin/ckanext/marsavin/templates/home/snippets/contact_text.html:9
+#, python-format
+msgid ""
+"Sherin is the Technical Advisor of AVIN and the manager of AVIN’s data strategy. "
+"For data-related inquiries or information, please contact her at the address below."
+msgstr ""
+"Sherin est conseiller technique et gestionnaire de la stratégie de données du programme RIVA."
+"Pour toute demande de renseignements sur les données ou pour obtenir plus d’information,"
+"veuillez communiquer avec elle à l’adresse ci-dessous."
+
 #: ckanext-marsavin/ckanext/marsavin/templates/home/snippets/contact_text.html:23
 #, python-format
 msgid ""
@@ -127,7 +137,7 @@ msgstr ""
 "Répertoire de données RIVA. Pour toute demande concernant des problèmes techniques, "
 "erreurs ou améliorations de la fonctionnalité, veuillez communiquer avec lui à l’adresse ci-dessous."
 
-#: ckanext/marsavin/templates/home/snippets/promoted.html
+#: ckanext/marsavin/templates/home/snippets/promoted.html:7
 #, python-format
 msgid ""
 "The Autonomous Vehicle Innovation Network (AVIN) is ensuring that Ontario continues to lead in the "
@@ -141,3 +151,49 @@ msgstr ""
 "fournisseur de calibre mondial. Ce répertoire de données centralisé permet de partager des ensembles "
 "de données pertinentes pour appuyer la recherche, le développement et l’essai de produits et de "
 "solutions de véhicules connectés et automatisés (VCA)."
+
+#: ckanext/marsavin/templates/home/snippets/about_text.html:2
+#, python-format
+msgid "<h1>About the AVIN Program</h1>"
+msgstr "<h1>À propos du programme RIVA</h1>"
+
+#: ckanext/marsavin/templates/home/snippets/about_text.html:2
+#, python-format
+msgid ""
+"<h3>Catalyzing the Growth of a Vibrant and Diversified Automotive and Transportation Technology "
+"Ecosystem in Ontario</h3>"
+msgstr ""
+"<h3>Stimuler la croissance d’un écosystème dynamique et diversifié de technologies automobiles "
+"et des transports en Ontario</h3>"
+
+#: ckanext/marsavin/templates/home/snippets/about_text.html:3
+#, python-format
+msgid ""
+"<p>The Government of Ontario’s Autonomous Vehicle Innovation Network (AVIN) is ensuring that Ontario "
+"remains a world-leading jurisdiction in the automotive and transportation sector. Ontario’s high-quality "
+"post-secondary institutions, first class talent, innovative small and medium sized enterprises and "
+"infrastructure to support entrepreneurship ensures that the province is uniquely-positioned to capture "
+"the economic opportunity of the connected and automated vehicle (C/AV) technology space and lead the "
+"global mobility evolution. Through resources such as research and development (R&D) partnership "
+"support, talent development, technology acceleration, business and technical supports, and technology "
+"and demonstration grounds, AVIN provides a competitive advantage to Ontario-based C/AV companies – "
+"allowing Ontario to reinforce its position as a North American leader in automotive technologies, "
+"as well as transportation and infrastructure systems. This initiative capitalizes on the economic "
+"potential of C/AVs and is supporting the province's transportation systems and infrastructure plan "
+"for, and adapt to, these emerging technologies. AVIN is comprised of five distinct programs "
+"and a Central Hub.</p>"
+msgstr ""
+"<p>Le Réseau d’innovation pour les véhicules automatisés (RIVA) du gouvernement de l’Ontario "
+"permet de garantir que la province demeure un chef de file dans le secteur de l’automobile et des "
+"transports. Grâce à ses excellentes institutions postsecondaires, ses talents de premier ordre, ses "
+"petites et moyennes entreprises innovantes et son infrastructure d’appui à l’entrepreneuriat dans le "
+"secteur de l’automobile et des transports, la province possède les atouts nécessaires pour exploiter "
+"les débouchés technologiques des véhicules connectés et automatisés (VCA) et pour piloter l’évolution "
+"de la mobilité à l’échelle mondiale. Le Réseau confère un avantage concurrentiel aux entreprises ontariennes "
+"du secteur des VCA en leur proposant des ressources axées sur le financement de la recherche et du "
+"développement (R et D), le développement des talents, l’accélération technologique, les services techniques "
+"et commerciaux et les terrains d’essais. Il permet aussi à la province de renforcer sa position de chef "
+"de file nord-américain des technologies automobiles, des transports et des systèmes d’infrastructures. "
+"Cette initiative mise sur le potentiel économique des VCA et appuie la planification et l’adaptation des "
+"infrastructures et systèmes de transport de la province en fonction de ces technologies émergentes. Le "
+"Réseau comprend cinq programmes distincts et une unité centrale.</p>"
