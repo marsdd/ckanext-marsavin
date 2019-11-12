@@ -499,10 +499,10 @@ h2.module-heading {
   }
   .site-footer-link-container {
     margin: auto;
-    width: 70%;
   }
   .site-footer-link-container .site-footer-link {
     display: block;
+    margin: auto;
   }
   .language-dropdown-container {
     width: fit-content;
@@ -573,10 +573,6 @@ h2.module-heading {
   .site-footer-secondary .container {
     width: 100%;
     padding-right: 0px;
-  }
-
-  .site-footer .site-footer-link {
-
   }
 }
 
