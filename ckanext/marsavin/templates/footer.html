@@ -1,24 +1,24 @@
 {% ckan_extends %}
 
 {% block footer_content %}
-  <div class="site-footer-link">
-    {% block footer_nav_contact_us %}
-      <a href="{{ h.url_for(controller='marsavin', action='contact') }}">{{ _("Contact Us") }}</a>
-    {% endblock %}
+  <div class="site-footer-link-container">
+    <div class="site-footer-link">
+      {% block footer_nav_contact_us %}
+        <a href="{{ h.url_for(controller='marsavin', action='contact') }}">{{ _("Contact Us") }}</a>
+      {% endblock %}
+    </div>
+    <div class="site-footer-link">
+      {% block footer_nav_terms %}
+        <a href="{{ h.url_for(controller='marsavin', action='terms') }}">{{ _("Terms of use") }}</a>
+      {% endblock %}
+    </div>
+    <div class="site-footer-link">
+      {% block footer_nav_privacy %}
+        <a href="{{ h.url_for(controller='marsavin', action='privacy') }}">{{ _("Privacy Policy") }}</a>
+      {% endblock %}
+    </div>
   </div>
-  <div class="site-footer-link">
-    {% block footer_nav_terms %}
-      <a href="{{ h.url_for(controller='marsavin', action='terms') }}">{{ _("Terms of use") }}</a>
-    {% endblock %}
-  </div>
-  <div class="site-footer-link">
-    {% block footer_nav_privacy %}
-      <a href="{{ h.url_for(controller='marsavin', action='privacy') }}">{{ _("Privacy Policy") }}</a>
-    {% endblock %}
-  </div>
-  <div class="site-footer-link">
-    {% block footer_lang %}
-      {% snippet "snippets/language_selector.html" %}
-    {% endblock %}
-  </div>
+  {% block footer_lang %}
+    {% snippet "snippets/language_selector.html" %}
+  {% endblock %}
 {% endblock %}
