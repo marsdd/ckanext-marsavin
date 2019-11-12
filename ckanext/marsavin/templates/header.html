@@ -57,3 +57,9 @@
 </div>
 {% endif %}
 {% endblock %}
+
+{% block header_logo %}
+<a class="logo" href="{{ h.url_for('home.index') }}">
+  <img src="{{ h.url_for_static_or_external('/images/avin-logo.png') }}" alt="{{ g.site_title }}" title="{{ g.site_title }}" />
+</a>
+{% endblock %}
