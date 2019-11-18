@@ -116,7 +116,7 @@ msgstr "Communiquez avec nous"
 msgid "Email"
 msgstr "Courriel"
 
-#: ckanext-marsavin/ckanext/marsavin/templates/home/snippets/contact_text.html:9
+#: ckanext/marsavin/templates/home/snippets/contact_text.html:9
 #, python-format
 msgid ""
 "Sherin is the Technical Advisor of AVIN and the manager of AVIN’s data strategy. "
@@ -126,7 +126,7 @@ msgstr ""
 "Pour toute demande de renseignements sur les données ou pour obtenir plus d’information,"
 "veuillez communiquer avec elle à l’adresse ci-dessous."
 
-#: ckanext-marsavin/ckanext/marsavin/templates/home/snippets/contact_text.html:23
+#: ckanext/marsavin/templates/home/snippets/contact_text.html:23
 #, python-format
 msgid ""
 "Steve is an Associate at MaRS Discovery District and the product manager "
@@ -490,3 +490,56 @@ msgstr "Créer des jeux de données, des catégories de données et d'autres él
 #: ckanext/marsavin/templates/home/snippets/featured_group.html
 msgid "Featured groups"
 msgstr "Catégories de données en vedette"
+
+#: ckanext/marsavin/templates/home/snippets/featured_organization.html:6
+msgid "Featured Organizations"
+msgstr "Organisations présentées"
+
+#: ckanext/marsavin/templates/footer.html:12
+msgid "Terms of Use"
+msgstr "Conditions d’utilisation"
+
+#: ckanext/marsavin/templates/footer.html:17
+msgid "Privacy Policy"
+msgstr "Politique de confidentialité"
+
+#: ckanext/marsavin/templates/package/snippets/package_metadata_fields.html:16
+msgid "Associated Tasks"
+msgstr "Tâches connexes"
+
+#: ckanext/marsavin/templates/package/snippets/package_metadata_fields.html:18
+msgid "Collection Period"
+msgstr "Période de recouvrement"
+
+#: ckanext/marsavin/templates/package/snippets/package_metadata_fields.html:20
+msgid "Geographical Area"
+msgstr "Région géographique"
+
+#: ckanext/marsavin/templates/package/snippets/package_metadata_fields.html:22
+msgid "Number of Instances"
+msgstr "Nombre de cas"
+
+#: ckanext/marsavin/templates/package/snippets/package_metadata_fields.html:24
+msgid "Number of Attributes"
+msgstr "Nombre de caractéristiques"
+
+#: ckanext/marsavin/templates/package/snippets/package_metadata_fields.html:26
+msgid "Package Description"
+msgstr "Description du forfait"
+
+#: ckanext/marsavin/templates/package/snippets/package_metadata_fields.html:28
+msgid "Creation Date"
+msgstr "Date de création"
+
+#: ckanext/marsavin/templates/package/snippets/package_metadata_fields.html:30
+msgid "Expiry Date"
+msgstr "Date d’expiration"
+
+#: ckanext/marsavin/templates/package/snippets/package_metadata_fields.html:32
+msgid "Dataset has missing values"
+msgstr "Y a-t-il des valeurs manquantes dans l’ensemble de données"
+
+#: ckanext/marsavin/templates/home/snippets/promoted.html:13
+#: ckanext/marsavin/templates/home/about.html:12
+msgid "Learn more about AVIN"
+msgstr "Apprenez-en davantage au sujet d’RIVA"
