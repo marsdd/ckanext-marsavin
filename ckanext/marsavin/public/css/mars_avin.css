@@ -605,3 +605,36 @@ h2.module-heading {
 .media-item span.count {
     color: #595959;
 }
+
+.media-grid .media-item {
+  min-height: 300px;
+}
+.media-grid-group .media-item {
+  min-height: 315px;
+}
+
+.media-grid .media-item .media-image-wrapper {
+  width: 148px;
+  height: 100px;
+  line-height: 100px;
+  position: relative;
+}
+.media-grid .media-item .media-image-wrapper .media-image {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  max-width: 95%;
+  max-height: 95%;
+}
+.media-grid .media-item .media-heading {
+  min-height: 46px;
+  text-align: center;
+}
+
+.media-grid .media-item p {
+  min-height: 80px;
+  margin-top: 20px;
+}
