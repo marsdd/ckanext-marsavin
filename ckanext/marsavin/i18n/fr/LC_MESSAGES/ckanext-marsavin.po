@@ -543,3 +543,9 @@ msgstr "Y a-t-il des valeurs manquantes dans l’ensemble de données"
 #: ckanext/marsavin/templates/home/about.html:12
 msgid "Learn more about AVIN"
 msgstr "Apprenez-en davantage au sujet d’RIVA"
+
+#: ckanext/marsavin/templates/mars/access_form.html:3
+#: ckanext/marsavin/templates/mars/access_form.html:12
+#: ckanext/marsavin/templates/package/resource_read.html:60
+msgid "Request Dataset Access"
+msgstr "Demande d’accès à l’ensemble de données"
