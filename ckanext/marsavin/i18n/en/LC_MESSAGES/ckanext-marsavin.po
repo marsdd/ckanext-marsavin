@@ -72,7 +72,7 @@ msgstr "Data Categories"
 
 #: ckan/controllers/group.py:460
 msgid "Unauthorized to create a group"
-msgstr "Unauthorized to create a group"
+msgstr "Unauthorized to create a data category"
 
 #: ckan/controllers/group.py:622
 msgid "Group has been deleted."
@@ -100,10 +100,8 @@ msgid "{actor} updated the group {group}"
 msgstr "{actor} updated the data category {group}"
 
 #: ckan/lib/activity_streams.py:81
-msgid "{actor} deleted the group {group}"
-msgstr "{actor} deleted the data category {group}"
-
 #: ckan/lib/activity_streams.py:97
+#: ckan/templates/snippets/activities/deleted_group.html:4
 msgid "{actor} deleted the group {group}"
 msgstr "{actor} deleted the data category {group}"
 
@@ -114,10 +112,6 @@ msgstr "{actor} created the data category {group}"
 #: ckan/templates/snippets/activities/changed_group.html:4
 msgid "{actor} updated the group {group}"
 msgstr "{actor} updated the data category {group}"
-
-#: ckan/templates/snippets/activities/deleted_group.html:4
-msgid "{actor} deleted the group {group}"
-msgstr "{actor} deleted the data category {group}"
 
 #: ckan/lib/mailer.py:128 ckan/templates/home/snippets/stats.html:23
 msgid "group"
