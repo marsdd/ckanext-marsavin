@@ -1,0 +1,12 @@
+{% ckan_extends %}
+
+{% block form_button %}
+{% if user_dict['state'] == 'pending' %}
+    {% set terms_url = h.url_for('marsavin.terms') %}
+    {% set terms_label = _('I agree to the <a href="%s">Terms and Conditions</a>', terms_url)  %}
+    {% call form.checkbox('user-terms-agree', label=terms_label, id='field-user-terms-agree', value='true', error='') %}
+    {% endcall %}
+{% endif %}
+
+{{ super() }}
+{% endblock %}
