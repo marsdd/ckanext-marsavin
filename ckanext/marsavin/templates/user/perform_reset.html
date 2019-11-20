@@ -1,12 +1,31 @@
 {% ckan_extends %}
 
 {% block form_button %}
-{% if user_dict['state'] == 'pending' %}
-    {% set terms_url = h.url_for('marsavin.terms') %}
-    {% set terms_label = _('I agree to the <a href="%s">Terms and Conditions</a>', terms_url)  %}
-    {% call form.checkbox('user-terms-agree', label=terms_label, id='field-user-terms-agree', value='true', error='') %}
-    {% endcall %}
-{% endif %}
-
+    {% if user_dict['state'] == 'pending' %}
+        {% set terms_url = h.url_for('marsavin.terms') %}
+        {% set terms_label = _('I agree to the <a href="#" data-toggle="modal" data-target="#terms-modal">Terms and Conditions</a> <i class="fa fa-external-link" aria-hidden="true"></i>')|replace("{terms_url}", terms_url)  %}
+        {% call form.checkbox('user-terms-agree', label=terms_label, id='field-user-terms-agree', value='true', error='') %}
+        {% endcall %}
+    {% endif %}
 {{ super() }}
+{% endblock %}
+
+{% block primary_content %}
+{{ super() }}
+    <div id="terms-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">{{ _('AVIN Data Index Terms & Conditions') }}</h4>
+                </div>
+                <div class="modal-body">
+                    {% snippet 'home/snippets/terms_text.html' %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

@@ -30,7 +30,8 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
     # IActions
     def get_actions(self):
         return {
-            "format_autocomplete": actions.format_autocomplete
+            u"format_autocomplete": actions.format_autocomplete,
+            u"user_update": actions.user_update
         }
 
     # add template helper functions
