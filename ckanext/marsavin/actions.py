@@ -173,10 +173,11 @@ def user_update(context, data_dict):
 
     '''
     model = context['model']
-    user = context['user']
     session = context['session']
     schema = context.get('schema') or default_update_user_schema()
     id = _get_or_bust(data_dict, 'id')
+    
+    data_dict['user-terms-agree'] = toolkit.request.form.get("user-terms-agree")
 
     user_obj = model.User.get(id)
     context['user_obj'] = user_obj

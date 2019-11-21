@@ -4,10 +4,15 @@
     {% if user_dict['state'] == 'pending' %}
         {% set terms_url = h.url_for('marsavin.terms') %}
         {% set terms_label = _('I agree to the <a href="#" data-toggle="modal" data-target="#terms-modal">Terms and Conditions</a> <i class="fa fa-external-link" aria-hidden="true"></i>')|replace("{terms_url}", terms_url)  %}
-        {% call form.checkbox('user-terms-agree', label=terms_label, id='field-user-terms-agree', value='true', error='') %}
+        {% call form.checkbox('user-terms-agree', label=terms_label, id='field-user-terms-agree', value='true', error='', classes=[], attrs={"data-module": "user-terms-reset"}) %}
         {% endcall %}
+        <div id="tooltip-user-terms-agree" title="{{ _('You must agree to the Terms and Conditions') }}">
+            <button class="btn btn-primary" type="submit" name="save">{{ _("Update Password") }}</button>
+        </div>
+        <div class="js-hide" data-module="user-terms-reset"></div>
+    {% else %}
+        {{ super() }}
     {% endif %}
-{{ super() }}
 {% endblock %}
 
 {% block primary_content %}
