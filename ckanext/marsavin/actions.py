@@ -191,7 +191,7 @@ def user_update(context, data_dict):
         session.rollback()
         raise ValidationError(errors)
 
-    if not data['user-terms-agree']:
+    if user_obj.state == u'pending' and not data['user-terms-agree']:
         session.rollback()
         raise ValueError(toolkit._("You must agree to the Terms and "
                                    "Conditions"))
