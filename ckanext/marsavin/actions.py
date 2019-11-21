@@ -192,7 +192,8 @@ def user_update(context, data_dict):
 
     if not data['user-terms-agree']:
         session.rollback()
-        raise ValueError("You must agree to the terms and conditions")
+        raise ValueError(toolkit._("You must agree to the Terms and "
+                                   "Conditions"))
 
     # user schema prevents non-sysadmins from providing password_hash
     if 'password_hash' in data:
