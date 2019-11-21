@@ -191,6 +191,8 @@ def user_update(context, data_dict):
         session.rollback()
         raise ValidationError(errors)
 
+    # user state of "pending" is the user who doesn't yet have access to the
+    # site and must reset their password to do so.
     if user_obj.state == u'pending' and not data['user-terms-agree']:
         session.rollback()
         raise ValueError(toolkit._("You must agree to the Terms and "
