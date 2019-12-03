@@ -3,3 +3,4 @@ mars_avin_js:
   output: javascript/%(version)s_mars_avin.js
   contents:
     - modernizr-custom.js
+    - user_terms_reset.js

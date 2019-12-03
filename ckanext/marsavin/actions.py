@@ -7,6 +7,9 @@ from ckan.plugins import toolkit
 from ckanext.marsavin.schema import default_reqaccess_schema
 import sqlalchemy
 from sqlalchemy import text
+import ckan.logic.schema as schema_
+import ckan.lib.dictization.model_dictize as model_dictize
+import ckan.lib.dictization.model_save as model_save
 
 _func = sqlalchemy.func
 _and_ = sqlalchemy.and_
@@ -135,3 +138,88 @@ def format_autocomplete(context, data_dict):
     output_list = list(filter(lambda format_string: q.lower() in format_string,
                               output_list))
     return output_list
+
+
+@schema_.validator_args
+def default_update_user_schema(
+        ignore_missing, name_validator, user_name_validator,
+        unicode_safe, user_password_validator, boolean_validator):
+    schema = schema_.default_user_schema()
+
+    schema['name'] = [
+        ignore_missing, name_validator, user_name_validator, unicode_safe]
+    schema['password'] = [
+        user_password_validator, ignore_missing, unicode_safe]
+    
+    schema['user-terms-agree'] = [boolean_validator, ]
+
+    return schema
+
+
+def user_update(context, data_dict):
+    '''Update a user account.
+
+    Normal users can only update their own user accounts. Sysadmins can update
+    any user account. Can not modify exisiting user's name.
+
+    For further parameters see
+    :py:func:`~ckan.logic.action.create.user_create`.
+
+    :param id: the name or id of the user to update
+    :type id: string
+
+    :returns: the updated user account
+    :rtype: dictionary
+
+    '''
+    model = context['model']
+    session = context['session']
+    schema = context.get('schema') or default_update_user_schema()
+    id = _get_or_bust(data_dict, 'id')
+    
+    data_dict['user-terms-agree'] = toolkit.request.form.get("user-terms-agree")
+
+    user_obj = model.User.get(id)
+    context['user_obj'] = user_obj
+    if user_obj is None:
+        raise NotFound('User was not found.')
+
+    _check_access('user_update', context, data_dict)
+
+    data, errors = _validate(data_dict, schema, context)
+    if errors:
+        session.rollback()
+        raise ValidationError(errors)
+
+    # user state of "pending" is the user who doesn't yet have access to the
+    # site and must reset their password to do so.
+    if user_obj.state == u'pending' and not data['user-terms-agree']:
+        session.rollback()
+        raise ValueError(toolkit._("You must agree to the Terms and "
+                                   "Conditions"))
+
+    # user schema prevents non-sysadmins from providing password_hash
+    if 'password_hash' in data:
+        data['_password'] = data.pop('password_hash')
+
+    user = model_save.user_dict_save(data, context)
+
+    activity_dict = {
+            'user_id': user.id,
+            'object_id': user.id,
+            'activity_type': 'changed user',
+            }
+    activity_create_context = {
+        'model': model,
+        'user': user,
+        'defer_commit': True,
+        'ignore_auth': True,
+        'session': session
+    }
+    _get_action('activity_create')(activity_create_context, activity_dict)
+    # TODO: Also create an activity detail recording what exactly changed in
+    # the user.
+
+    if not context.get('defer_commit'):
+        model.repo.commit()
+    return model_dictize.user_dictize(user, context)

@@ -657,3 +657,8 @@ h2.module-heading {
   min-height: 80px;
   margin-top: 20px;
 }
+
+#tooltip-user-terms-agree {
+  width: fit-content;
+  float: right;
+}
