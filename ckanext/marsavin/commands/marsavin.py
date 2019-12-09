@@ -9,11 +9,20 @@ import datetime
 # from ckan.logic import get_action, ValidationError
 # from ckan.plugins import toolkit
 
-from ckan.plugins.toolkit import CkanCommand, get_action, _
+from ckan.plugins.toolkit import CkanCommand, get_action, _, config
+from ckan.model import meta
 import migrate.versioning.api as mig
-from ckanext.marsavin import migrate
+from ckanext.marsavin import migration
 from ckanext.marsavin.model.package_marsavin import PackageMarsavin
 from ckan.lib.search import rebuild
+from alembic.config import Config
+from sqlalchemy.exc import ProgrammingError
+from alembic.command import (
+    upgrade as alembic_upgrade,
+    downgrade as alembic_downgrade,
+    current as alembic_current
+)
+from alembic.config import Config as AlembicConfig
 
 log = logging.getLogger("ckanext")
 
@@ -33,47 +42,93 @@ class DatabaseCommand(CkanCommand):
     min_args = None
 
     def __init__(self, name):
+        self.alembic_config = Config()
         super(DatabaseCommand, self).__init__(name)
-        self.migrate_repository = migrate.__path__[0]
-
+        self.migrate_repository = migration.__path__[0]
+        self._alembic_output = []
+            
     def command(self):
+        '''Upgrade db using sqlalchemy migrations.
+
+        @param version: version to upgrade to (if None upgrade to latest)
+        '''
         self._load_config()
-
-        cmd = self.args[0]
-
-        if cmd == "init":
-            self.setup_migration_version_control()
-            version_before = mig.db_version(model.meta.metadata.bind,
-                                            self.migrate_repository)
-            mig.upgrade(model.meta.metadata.bind, self.migrate_repository,
-                        version=self.get_version())
-            version_after = mig.db_version(model.meta.metadata.bind,
-                                           self.migrate_repository)
-            if version_after != version_before:
-                log.info('CKAN database version upgraded: %s -> %s',
-                         version_before, version_after)
-            else:
-                log.info('CKAN database version remains as: %s', version_after)
+        version = self.get_version()
+        _assert_engine_msg = (
+                                 u'Database migration - only Postgresql engine supported (not %s).'
+                             ) % meta.engine.name
+        assert meta.engine.name in (
+            u'postgres', u'postgresql'
+        ), _assert_engine_msg
+        self.setup_migration_version_control()
+        version_before = self.current_version()
+        alembic_upgrade(self.alembic_config, version)
+        version_after = self.current_version()
+    
+        if version_after != version_before:
+            log.info(
+                u'CKAN database version upgraded: %s -> %s',
+                version_before,
+                version_after
+            )
         else:
-            print("bye")
+            log.info(u'CKAN database version remains as: %s',
+                     version_after)
 
-    def setup_migration_version_control(self, version=None):
-        import migrate.exceptions
-        import migrate.versioning.api as mig
-        # set up db version control (if not already)
+    def setup_migration_version_control(self):
+        self.reset_alembic_output()
+        alembic_config = AlembicConfig()
+        alembic_config.set_main_option(
+            "script_location", self.migrate_repository
+        )
+        alembic_config.set_main_option(
+            "sqlalchemy.url", str(meta.metadata.bind.url)
+        )
         try:
-            mig.version_control(model.meta.metadata.bind,
-                                self.migrate_repository, version)
-        except migrate.exceptions.DatabaseAlreadyControlledError:
-            pass
+            sqlalchemy_migrate_version = meta.metadata.bind.execute(
+                u'select version from migrate_version'
+            ).scalar()
+        except ProgrammingError:
+            sqlalchemy_migrate_version = 0
+    
+        # this value is used for graceful upgrade from
+        # sqlalchemy-migrate to alembic
+        alembic_config.set_main_option(
+            "sqlalchemy_migrate_version", str(sqlalchemy_migrate_version)
+        )
+        # This is an interceptor for alembic output. Otherwise,
+        # everything will be printed to stdout
+        alembic_config.print_stdout = self.add_alembic_output
+    
+        self.alembic_config = alembic_config
 
     def get_version(self):
         try:
             version = self.args[1]
         except IndexError:
-            version = None
+            version = 'head'
 
         return version
+    
+    def current_version(self):
+        try:
+            alembic_current(self.alembic_config)
+            return self.take_alembic_output()[0][0]
+        except (TypeError, IndexError):
+            # alembic is not initialized yet
+            return 'base'
+    
+    def reset_alembic_output(self):
+        self._alembic_output = []
+
+    def add_alembic_output(self, *args):
+        self._alembic_output.append(args)
+
+    def take_alembic_output(self, with_reset=True):
+        output = self._alembic_output
+        if with_reset:
+            self.reset_alembic_output()
+        return output
 
 
 class PackageCommand(CkanCommand):
