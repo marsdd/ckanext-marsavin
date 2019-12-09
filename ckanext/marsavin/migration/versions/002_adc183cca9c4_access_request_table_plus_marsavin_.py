@@ -8,6 +8,7 @@ Create Date: 2019-11-25 10:47:30.619605
 from alembic import op
 import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
+from ckan.migration import skip_based_on_legacy_engine_version
 
 
 # revision identifiers, used by Alembic.
@@ -18,6 +19,8 @@ depends_on = None
 
 
 def upgrade():
+    if skip_based_on_legacy_engine_version(op, __name__):
+        return
     op.execute('CREATE EXTENSION IF NOT EXISTS "uuid-ossp";')
     op.create_table('package_marsavin',
         sa.Column('id', postgresql.UUID(), server_default=sa.text(
@@ -42,10 +45,8 @@ def upgrade():
         sa.Column('user_msg', sa.Text),
         sa.Column('created', sa.TIMESTAMP, server_default=sa.func.now()),
     )
-    pass
 
 
 def downgrade():
     op.drop_table("package_marsavin")
     op.drop_table("access_request")
-    pass
