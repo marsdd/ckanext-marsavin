@@ -19,8 +19,10 @@ from alembic.config import Config
 from sqlalchemy.exc import ProgrammingError
 from alembic.command import (
     upgrade as alembic_upgrade,
+    downgrade as alembic_downgrade,
     current as alembic_current
 )
+from alembic.config import Config as AlembicConfig
 
 log = logging.getLogger("ckanext")
 
@@ -73,31 +75,32 @@ class DatabaseCommand(CkanCommand):
             log.info(u'CKAN database version remains as: %s',
                      version_after)
 
-    def setup_migration_version_control(self, version=None):
+    def setup_migration_version_control(self):
         self.reset_alembic_output()
-        
-        self.alembic_config.set_main_option(
+        alembic_config = AlembicConfig()
+        alembic_config.set_main_option(
             "script_location", self.migrate_repository
         )
-        self.alembic_config.set_main_option(
-            "sqlalchemy.url", str(config.get("sqlalchemy.url"))
+        alembic_config.set_main_option(
+            "sqlalchemy.url", str(meta.metadata.bind.url)
         )
-        # try:
-        #     sqlalchemy_migrate_version = self.metadata.bind.execute(
-        #         u'select version from migrate_version '
-        #         u'where repository_id = "ckanext_marsavin"'
-        #     ).scalar()
-        # except ProgrammingError:
-        #     sqlalchemy_migrate_version = 0
+        try:
+            sqlalchemy_migrate_version = meta.metadata.bind.execute(
+                u'select version from migrate_version'
+            ).scalar()
+        except ProgrammingError:
+            sqlalchemy_migrate_version = 0
     
-        # # this value is used for graceful upgrade from
-        # # sqlalchemy-migrate to alembic
-        # self.alembic_config.set_main_option(
-        #     "sqlalchemy_migrate_version", str(sqlalchemy_migrate_version)
-        # )
+        # this value is used for graceful upgrade from
+        # sqlalchemy-migrate to alembic
+        alembic_config.set_main_option(
+            "sqlalchemy_migrate_version", str(sqlalchemy_migrate_version)
+        )
         # This is an interceptor for alembic output. Otherwise,
         # everything will be printed to stdout
-        self.alembic_config.print_stdout = self.add_alembic_output
+        alembic_config.print_stdout = self.add_alembic_output
+    
+        self.alembic_config = alembic_config
 
     def get_version(self):
         try:
@@ -123,7 +126,8 @@ class DatabaseCommand(CkanCommand):
 
     def take_alembic_output(self, with_reset=True):
         output = self._alembic_output
-        self.alembic_config = []
+        if with_reset:
+            self.reset_alembic_output()
         return output
 
 

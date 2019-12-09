@@ -17,8 +17,14 @@ depends_on = None
 
 
 def upgrade():
+    with op.batch_alter_table("package_marsavin") as batch_op:
+        batch_op.create_foreign_key("fk_package_marsavin_packages",
+                                    "package", ["package_id"], ["id"],
+                                    ondelete="CASCADE")
     pass
 
 
 def downgrade():
+    with op.batch_alter_table("package_marsavin") as batch_op:
+        batch_op.drop_constraint('fk_package_marsavin_packages')
     pass

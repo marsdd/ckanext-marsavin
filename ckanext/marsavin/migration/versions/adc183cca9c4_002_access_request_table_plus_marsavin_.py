@@ -19,20 +19,33 @@ depends_on = None
 
 def upgrade():
     op.execute('CREATE EXTENSION IF NOT EXISTS "uuid-ossp";')
-    with op.batch_alter_table("package_marsavin") as batch_op:
-        batch_op.add_column(sa.Column('id', postgresql.UUID(),
-                            server_default=sa.text('uuid_generate_v4')))
-        batch_op.add_column(sa.Column('package_id', sa.Text))
-        batch_op.add_column(sa.Column('associated_tasks', sa.Text))
-        batch_op.add_column(sa.Column('associated_tasks', sa.Text))
-        batch_op.add_column(sa.Column('collection_period', sa.Text))
-        batch_op.add_column(sa.Column('geographical_area', sa.Text))
-        batch_op.add_column(sa.Column('number_of_instances', sa.Text))
-        batch_op.add_column(sa.Column('number_of_missing_values', sa.Text))
-        batch_op.add_column(sa.Column('pkg_description', sa.Text))
+    op.create_table('package_marsavin',
+        sa.Column('id', postgresql.UUID(), server_default=sa.text(
+            'uuid_generate_v4')),
+        sa.Column('package_id', sa.Text),
+        sa.Column('associated_tasks', sa.Text),
+        sa.Column('associated_tasks', sa.Text),
+        sa.Column('collection_period', sa.Text),
+        sa.Column('geographical_area', sa.Text),
+        sa.Column('number_of_instances', sa.Text),
+        sa.Column('number_of_missing_values', sa.Text),
+        sa.Column('pkg_description', sa.Text)
+    )
+
+    op.create_table('access_request',
+        sa.Column('id', sa.Text, server_default=sa.text(
+            'uuid_generate_v4'), nullable=False),
+        sa.Column('user_ip_address', sa.Text),
+        sa.Column('user_email', sa.Text),
+        sa.Column('maintainer_name', sa.Text),
+        sa.Column('maintainer_email', sa.Text),
+        sa.Column('user_msg', sa.Text),
+        sa.Column('created', sa.TIMESTAMP, server_default=sa.func.now()),
+    )
     pass
 
 
 def downgrade():
     op.drop_table("package_marsavin")
+    op.drop_table("access_request")
     pass
