@@ -662,3 +662,19 @@ h2.module-heading {
   width: fit-content;
   float: right;
 }
+
+.contact-text-container {
+  display: table;
+  height: 224px;
+  margin: 0 auto;
+}
+
+.contact-text {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.contact-image {
+  width: 224px;
+  height: 224px;
+}

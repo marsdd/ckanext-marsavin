@@ -116,26 +116,12 @@ msgstr "Communiquez avec nous"
 msgid "Email"
 msgstr "Courriel"
 
-#: ckanext/marsavin/templates/home/snippets/contact_text.html:9
+#: ckanext/marsavin/templates/home/snippets/contact_text.html:8
 #, python-format
-msgid ""
-"Sherin is the Technical Advisor of AVIN and the manager of AVIN’s data strategy. "
-"For data-related inquiries or information, please contact her at the address below."
+msgid "To report an issue with the site or to contribute data to the AVIN Data catalogue, please contact us at"
 msgstr ""
-"Sherin est conseiller technique et gestionnaire de la stratégie de données du programme RIVA."
-"Pour toute demande de renseignements sur les données ou pour obtenir plus d’information,"
-"veuillez communiquer avec elle à l’adresse ci-dessous."
-
-#: ckanext/marsavin/templates/home/snippets/contact_text.html:23
-#, python-format
-msgid ""
-"Steve is an Associate at MaRS Discovery District and the product manager "
-"for the AVIN Data Catalogue. For requests or information regarding technical issues, "
-"errors, or improvements to functionality, please contact him at the address below."
-msgstr ""
-"Steve est collaborateur à MaRS Discovery District et gestionnaire de produits du "
-"Répertoire de données RIVA. Pour toute demande concernant des problèmes techniques, "
-"erreurs ou améliorations de la fonctionnalité, veuillez communiquer avec lui à l’adresse ci-dessous."
+"Pour toute demande concernant des problèmes techniques, erreurs ou améliorations de la fonctionnalité, veuillez "
+"communiquer avec lui à l’adresse ci-dessous:"
 
 #: ckanext/marsavin/templates/home/snippets/promoted.html:7
 #, python-format
