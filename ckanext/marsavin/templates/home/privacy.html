@@ -1,16 +1,16 @@
 {% extends "page.html" %}
 
-{% block subtitle %}{{ _('Privacy') }}{% endblock %}
+{% block subtitle %}{{ _('Privacy Policy') }}{% endblock %}
 
 {% block breadcrumb_content %}
-  <li class="active">{% link_for _('Privacy'), 'home.privacy' %}</li>
+  <li class="active">{% link_for _('Privacy Policy'), 'home.privacy' %}</li>
 {% endblock %}
 
 {% block primary %}
   <article class="module">
     <div class="module-content">
       {% block privacy %}
-        <h1 class="page-heading">{{ _('Privacy') }}</h1>
+        <h1 class="page-heading">{{ _('Privacy Policy') }}</h1>
         {% snippet 'home/snippets/privacy_text.html' %}
       {% endblock %}
     </div>
