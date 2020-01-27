@@ -11,7 +11,7 @@ import actions
 from views.request_access import RequestAccessView
 from dictization import package_marsavin_save, package_marsavin_delete, \
     package_marsavin_load
-from views.marsavin import contact, terms, privacy
+from views.marsavin import contact, terms, privacy, faq
 from model.package_marsavin import PackageMarsavin
 import ckan.model as ckan_model
 from ckan.lib.search import index_for
@@ -57,7 +57,8 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
         util_rules = [
             (u'/contact', contact),
             (u'/terms', terms),
-            (u'/privacy', privacy)
+            (u'/privacy', privacy),
+            (u'/faq', faq)
         ]
         for rule, view_func in util_rules:
             bp.add_url_rule(rule, view_func=view_func)

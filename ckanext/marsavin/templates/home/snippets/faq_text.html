@@ -1,0 +1,117 @@
+
+<!-- section General -->
+<h3>{{ general[0]["section"] }}</h3>
+
+{% for question_answer in general %}
+    <div class="panel-group" id="accordion-general" role="tablist" aria-multiselectable="true">
+        {% snippet 'home/snippets/faq_accordion.html', question_answer=question_answer, position=loop.index, section="general" %}
+    </div>
+{% endfor %}
+
+<h3>{{ data_owners[0]["section"] }}</h3>
+{% for question_answer in data_owners %}
+    <div class="panel-group" id="accordion-data_owners" role="tablist" aria-multiselectable="true">
+        {% snippet 'home/snippets/faq_accordion.html', question_answer=question_answer, position=loop.index, section="data_owners" %}
+    </div>
+{% endfor %}
+
+<h3>{{ data_seekers[0]["section"] }}</h3>
+{% for question_answer in data_seekers %}
+    <div class="panel-group" id="accordion-data_seekers" role="tablist" aria-multiselectable="true">
+        {% snippet 'home/snippets/faq_accordion.html', question_answer=question_answer, position=loop.index, section="data_seekers" %}
+    </div>
+{% endfor %}
+<!--<p>-->
+<!--    <strong>Who made this?</strong>-->
+<!--    <br />-->
+<!--    This catalogue was built by MaRS Discovery District(@MaRSDD). MaRSin Toronto is North America’s largest urban-->
+<!--    innovation hub. Our purpose is to help innovators change the world. MaRS supports promising ventures tackling key-->
+<!--    challenges in the health, cleantech, fintech and enterprise sectors as they start, grow and scale. In addition, the-->
+<!--    MaRS community fosters cross-disciplinary collaboration to drive breakthrough discoveries and new solutions to-->
+<!--    be adopted in Canada and beyond, growing our economy and delivering societal impact at scale.-->
+<!--</p>-->
+
+<!--<p>-->
+<!--    <strong>Why did you make this?</strong>-->
+<!--    <br />-->
+<!--    This catalogue was built as part of MaRS’ commitment to the Autonomous Vehicle Innovation Network (AVIN).-->
+<!--    Learn more about AVIN <a href="https://www.avinhub.ca/about/">on their website.</a>-->
+<!--</p>-->
+
+<!--<p>-->
+<!--    <strong>Who is this for?</strong>-->
+<!--    <br />-->
+<!--    This catalogue is for membersof the connected and autonomous vehicle community interested in sharing data for-->
+<!--    the purposes of research and product development. If you need data to develop AI models or products,-->
+<!--    you should take a look in the catalogue.-->
+<!--</p>-->
+
+<!--<h3>For Data Owners</h3>-->
+<!--<p>-->
+<!--    <strong>How do I join?</strong>-->
+<!--    <br />-->
+<!--    To upload data to the catalogue, you must have an account approved by an administrator.-->
+<!--    Please contact <a href="mailto:avindata@marsdd.com">avindata@marsdd.com</a> to start this process.-->
+<!--</p>-->
+
+<!--<p>-->
+<!--    <strong>What data are you looking for?</strong>-->
+<!--    <br />-->
+<!--    This catalogue is for any data related to connected and autonomous vehicles; everything from vehicle collision-->
+<!--    details, to driving videos, sensor data, and beyond. If you’re not sure whether your data would be appropriate-->
+<!--    for the AVIN Data Catalogue, feel free to ask us at <a href="mailto:avindata@marsdd.com">avindata@marsdd.com</a>-->
+<!--</p>-->
+
+<!--<p>-->
+<!--    <strong>What will you do with my data?</strong>-->
+<!--    <br />-->
+<!--    The data catalogue does not host any data, it simply acts as an index that will link to your data.-->
+<!--    Therefore, you will always retain control of your data, keep it on your servers, and are-->
+<!--    free to take it down at any time.-->
+<!--</p>-->
+
+<!--<p>-->
+<!--    <strong>My I host my data for a limited amount of time, will I have to remove my datasets-->
+<!--        every time they’re no longer available?</strong>-->
+<!--    <br />-->
+<!--    Datasets can be marked with an expiry date, automatically removing them from the catalogue after the-->
+<!--    specified expiry.-->
+<!--</p>-->
+
+<!--<p>-->
+<!--    <strong>Is there a way to automate data upload to the catalogue?</strong>-->
+<!--    <br />-->
+<!--    There is an API for the data catalogue. Please contact <a href="mailto:avindata@marsdd.com">avindata@marsdd.com</a>-->
+<!--    for API documentation-->
+<!--</p>-->
+
+<!--<h3>For Data Seekers</h3>-->
+<!--<p>-->
+<!--    <strong>Can I access allof this data?</strong>-->
+<!--    <br />-->
+<!--    Most of the data you can see in this catalogue is open-the data owner has agreed to freely share it with-->
+<!--    anyone who wants it. Some datasets are restricted-the data owner will approve the request or not before you-->
+<!--    get access to the data. These datasets are marked with alicense type of "Other (Not Open)."-->
+<!--</p>-->
+
+<!--<p>-->
+<!--    <strong>What can I do with this data?</strong>-->
+<!--    <br />-->
+<!--    It depends on the dataset. In each one, the data owner has specified a license type. Some will-->
+<!--    allow you to modify, distribute and use data commercially, while others are more restrictive.-->
+<!--    More information about thetypes of licenses can be found at-->
+<!--    <a href="http://opendefinition.org/licenses/">Open Definition.</a>-->
+<!--</p>-->
+
+<!--<p>-->
+<!--    <strong>Do I need an account to access data?</strong>-->
+<!--    <br />-->
+<!--    No, you don’t need to log in in order to access any of these datasets.-->
+<!--</p>-->
+
+<!--<p>-->
+<!--    <strong>The catalogue is asking me to “request dataset access.” Why can’t I just download it?</strong>-->
+<!--    <br />-->
+<!--    The dataset owner has specified that they’d like to approve access to that data on a case-by-case basis.-->
+<!--    You’ll have to send them a request in order to get access.-->
+<!--</p>-->

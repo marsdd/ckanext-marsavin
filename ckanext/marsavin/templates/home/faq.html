@@ -1,0 +1,30 @@
+{% extends "page.html" %}
+
+{% block meta %}
+  {{ super() }}
+  <meta name="description" value="Frequently Asked Questions" />
+{% endblock %}
+
+{% block subtitle %}{{ _('Frequently Asked Questions') }}{% endblock %}
+
+{% block breadcrumb_content %}
+  <li class="active">{% link_for _('Frequently Asked Questions'), 'home.faq' %}</li>
+{% endblock %}
+
+{% block primary %}
+  <article class="module">
+    <div class="module-content">
+      {% block contact %}
+        {% if g.site_contact %}
+          {{ h.render_markdown(g.site_contact) }}
+        {% else %}
+          <h1 class="page-heading">{{ _('Frequently Asked Questions') }}</h1>
+          {% snippet 'home/snippets/faq_text.html', general=general, data_owners=data_owners, data_seekers=data_seekers %}
+        {% endif %}
+      {% endblock %}
+    </div>
+  </article>
+{% endblock %}
+
+{% block secondary %}{% endblock %}
+
