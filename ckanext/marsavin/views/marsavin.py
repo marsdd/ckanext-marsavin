@@ -23,7 +23,7 @@ def faq():
         "general": [
             {
                 "section": toolkit._("General"),
-                "question": toolkit._('Who made this?'),
+                "question": toolkit._('Who created the AVIN Data Catalogue?'),
                 "answer": toolkit._("This catalogue was built by <a "
                                     "href=\"https://www.marsdd.com/\">MaRS "
                                     "Discovery District</a>(<a "
@@ -45,7 +45,7 @@ def faq():
             },
             {
                 "section": toolkit._("General"),
-                "question": toolkit._('Why did you make this?'),
+                "question": toolkit._('Why was the catalogue created?'),
                 "answer": toolkit._('This catalogue was built as part of '
                                     'MaRS\' commitment to the Autonomous '
                                     'Vehicle Innovation Network (AVIN). '
@@ -55,7 +55,7 @@ def faq():
             },
             {
                 "section": toolkit._("General"),
-                "question": toolkit._('Who is this for?'),
+                "question": toolkit._('Who is it for?'),
                 "answer": toolkit._('This catalogue is for members of the '
                                     'connected and autonomous vehicle '
                                     'community interested in sharing data '
@@ -79,7 +79,7 @@ def faq():
             },
             {
                 "section": toolkit._("For Data Owners"),
-                "question": toolkit._('What data are you looking for?'),
+                "question": toolkit._('What data should I upload?'),
                 "answer": toolkit._('This catalogue is for any data related '
                                     'to connected and autonomous vehicles; '
                                     'everything from vehicle collision '
@@ -104,7 +104,7 @@ def faq():
             },
             {
                 "section": toolkit._("For Data Owners"),
-                "question": toolkit._('My I host my data for a limited '
+                "question": toolkit._('I host my data for a limited '
                                       'amount of time, will I have to '
                                       'remove my datasets every time '
                                       'they\'re no longer available?'),
@@ -115,8 +115,8 @@ def faq():
             },
             {
                 "section": toolkit._("For Data Owners"),
-                "question": toolkit._('Is there a way to automate data '
-                                      'upload to the catalogue?'),
+                "question": toolkit._('Is there a way to automate adding '
+                                      'data to the catalogue?'),
                 "answer": toolkit._('There is an API for the data catalogue. '
                                     'Please contact '
                                     '<a '
@@ -130,7 +130,7 @@ def faq():
                 "section": toolkit._("For Data Seekers"),
                 "question": toolkit._('Can I access all of this data?'),
                 "answer": toolkit._('Most of the data you can see in this '
-                                    'catalogue is open-the data owner has '
+                                    'catalogue is open.  The data owner has '
                                     'agreed to freely share it with anyone '
                                     'who wants it. Some datasets are '
                                     'restricted-the data owner will approve '
@@ -141,7 +141,8 @@ def faq():
             },
             {
                 "section": toolkit._("For Data Seekers"),
-                "question": toolkit._('What can I do with this data?'),
+                "question": toolkit._('What am I allowed to do with this '
+                                      'data?'),
                 "answer": toolkit._('It depends on the dataset. In each '
                                     'one, the data owner has specified a '
                                     'license type. Some will allow you to '
@@ -168,7 +169,7 @@ def faq():
                                     'they\'d like to approve access to that '
                                     'data on a case-by-case basis. You\'ll '
                                     'have to send them a request in order '
-                                    'toget access.')
+                                    'to get access.')
             }
         ]
     }
