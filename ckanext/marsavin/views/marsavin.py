@@ -69,7 +69,7 @@ def faq():
             {
                 "section": toolkit._("For Data Owners"),
                 "question": toolkit._('How do I join?'),
-                "answer": toolkit._('To upload data to the catalogue, '
+                "answer": toolkit._('To add data to the catalogue, '
                                     'you must have an account approved by '
                                     'an administrator. Please contact '
                                     '<a '
@@ -79,7 +79,7 @@ def faq():
             },
             {
                 "section": toolkit._("For Data Owners"),
-                "question": toolkit._('What data should I upload?'),
+                "question": toolkit._('What data should I add?'),
                 "answer": toolkit._('This catalogue is for any data related '
                                     'to connected and autonomous vehicles; '
                                     'everything from vehicle collision '
