@@ -1,0 +1,14 @@
+<div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="{{ question_answer['section'] }}-{{ position }}">
+      <h4 class="panel-title">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{ section }}-{{ position }}" aria-expanded="true" aria-controls="collapse-{{ section }}-{{ position }}">
+            {{ question_answer["question"]|safe }}
+        </a>
+      </h4>
+    </div>
+    <div id="collapse-{{ section }}-{{ position }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="{{ question_answer['section'] }}-{{ position }}">
+      <div class="panel-body">
+        {{ question_answer["answer"]|safe }}
+      </div>
+    </div>
+</div>
