@@ -3,6 +3,7 @@ import ckan.lib.mailer as mailer
 from ckan.common import config
 from six import text_type
 from cache import cacheable
+from ckan import model
 
 
 def _mail_recipient(recipient=None, email_dict=None):
@@ -44,12 +45,20 @@ def get_homepage_featured_groups():
 
 def _get_homepage_featured_orgs_groups(action_name, featured_list, **kwargs):
     featured_list_key = "groups" if action_name == "group_list" else "organizations"
-    org_list = toolkit.get_action(action_name)({}, {
+    context = {
+        u'model': model,
+        u'session': model.Session,
+        u'user': toolkit.c.user,
+        u'for_view': True,
+        u'with_private': False
+    }
+    data_dict = {
         "all_fields": True,
         "limit": kwargs.get("limit", 3),
         featured_list_key: featured_list,
         "sort": "name desc"
-    })
+    }
+    org_list = toolkit.get_action(action_name)(context, data_dict)
     return org_list
 
 
