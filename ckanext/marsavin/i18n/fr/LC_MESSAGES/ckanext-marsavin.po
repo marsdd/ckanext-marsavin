@@ -125,7 +125,7 @@ msgstr ""
 
 #: ckanext/marsavin/templates/home/snippets/contact_text.html:8
 #, python-format
-msgid "(English) MaRS s'est engagé à servir la communauté francophone au meilleur de nos capacités. Pour obtenir des renseignements en français à propos du programme AVIN, veuillez envoyer un courriel à l'adresse ci-dessus."
+msgid "MaRS is committed to serving the Francophone community to the best of our ability. For information in French about the AVIN program, please send an email to the above address."
 msgstr "MaRS s'est engagé à servir la communauté francophone au meilleur de nos capacités. Pour obtenir des "
 "renseignements en français à propos du programme AVIN, veuillez envoyer un courriel à l'adresse ci-dessus."
 
