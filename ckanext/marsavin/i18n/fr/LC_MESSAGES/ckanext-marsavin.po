@@ -121,7 +121,13 @@ msgstr "Courriel"
 msgid "To report an issue with the site or to contribute data to the AVIN Data catalogue, please contact us at"
 msgstr ""
 "Pour toute demande concernant des problèmes techniques, erreurs ou améliorations de la fonctionnalité, veuillez "
-"communiquer avec lui à l’adresse ci-dessous:"
+"communiquer avec lui à l'adresse ci-dessous:"
+
+#: ckanext/marsavin/templates/home/snippets/contact_text.html:8
+#, python-format
+msgid "(English) MaRS s'est engagé à servir la communauté francophone au meilleur de nos capacités. Pour obtenir des renseignements en français à propos du programme AVIN, veuillez envoyer un courriel à l'adresse ci-dessus."
+msgstr "MaRS s'est engagé à servir la communauté francophone au meilleur de nos capacités. Pour obtenir des "
+"renseignements en français à propos du programme AVIN, veuillez envoyer un courriel à l'adresse ci-dessus."
 
 #: ckanext/marsavin/templates/home/snippets/promoted.html:7
 #, python-format
