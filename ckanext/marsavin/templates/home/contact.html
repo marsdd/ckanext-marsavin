@@ -11,6 +11,11 @@
   <li class="active">{% link_for _('Contact Us'), 'home.contact' %}</li>
 {% endblock %}
 
+<!-- following block is to override the min height property to less than 300 px as this page is not that big -->
+{% block wrapper_class %}
+contact-wrapper
+{% endblock %}
+
 {% block primary %}
   <article class="module">
     <div class="module-content">
@@ -18,7 +23,6 @@
         {% if g.site_contact %}
           {{ h.render_markdown(g.site_contact) }}
         {% else %}
-          <h1 class="page-heading">{{ _('Contact Us') }}</h1>
           {% snippet 'home/snippets/contact_text.html' %}
         {% endif %}
       {% endblock %}

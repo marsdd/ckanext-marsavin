@@ -663,18 +663,15 @@ h2.module-heading {
   float: right;
 }
 
-.contact-text-container {
-  display: table;
-  height: 224px;
-  margin: 0 auto;
-}
-
 .contact-text {
-  display: table-cell;
-  vertical-align: middle;
+  padding-left: 40px;
 }
 
 .contact-image {
-  width: 224px;
-  height: 224px;
+  max-width: 125px;
+  max-height: 125px;
+}
+
+.contact-wrapper {
+  min-height: fit-content !important;
 }
