@@ -80,13 +80,8 @@ msgstr ""
 "données ouvertes</a>."
 
 #: ckanext/marsavin/templates/home/snippets/search.html:6
-msgid "Welcome to the AVIN Data Catalogue"
+msgid "Welcome to the AVIN Data Index"
 msgstr "Bienvenue au Répertoire de données RIVA"
-
-#: ckanext/marsavin/templates/home/snippets/search.html:6
-msgid "Welcome to the AVIN Data Catalogue"
-msgstr "Bienvenue au Répertoire de données RIVA"
-
 
 #: ckanext/marsavin/templates/header.html:8
 #: ckanext/marsavin/templates/home/about.html:4
@@ -97,7 +92,7 @@ msgstr "À propos du programme RIVA"
 #: ckanext/marsavin/templates/home/snippets/promoted.html:2
 #: ckanext/marsavin/templates/home/about.html:17
 #: ckanext/marsavin/templates/home/snippets/promoted.html
-msgid "About AVIN Data Catalogue"
+msgid "About AVIN Data Index"
 msgstr "À propos du programme RIVA"
 
 #: ckanext/marsavin/templates/footer.html:7
@@ -118,7 +113,7 @@ msgstr "Courriel"
 
 #: ckanext/marsavin/templates/home/snippets/contact_text.html:8
 #, python-format
-msgid "To report an issue with the site or to contribute data to the AVIN Data catalogue, please contact us at"
+msgid "To report an issue with the site or to contribute data to the AVIN Data index, please contact us at"
 msgstr ""
 "Pour toute demande concernant des problèmes techniques, erreurs ou améliorations de la fonctionnalité, veuillez "
 "communiquer avec lui à l'adresse ci-dessous:"
