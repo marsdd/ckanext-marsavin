@@ -2,6 +2,7 @@ import ckan.lib.dictization as d
 from ckan.logic import get_or_bust as _get_or_bust
 from ckanext.marsavin.model.access_requests import AccessRequests
 from ckanext.marsavin.model.package_marsavin import PackageMarsavin
+from ckanext.marsavin.model.user_marsavin import UserMarsavin
 from datetime import date
 
 
@@ -96,3 +97,25 @@ def package_marsavin_load(pkg_dict, cached_entity=None):
                 entity_dict["expiry_date"] = entity.expiry_date
 
     pkg_dict.update(entity_dict)
+
+
+def user_marsavin_save(user_dict, context):
+    user_id = _get_or_bust(user_dict, 'id')
+
+    user_marsavin_dict = {
+        "user_id": user_id,
+        "allow_marketting_emails": user_dict["allow_marketting_emails"]
+    }
+    if user_dict["creation_date"]:
+        user_marsavin_dict["creation_date"] = user_dict["creation_date"]
+    if user_dict["expiry_date"]:
+        user_marsavin_dict["expiry_date"] = user_dict["expiry_date"]
+
+    entity = UserMarsavin.by_user_id(user_id)
+
+    if entity:
+        user_marsavin_dict["id"] = entity.id
+
+    user_marsavin = d.table_dict_save(user_marsavin_dict, UserMarsavin,
+                                         context)
+    return user_marsavin
