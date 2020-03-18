@@ -22,7 +22,7 @@ def upgrade():
         return
     op.create_table('user_marsavin',
                     sa.Column('id', postgresql.UUID(),
-                              server_default=sa.text('uuid_generate_v4')),
+                              server_default=sa.text('uuid_generate_v4()')),
                     sa.Column('user_id', sa.Text),
                     sa.Column('allow_marketting_emails', sa.Text)
                     )

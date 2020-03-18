@@ -106,10 +106,6 @@ def user_marsavin_save(user_dict, context):
         "user_id": user_id,
         "allow_marketting_emails": user_dict["allow_marketting_emails"]
     }
-    if user_dict["creation_date"]:
-        user_marsavin_dict["creation_date"] = user_dict["creation_date"]
-    if user_dict["expiry_date"]:
-        user_marsavin_dict["expiry_date"] = user_dict["expiry_date"]
 
     entity = UserMarsavin.by_user_id(user_id)
 
