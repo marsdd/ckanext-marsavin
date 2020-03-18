@@ -117,5 +117,5 @@ def user_marsavin_save(user_dict, context):
         user_marsavin_dict["id"] = entity.id
 
     user_marsavin = d.table_dict_save(user_marsavin_dict, UserMarsavin,
-                                         context)
+                                      context)
     return user_marsavin

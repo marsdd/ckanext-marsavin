@@ -1,18 +1,35 @@
 {% ckan_extends %}
 
-{% block form_button %}
-    {% if user_dict['state'] == 'pending' %}
-        {% set terms_url = h.url_for('marsavin.terms') %}
-        {% set terms_label = _('I agree to the <a href="#" data-toggle="modal" data-target="#terms-modal">Terms and Conditions</a> <i class="fa fa-external-link" aria-hidden="true"></i>')|replace("{terms_url}", terms_url)  %}
-        {% call form.checkbox('user-terms-agree', label=terms_label, id='field-user-terms-agree', value='true', error='', classes=[], attrs={"data-module": "user-terms-reset"}) %}
-        {% endcall %}
-        <div id="tooltip-user-terms-agree" title="{{ _('You must agree to the Terms and Conditions') }}">
+{% block form %}
+    <form action="" method="post">
+      {{ form.errors(error_summary) }}
+      {% if user_dict['state'] == 'pending' %}
+        <p>{{ _('You can also change username. It can not be modified later.') }}</p>
+        {{ form.input("name", id="field-name", label=_("Username"), type="text", value=user_dict["name"],
+           error='', attrs={'autocomplete': 'no', 'class': 'form-control control-medium'}, classes=["form-group"]) }}
+      {% endif %}
+        {% set allow_marketting_emails_label = _('Yes, I agree to receive news, updates and information from MaRS and MaRS related entities regarding the AVIN Data Index, the AVIN and the MaRS communities, including newsletters, information about services and services and/or offers by third party collaborators and sponsors.  You may unsubscribe at any time. To find out more, please visit our (<a href="#" data-toggle="modal" data-target="#privacy-modal">Privacy Policy</a>) or (<a target="_blank"  href="mailto:avindata@marsdd.com">Contact Us</a>).')  %}
+      {{ form.input("password1", id="field-password", label=_("Password"), type="password", value='', error='', attrs={'autocomplete': 'no', 'class': 'form-control control-medium'}, classes=["form-group"]) }}
+      {{ form.input("password2", id="field-confirm-password", label=_("Confirm"), type="password", value='', error='', attrs={'autocomplete': 'no', 'class': 'form-control control-medium'}, classes=["form-group"]) }}
+      {% call form.checkbox('allow_marketting_emails', label=allow_marketting_emails_label, id='allow_marketting_emails', value='true', error='', classes=[]) %}
+      {% endcall %}
+      <div class="form-actions">
+        {% block form_button %}
+          {% if user_dict['state'] == 'pending' %}
+            {% set terms_url = h.url_for('marsavin.terms') %}
+            {% set terms_label = _('I agree to the <a href="#" data-toggle="modal" data-target="#terms-modal">Terms and Conditions</a> <i class="fa fa-external-link" aria-hidden="true"></i>')|replace("{terms_url}", terms_url)  %}
+            {% call form.checkbox('user-terms-agree', label=terms_label, id='field-user-terms-agree', value='true', error='', classes=[], attrs={"data-module": "user-terms-reset"}) %}
+            {% endcall %}
+            <div id="tooltip-user-terms-agree" title="{{ _('You must agree to the Terms and Conditions') }}">
+                <button class="btn btn-primary" type="submit" name="save">{{ _("Update Password") }}</button>
+            </div>
+            <div class="js-hide" data-module="user-terms-reset"></div>
+          {% else %}
             <button class="btn btn-primary" type="submit" name="save">{{ _("Update Password") }}</button>
-        </div>
-        <div class="js-hide" data-module="user-terms-reset"></div>
-    {% else %}
-        {{ super() }}
-    {% endif %}
+          {% endif %}
+        {% endblock %}
+      </div>
+    </form>
 {% endblock %}
 
 {% block primary_content %}
@@ -26,6 +43,22 @@
                 </div>
                 <div class="modal-body">
                     {% snippet 'home/snippets/terms_text.html' %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="privacy-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">{{ _('AVIN Data Index Privacy policy') }}</h4>
+                </div>
+                <div class="modal-body">
+                    {% snippet 'home/snippets/privacy_text.html' %}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
