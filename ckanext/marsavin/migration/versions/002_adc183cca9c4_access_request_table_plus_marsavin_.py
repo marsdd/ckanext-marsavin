@@ -24,7 +24,7 @@ def upgrade():
     op.execute('CREATE EXTENSION IF NOT EXISTS "uuid-ossp";')
     op.create_table('package_marsavin',
         sa.Column('id', postgresql.UUID(), server_default=sa.text(
-            'uuid_generate_v4')),
+            'uuid_generate_v4()')),
         sa.Column('package_id', sa.Text),
         sa.Column('associated_tasks', sa.Text),
         sa.Column('associated_tasks', sa.Text),

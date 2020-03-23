@@ -10,6 +10,7 @@ from sqlalchemy import text
 import ckan.logic.schema as schema_
 import ckan.lib.dictization.model_dictize as model_dictize
 import ckan.lib.dictization.model_save as model_save
+from dictization import user_marsavin_save
 
 _func = sqlalchemy.func
 _and_ = sqlalchemy.and_
@@ -152,7 +153,8 @@ def default_update_user_schema(
         user_password_validator, ignore_missing, unicode_safe]
     
     schema['user-terms-agree'] = [boolean_validator, ]
-
+    schema["allow_marketting_emails"] = [boolean_validator, ]
+    
     return schema
 
 
@@ -178,7 +180,9 @@ def user_update(context, data_dict):
     id = _get_or_bust(data_dict, 'id')
     
     data_dict['user-terms-agree'] = toolkit.request.form.get("user-terms-agree")
-
+    data_dict['allow_marketting_emails'] = toolkit.request.form.get(
+        "allow_marketting_emails")
+    
     user_obj = model.User.get(id)
     context['user_obj'] = user_obj
     if user_obj is None:
@@ -203,6 +207,7 @@ def user_update(context, data_dict):
         data['_password'] = data.pop('password_hash')
 
     user = model_save.user_dict_save(data, context)
+    user_marsavin = user_marsavin_save(data, context)
 
     activity_dict = {
             'user_id': user.id,
