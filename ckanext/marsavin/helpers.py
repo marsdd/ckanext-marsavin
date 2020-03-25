@@ -4,6 +4,12 @@ from ckan.common import config
 from six import text_type
 from cache import cacheable
 from ckan import model
+from hashlib import md5
+from pprint import pprint
+import requests
+import logging
+
+log = logging.getLogger(__name__)
 
 
 def _mail_recipient(recipient=None, email_dict=None):
@@ -23,6 +29,34 @@ def _mail_recipient(recipient=None, email_dict=None):
         raise
     return
 
+
+def subscribe_to_mailchimp(userObj):
+    audience_id = config.get("mailchimp_audience_id")
+    api_key = config.get("mailchimp_api_key")
+    root_url = "https://%s.api.mailchimp.com/3.0" % api_key.split("-")[1]
+    user_md5 = md5(userObj.email.encode('utf-8')).hexdigest()
+    
+    # first check whether the user already exists or not
+    user_retrieve_url = "%s/lists/%s/members/%s" \
+                        % (root_url, audience_id, user_md5)
+    user_res = requests.get(user_retrieve_url, auth=("MaRS", api_key))
+    if user_res.status_code == requests.codes.ok:
+        # we found the user but don't change subcription
+        log.info("User with email %s already exists in mailchimp, "
+                 "not changing status: \n %s" % (userObj.email, userObj))
+        return
+    
+    user_add_request = {
+        "email_address": userObj.email,
+        "status": "subscribed",
+        "tags": ["avindata"]
+    }
+    user_add_url = "%s/lists/%s/members" % (root_url, audience_id)
+    user_add_res = requests.post(user_add_url, data=user_add_request)
+    log.info("User add results: \n%s" % user_add_res)
+    # following will raise an exception if the user failed
+    user_add_res.raise_for_status()
+    
 
 def is_featured_organization(name):
     featured_orgs = config.get('ckan.featured_orgs', '').split()
