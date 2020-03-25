@@ -1,4 +1,5 @@
-from helpers import _mail_recipient, get_package_resource_format_split
+from helpers import _mail_recipient, get_package_resource_format_split, \
+    subscribe_to_mailchimp
 import ckan.logic as logic
 import ckan
 from ckanext.marsavin.dictization import reqaccess_dict_save
@@ -208,6 +209,9 @@ def user_update(context, data_dict):
 
     user = model_save.user_dict_save(data, context)
     user_marsavin = user_marsavin_save(data, context)
+    if data["allow_marketting_emails"]:
+        toolkit.enqueue_job(subscribe_to_mailchimp, [user_obj])
+        
 
     activity_dict = {
             'user_id': user.id,
