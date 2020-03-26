@@ -50,6 +50,14 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
             config_['beaker.session.type'] = "ext:redis"
             config_['beaker.session.url'] = config_["ckan.redis.url"]
             config_['beaker.session.timeout'] = 300
+            
+        relevant_env_vars = [
+            'mailchimp_audience_id',
+            'mailchimp_api_key'
+        ]
+        # environment variable based configurations
+        for env_var in relevant_env_vars:
+            config_[env_var] = os.environ.get(env_var, None)
 
     # IBlueprint
     def get_blueprint(self):
