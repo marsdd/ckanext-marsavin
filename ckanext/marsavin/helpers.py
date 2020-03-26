@@ -51,9 +51,19 @@ def subscribe_to_mailchimp(userObj):
         "status": "subscribed",
         "tags": ["avindata"]
     }
+
+    log.info("User add request object: \n%s" % user_add_request)
+    # pprint("User add request object: \n%s" % user_add_request)
+    
     user_add_url = "%s/lists/%s/members" % (root_url, audience_id)
-    user_add_res = requests.post(user_add_url, data=user_add_request)
+    user_add_res = requests.post(user_add_url, json=user_add_request,
+                                 auth=("MaRS", api_key))
+    
     log.info("User add results: \n%s" % user_add_res)
+    # pprint("User add results: \n%s" % user_add_res)
+    log.info("User add results body: \n%s" % user_add_res.content)
+    # pprint("User add results body: \n%s" % user_add_res.content)
+    
     # following will raise an exception if the user failed
     user_add_res.raise_for_status()
     
