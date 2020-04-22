@@ -5,9 +5,12 @@ from six import text_type
 from cache import cacheable
 from ckan import model
 from hashlib import md5
+from mailchimp import mailchimp_get_member, get_merge_fields, \
+    add_update_member
 from pprint import pprint
 import requests
 import logging
+import os
 
 log = logging.getLogger(__name__)
 
@@ -30,42 +33,64 @@ def _mail_recipient(recipient=None, email_dict=None):
     return
 
 
+def notify_mailchimp_subscribe_issue(email, error_message):
+    recipient = {
+        "display_name": os.environ['oce_email_distribution_group'],
+        "email": os.environ['oce_email_distribution_group']
+    }
+    email_dict = {
+        "subject": "Mailchimp subscription error",
+        "body": u"""Error adding/updating mailchimp subscription for email: %s
+        %s
+        """ % (email, error_message)
+    }
+    toolkit.enqueue_job(_mail_recipient, [recipient, email_dict])
+
+
 def subscribe_to_mailchimp(userObj):
-    audience_id = config.get("mailchimp_audience_id")
-    api_key = config.get("mailchimp_api_key")
-    root_url = "https://%s.api.mailchimp.com/3.0" % api_key.split("-")[1]
-    user_md5 = md5(userObj.email.encode('utf-8')).hexdigest()
-    
-    # first check whether the user already exists or not
-    user_retrieve_url = "%s/lists/%s/members/%s" \
-                        % (root_url, audience_id, user_md5)
-    user_res = requests.get(user_retrieve_url, auth=("MaRS", api_key))
-    if user_res.status_code == requests.codes.ok:
-        # we found the user but don't change subcription
-        log.info("User with email %s already exists in mailchimp, "
-                 "not changing status: \n %s" % (userObj.email, userObj))
-        return
-    
-    user_add_request = {
+    merge_field = get_merge_fields(["EXPCONSENT"])
+    user_res = mailchimp_get_member(userObj.email)
+
+    user_add_update = {
         "email_address": userObj.email,
         "status": "subscribed",
         "tags": ["avindata"]
     }
-
-    log.info("User add request object: \n%s" % user_add_request)
-    # pprint("User add request object: \n%s" % user_add_request)
     
-    user_add_url = "%s/lists/%s/members" % (root_url, audience_id)
-    user_add_res = requests.post(user_add_url, json=user_add_request,
-                                 auth=("MaRS", api_key))
-    
-    log.info("User add results: \n%s" % user_add_res)
-    # pprint("User add results: \n%s" % user_add_res)
-    log.info("User add results body: \n%s" % user_add_res.content)
-    # pprint("User add results body: \n%s" % user_add_res.content)
-    
+    if user_res.status_code == requests.codes.ok:
+        # pre-existing user
+        user_res_obj = user_res.json()
+        # does the merge field exist?
+        if merge_field:
+            try:
+                if user_res_obj["merge_fields"]["EXPCONSENT"] != "I Consent":
+                    user_add_update["merge_fields"] = {
+                        "EXPCONSENT": "I Consent"
+                    }
+            except KeyError:
+                user_add_update["merge_fields"] = {
+                    "EXPCONSENT": "I Consent"
+                }
+        else:
+            # if merge field doesn't exist send notification email
+            notify_mailchimp_subscribe_issue(userObj.email,
+                                             "Express consent field doesn't "
+                                             "exist")
+    else:
+        # no pre-existing user, much simpler
+        if merge_field:
+            user_add_update["merge_fields"] = {
+                "EXPCONSENT": "I Consent"
+            }
+        else:
+            # if merge field doesn't exist send notification email
+            notify_mailchimp_subscribe_issue(userObj.email,
+                                             "Express consent field doesn't "
+                                             "exist")
+            
+    user_add_update_res = add_update_member(userObj.email, user_add_update)
     # following will raise an exception if the user failed
-    user_add_res.raise_for_status()
+    user_add_update_res.raise_for_status()
     
 
 def is_featured_organization(name):
