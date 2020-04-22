@@ -61,7 +61,7 @@ def get_merge_fields(audience_id=None, field_type="radio",
         params["type"] = field_type
     
     # retrieve the merge fields
-    merge_field_url = "/lists/%s/merge_fields" % audience_id
+    merge_field_url = "/lists/%s/merge-fields" % audience_id
     
     merge_fields_res = mailchimp_get(merge_field_url, params).json()
     
@@ -69,7 +69,7 @@ def get_merge_fields(audience_id=None, field_type="radio",
     if not filter_by_field_tag:
         return merge_fields_res["merge_fields"]
     
-    merge_fields_res = filter(lambda res_merge_field: res_merge_field.tag in
+    merge_fields_res = filter(lambda res_merge_field: res_merge_field["tag"] in
                                                       filter_by_field_tag,
                               merge_fields_res["merge_fields"])
     

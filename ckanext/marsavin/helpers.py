@@ -48,7 +48,7 @@ def notify_mailchimp_subscribe_issue(email, error_message):
 
 
 def subscribe_to_mailchimp(userObj):
-    merge_field = get_merge_fields(["EXPCONSENT"])
+    merge_field = get_merge_fields(filter_by_field_tag=["EXPCONSENT"])
     user_res = mailchimp_get_member(userObj.email)
 
     user_add_update = {
