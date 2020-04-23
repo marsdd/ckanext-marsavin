@@ -26,8 +26,15 @@ def mailchimp_get(api_url, params=None):
 
 def mailchimp_put(api_url, data, params=None):
     put_url = "%s%s" % (mailchimp_get_root_url(), api_url)
-    res = requests.put(put_url, data=data, auth=mailchimp_get_auth(),
-                       params=params)
+    res = requests.put(put_url, json=data,
+                       auth=mailchimp_get_auth(), params=params)
+    return res
+
+
+def mailchimp_post(api_url, data, params=None):
+    post_url = "%s%s" % (mailchimp_get_root_url(), api_url)
+    res = requests.post(post_url, json=data,
+                        auth=mailchimp_get_auth(), params=params)
     return res
 
 
@@ -41,12 +48,27 @@ def mailchimp_get_member(user_email, audience_id=None):
     return mailchimp_get(user_url)
 
 
-def add_update_member(user_email, updated_values, audience_id=None):
+def update_member(user_email, updated_values, audience_id=None):
     if not audience_id:
         audience_id = config.get("mailchimp_audience_id")
     user_md5 = md5(user_email.encode('utf-8')).hexdigest()
     user_update_url = "/lists/%s/members/%s" % (audience_id, user_md5)
     return mailchimp_put(api_url=user_update_url, data=updated_values)
+
+
+def update_member_tags(user_email, tags, audience_id=None):
+    if not audience_id:
+        audience_id = config.get("mailchimp_audience_id")
+    user_md5 = md5(user_email.encode('utf-8')).hexdigest()
+    user_tags_url = "/lists/%s/members/%s/tags" % (audience_id, user_md5)
+    return mailchimp_post(api_url=user_tags_url, data={"tags": tags})
+    
+
+def add_member(updated_values, audience_id=None):
+    if not audience_id:
+        audience_id = config.get("mailchimp_audience_id")
+    user_update_url = "/lists/%s/members" % (audience_id,)
+    return mailchimp_post(api_url=user_update_url, data=updated_values)
 
 
 def get_merge_fields(audience_id=None, field_type="radio",

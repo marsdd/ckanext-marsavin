@@ -5,8 +5,8 @@ from six import text_type
 from cache import cacheable
 from ckan import model
 from hashlib import md5
-from mailchimp import mailchimp_get_member, get_merge_fields, \
-    add_update_member
+from mailchimp import mailchimp_get_member, get_merge_fields, update_member,\
+    add_member, update_member_tags
 from pprint import pprint
 import requests
 import logging
@@ -53,8 +53,7 @@ def subscribe_to_mailchimp(userObj):
 
     user_add_update = {
         "email_address": userObj.email,
-        "status": "subscribed",
-        "tags": ["avindata"]
+        "status": "subscribed"
     }
     
     if user_res.status_code == requests.codes.ok:
@@ -76,21 +75,36 @@ def subscribe_to_mailchimp(userObj):
             notify_mailchimp_subscribe_issue(userObj.email,
                                              "Express consent field doesn't "
                                              "exist")
+
+        user_update_res = update_member(userObj.email, user_add_update)
+        # following will raise an exception if the user failed
+        user_update_res.raise_for_status()
+        
+        # now take care of the tags if it's missing
+        user_update_res_obj = user_update_res.json()
+        new_tags = user_update_res_obj.get("tags", [])
+        new_tags.append({u"name": u"avindata"})
+        
+        update_user_tags_res = update_member_tags(userObj.email, new_tags)
+        # following will raise an exception if the user tags failed
+        update_user_tags_res.raise_for_status()
+        
+        return
+
+    # no pre-existing user, much simpler
+    user_add_update["tags"] = ["avindata"]
+    if merge_field:
+        user_add_update["merge_fields"] = {
+            "EXPCONSENT": "I Consent"
+        }
     else:
-        # no pre-existing user, much simpler
-        if merge_field:
-            user_add_update["merge_fields"] = {
-                "EXPCONSENT": "I Consent"
-            }
-        else:
-            # if merge field doesn't exist send notification email
-            notify_mailchimp_subscribe_issue(userObj.email,
-                                             "Express consent field doesn't "
-                                             "exist")
-            
-    user_add_update_res = add_update_member(userObj.email, user_add_update)
+        # if merge field doesn't exist send notification email
+        notify_mailchimp_subscribe_issue(userObj.email,
+                                         "Express consent field doesn't exist")
+
+    user_add_res = add_member(user_add_update)
     # following will raise an exception if the user failed
-    user_add_update_res.raise_for_status()
+    user_add_res.raise_for_status()
     
 
 def is_featured_organization(name):
