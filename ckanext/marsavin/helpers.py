@@ -82,8 +82,7 @@ def subscribe_to_mailchimp(userObj):
         
         # now take care of the tags if it's missing
         user_update_res_obj = user_update_res.json()
-        new_tags = user_update_res_obj.get("tags", [])
-        new_tags.append({u"name": u"avindata"})
+        new_tags = [{u"name": u"avindata", u"status": u"active"}]
         
         update_user_tags_res = update_member_tags(userObj.email, new_tags)
         # following will raise an exception if the user tags failed
