@@ -77,11 +77,21 @@ def subscribe_to_mailchimp(userObj):
                                              "exist")
 
         user_update_res = update_member(userObj.email, user_add_update)
-        # following will raise an exception if the user failed
-        user_update_res.raise_for_status()
+        
+        try:
+            # following will raise an exception if the user failed
+            user_update_res.raise_for_status()
+        except requests.HTTPError as err:
+            user_update_res_obj = err.response.json()
+            if user_update_res_obj["title"] != "Member In Compliance State":
+                raise err
+            # we made it here, so there is a compliance error, let's try with
+            # pending user status
+            user_add_update["status"] = "pending"
+            user_update_res = update_member(userObj.email, user_add_update)
+            user_update_res.raise_for_status()
         
         # now take care of the tags if it's missing
-        user_update_res_obj = user_update_res.json()
         new_tags = [{u"name": u"avindata", u"status": u"active"}]
         
         update_user_tags_res = update_member_tags(userObj.email, new_tags)
