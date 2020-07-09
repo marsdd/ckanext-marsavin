@@ -43,6 +43,7 @@
       </a>
     </li>
     {% endif %}
+    {% block header_user_account_extras %} {% endblock %}
     <li role="separator" class="divider"></li>
     <li class="log-out">
       <a href="{{ h.url_for('/user/_logout') }}" title="{{ _('Log out') }}">
@@ -63,3 +64,5 @@
   <img src="{{ h.url_for_static_or_external('/images/avin-logo.png') }}" alt="{{ g.site_title }}" title="{{ g.site_title }}" />
 </a>
 {% endblock %}
+
+{% block header_account %}{% endblock %}
