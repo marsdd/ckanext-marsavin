@@ -25,11 +25,13 @@
       <h4>{{ c.userobj.name }}</h4>
       <span class="user-email">{{ c.userobj.email }}</span>
     </li>
+    {% block header_account_settings_link %}
     <li>
       <a href="{{ h.url_for('user.edit', id=c.userobj.name) }}" title="{{ _('Edit settings') }}">
         <span class="text">{{ _('Settings') }}</span>
       </a>
     </li>
+    {% endblock %}
     <li>
       <a href="{{ h.url_for('user.read', id=c.userobj.name) }}" class="image" title="{{ _('View profile') }}">
         <span class="text">{{ _('Account') }}</span>
@@ -43,13 +45,14 @@
       </a>
     </li>
     {% endif %}
-    {% block header_user_account_extras %} {% endblock %}
+    {% block header_account_log_out_link %}
     <li role="separator" class="divider"></li>
     <li class="log-out">
       <a href="{{ h.url_for('/user/_logout') }}" title="{{ _('Log out') }}">
         <span class="log-out">{{ _('Log out') }}</span>
       </a>
     </li>
+    {% endblock %}
   </ul>
 </div>
 {% else %}
