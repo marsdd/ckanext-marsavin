@@ -81,14 +81,14 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
         
         pages_bp.add_url_rule(u'/', view_func=page_index,
                               strict_slashes=False)
-        pages_bp.add_url_rule(u'/<page>', view_func=page_read,
-                              methods=[u"GET"])
-        pages_bp.add_url_rule(u'/edit/<page>', methods=[u'GET', u'POST'],
-                              view_func=page_edit)
         pages_bp.add_url_rule(u'/new', methods=[u'GET', u'POST'],
                               view_func=page_new)
+        pages_bp.add_url_rule(u'/edit/<page>', methods=[u'GET', u'POST'],
+                              view_func=page_edit)
         pages_bp.add_url_rule(u'/delete/<page>', methods=[u'GET', u'POST'],
                               view_func=page_delete)
+        pages_bp.add_url_rule(u'/<page>', view_func=page_read,
+                              methods=[u"GET"])
             
         blueprints.append(pages_bp)
         return blueprints

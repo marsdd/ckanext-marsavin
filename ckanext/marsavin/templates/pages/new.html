@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block primary_content_inner %}
-      {% snippet "pages/snippets/form.html" %}
+      {% snippet "pages/snippets/form.html", data=data, attrs=attrs, errors=errors %}
 {% endblock %}
 
 {% block secondary_content %}

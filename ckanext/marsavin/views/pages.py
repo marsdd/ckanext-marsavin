@@ -18,8 +18,12 @@ def delete(page):
 
 
 def new():
-    u''' display privacy page'''
-    return base.render(u'pages/new.html', extra_vars={})
+    extra_vars = {
+        "data": {},
+        "errors": {},
+        "attrs": {}
+    }
+    return base.render(u'pages/new.html', extra_vars=extra_vars)
 
 
 def read(page):

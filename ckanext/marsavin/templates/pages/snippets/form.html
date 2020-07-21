@@ -1,5 +1,10 @@
-{% if page %}
-    edit page
-{% else %}
-    new page
-{% endif %}
+{% import 'macros/form.html' as form %}
+
+
+<form id="pages-edit" class="dataset-form" method="post" data-module="basic-form" enctype="multipart/form-data">
+    {% block error_summary %}
+        {{ form.errors(error_summary) }}
+    {% endblock %}
+
+    {{ form.input('title', label=_('Name'), id='field-name', placeholder=_('My Page'), value=data.title, error=errors.title, classes=['control-full'], attrs=attrs) }}
+</form>
