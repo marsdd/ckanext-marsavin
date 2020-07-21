@@ -1,0 +1,18 @@
+{% extends "page.html" %}
+
+{% block subtitle %}{{ _('Privacy Policy') }}{% endblock %}
+
+{% block breadcrumb_content %}
+  <li class="active">{% link_for _('Editable Pages'), 'marsavin_pages.read', page=page %}</li>
+{% endblock %}
+
+{% block page_header %}
+{% endblock %}
+
+{% block primary_content_inner %}
+      pages index
+{% endblock %}
+
+{% block secondary_content %}
+  {% snippet "pages/snippets/helper.html" %}
+{% endblock %}

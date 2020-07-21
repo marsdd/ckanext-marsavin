@@ -12,6 +12,8 @@ from views.request_access import RequestAccessView
 from dictization import package_marsavin_save, package_marsavin_delete, \
     package_marsavin_load
 from views.marsavin import contact, terms, privacy, faq
+from views.pages import index as page_index, edit as page_edit, delete as \
+    page_delete, new as page_new, read as page_read
 from model.package_marsavin import PackageMarsavin
 import ckan.model as ckan_model
 from ckan.lib.search import index_for
@@ -61,6 +63,7 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
 
     # IBlueprint
     def get_blueprint(self):
+        blueprints = []
         bp = Blueprint(u'marsavin', self.__module__)
         util_rules = [
             (u'/contact', contact),
@@ -71,7 +74,24 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
         for rule, view_func in util_rules:
             bp.add_url_rule(rule, view_func=view_func)
 
-        return bp
+        blueprints.append(bp)
+
+        pages_bp = Blueprint(u'marsavin_pages', self.__module__,
+                             url_prefix=u"/pages")
+        
+        pages_bp.add_url_rule(u'/', view_func=page_index,
+                              strict_slashes=False)
+        pages_bp.add_url_rule(u'/<page>', view_func=page_read,
+                              methods=[u"GET"])
+        pages_bp.add_url_rule(u'/edit/<page>', methods=[u'GET', u'POST'],
+                              view_func=page_edit)
+        pages_bp.add_url_rule(u'/new', methods=[u'GET', u'POST'],
+                              view_func=page_new)
+        pages_bp.add_url_rule(u'/delete/<page>', methods=[u'GET', u'POST'],
+                              view_func=page_delete)
+            
+        blueprints.append(pages_bp)
+        return blueprints
 
     def get_helpers(self):
         '''Register the most_popular_groups() function above as a template
