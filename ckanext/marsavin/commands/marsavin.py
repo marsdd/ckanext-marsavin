@@ -30,7 +30,7 @@ log = logging.getLogger("ckanext")
 class DatabaseCommand(CkanCommand):
     '''Command to take care of MaRS Avin Database migrations
         Usage:
-          ckanext_marsavin initdb
+          paster --plugin=ckanext-marsavin db init
             - Creates the necessary tables in the database
           harvester source {name} {url} {type} [{title}] [{active}] [{owner_org}] [{frequency}] [{config}]
             - create new harvest source
@@ -132,9 +132,9 @@ class DatabaseCommand(CkanCommand):
 
 
 class PackageCommand(CkanCommand):
-    '''Command to take care of MaRS Avin Database migrations
+    '''Command to take care of MaRS Avin search schema migrations
         Usage:
-          ckanext_marsavin initdb
+          paster --plugin=ckanext-marsavin package update_search_schema
             - Creates the necessary tables in the database
           harvester source {name} {url} {type} [{title}] [{active}] [{owner_org}] [{frequency}] [{config}]
             - create new harvest source
