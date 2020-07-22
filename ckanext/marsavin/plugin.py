@@ -13,7 +13,7 @@ from dictization import package_marsavin_save, package_marsavin_delete, \
     package_marsavin_load
 from views.marsavin import contact, terms, privacy, faq
 from views.pages import index as page_index, edit as page_edit, delete as \
-    page_delete, new as page_new, read as page_read
+    page_delete, read as page_read, CreatePagesView
 from model.package_marsavin import PackageMarsavin
 import ckan.model as ckan_model
 from ckan.lib.search import index_for
@@ -82,7 +82,8 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
         pages_bp.add_url_rule(u'/', view_func=page_index,
                               strict_slashes=False)
         pages_bp.add_url_rule(u'/new', methods=[u'GET', u'POST'],
-                              view_func=page_new)
+                              view_func=CreatePagesView.as_view(
+                                  "create_pages"))
         pages_bp.add_url_rule(u'/edit/<page>', methods=[u'GET', u'POST'],
                               view_func=page_edit)
         pages_bp.add_url_rule(u'/delete/<page>', methods=[u'GET', u'POST'],

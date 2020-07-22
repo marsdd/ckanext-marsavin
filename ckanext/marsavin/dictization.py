@@ -3,6 +3,7 @@ from ckan.logic import get_or_bust as _get_or_bust
 from ckanext.marsavin.model.access_requests import AccessRequests
 from ckanext.marsavin.model.package_marsavin import PackageMarsavin
 from ckanext.marsavin.model.user_marsavin import UserMarsavin
+from ckanext.marsavin.model.marsavin_pages import MarsavinPages
 from datetime import date
 
 
@@ -115,3 +116,24 @@ def user_marsavin_save(user_dict, context):
     user_marsavin = d.table_dict_save(user_marsavin_dict, UserMarsavin,
                                       context)
     return user_marsavin
+
+
+def marsavin_pages_save(page_dict, context):
+    page_id = _get_or_bust(page_dict, 'id')
+    
+    marsavin_page_dict = {
+        "id": page_id,
+        "title": page_dict["title"],
+        "name": page_dict["name"],
+        "content": page_dict["content"],
+        "sidebar_content": page_dict["sidebar_content"],
+        "order": page_dict["order"]
+    }
+    if page_dict["created"]:
+        marsavin_page_dict["created"] = page_dict["created"]
+    if page_dict["modified"]:
+        marsavin_page_dict["modified"] = page_dict["modified"]
+    
+    marsavin_page = d.table_dict_save(marsavin_page_dict, PackageMarsavin,
+                                      context)
+    return marsavin_page

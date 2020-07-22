@@ -20,20 +20,22 @@ depends_on = None
 
 def upgrade():
     if skip_based_on_legacy_engine_version(op, __name__):
-        op.create_table('ckanext_marsavin_pages',
-                        sa.Column('id', postgresql.UUID(),
-                                  server_default=sa.text(
-                                      'uuid_generate_v4()')),
-                        sa.Column('title', sa.Text),
-                        sa.Column('name', sa.Text),
-                        sa.Column('content', sa.Text),
-                        sa.Column('sidebar_content', sa.Text),
-                        sa.Column('order', sa.Text),
-                        sa.Column('user_id', sa.Text),
-                        sa.Column('created', sa.TIMESTAMP),
-                        sa.Column('modified', sa.TIMESTAMP),
-                        )
-    pass
+        pass
+
+    op.create_table('ckanext_marsavin_pages',
+                    sa.Column('id', postgresql.UUID(),
+                              server_default=sa.text('uuid_generate_v4()'),
+                              primary_key=True),
+                    sa.Column('title', sa.Text),
+                    sa.Column('name', sa.Text),
+                    sa.Column('content', sa.Text),
+                    sa.Column('lang', sa.Text),
+                    sa.Column('sidebar_content', sa.Text),
+                    sa.Column('order', sa.Text),
+                    sa.Column('created', sa.TIMESTAMP),
+                    sa.Column('modified', sa.TIMESTAMP),
+                    sa.UniqueConstraint("name", "lang", name="u_name_lang")
+                    )
 
 
 def downgrade():

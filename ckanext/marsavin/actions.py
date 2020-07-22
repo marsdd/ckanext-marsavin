@@ -11,7 +11,7 @@ from sqlalchemy import text
 import ckan.logic.schema as schema_
 import ckan.lib.dictization.model_dictize as model_dictize
 import ckan.lib.dictization.model_save as model_save
-from dictization import user_marsavin_save
+from dictization import user_marsavin_save, marsavin_pages_save
 
 _func = sqlalchemy.func
 _and_ = sqlalchemy.and_
@@ -232,3 +232,76 @@ def user_update(context, data_dict):
     if not context.get('defer_commit'):
         model.repo.commit()
     return model_dictize.user_dictize(user, context)
+
+
+@schema_.validator_args
+def default_update_marsavin_pages_schema(
+        name_validator,
+        unicode_safe):
+    schema = {
+        "id": [
+            unicode_safe
+        ],
+        'title': [
+            name_validator,
+            unicode_safe
+        ],
+        'name': [
+            unicode_safe
+        ],
+        'content': [
+            unicode_safe
+        ],
+        "lang": [
+            unicode_safe
+        ],
+        "sidebar_content": [
+            unicode_safe
+        ],
+        "order": [
+            unicode_safe
+        ],
+        "created": [],
+        "modified": []
+    }
+
+    return schema
+
+
+def marsavin_pages_create(context, data_dict=None):
+    '''Make a new page
+    
+    :param id: the id or name of the group to add the object to
+    :type id: string
+    
+    :param title: the title of the page
+    :type title: string
+    
+    :param name: the url safe name of the page
+    :type name: string
+    
+    :param content: the id or name of the group to add the object to
+    :type content: string
+    
+    :param lang: the id or name of the group to add the object to
+    :type lang: string
+    
+    :param sidebar_content: the id or name of the group to add the object to
+    :type sidebar_content: string
+    
+    :param order: the id or name of the group to add the object to
+    :type order: string
+    
+    :param user_id: created user id of the page
+    :type user_id: string
+
+    :returns: the newly created (or updated) page
+    :rtype: dictionary
+
+    '''
+    model = context['model']
+    user = context['user']
+    
+    _check_access('marsavin_pages_create', context, data_dict)
+
+    return marsavin_pages_create(context, data_dict)

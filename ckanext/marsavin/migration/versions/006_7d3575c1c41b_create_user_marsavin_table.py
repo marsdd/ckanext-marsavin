@@ -27,5 +27,6 @@ def upgrade():
                     sa.Column('allow_marketting_emails', sa.Text)
                     )
 
+
 def downgrade():
     op.drop_table("user_marsavin")
