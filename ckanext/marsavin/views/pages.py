@@ -2,6 +2,12 @@ import ckan.lib.base as base
 from ckan.lib.plugins import toolkit
 from flask.views import MethodView
 import ckan.model as model
+import ckan.logic as logic
+import ckan.lib.navl.dictization_functions as dict_fns
+tuplize_dict = logic.tuplize_dict
+clean_dict = logic.clean_dict
+parse_params = logic.parse_params
+
 
 
 def index():
@@ -35,7 +41,7 @@ class CreatePagesView(MethodView):
         }
 
         try:
-            toolkit.check_access(u'ckanext_marsaving_pages_create', context)
+            toolkit.check_access(u'ckanext_marsavin_pages_new', context)
         except toolkit.NotAuthorized:
             base.abort(403, toolkit._(u'Unauthorized to create a group'))
 
@@ -43,33 +49,29 @@ class CreatePagesView(MethodView):
 
     def post(self):
         context = self._prepare()
-        # try:
-        #     data_dict = clean_dict(
-        #         dict_fns.unflatten(tuplize_dict(parse_params(request.form))))
-        #     data_dict.update(clean_dict(
-        #         dict_fns.unflatten(tuplize_dict(parse_params(request.files)))
-        #     ))
-        #     data_dict['type'] = group_type or u'group'
-        #     context['message'] = data_dict.get(u'log_message', u'')
-        #     data_dict['users'] = [{u'name': g.user, u'capacity': u'admin'}]
-        #     group = _action(u'group_create')(context, data_dict)
-        #
-        # except (NotFound, NotAuthorized) as e:
-        #     base.abort(404, _(u'Group not found'))
-        # except dict_fns.DataError:
-        #     base.abort(400, _(u'Integrity Error'))
-        # except ValidationError as e:
-        #     errors = e.error_dict
-        #     error_summary = e.error_summary
-        #     return self.get(group_type, is_organization,
-        #                     data_dict, errors, error_summary)
-        #
-        # return h.redirect_to(group['type'] + u'.read', id=group['name'])
+
+        try:
+            data_dict = clean_dict(
+                dict_fns.unflatten(tuplize_dict(parse_params(
+                    toolkit.request.form))))
+            
+            toolkit.get_action(u"marsavin_pages_new")(context, data_dict)
+        except (toolkit.ObjectNotFound) as e:
+            base.abort(404, toolkit._(u'Page not found: %s' % e))
+        except dict_fns.DataError:
+            base.abort(400, toolkit._(u'Integrity Error'))
+        except toolkit.ValidationError as e:
+            errors = e.error_dict
+            error_summary = e.error_summary
+            return self.get(data_dict, errors, error_summary)
+
+        return toolkit.redirect_to(u"marsavin_pages.new")
 
     def get(self, data=None, errors=None, error_summary=None):
         extra_vars = {
             "data": data or {},
-            "errors": errors or {},
+            u'errors': errors,
+            u'error_summary': error_summary,
             "attrs": {}
         }
         return base.render(u'pages/new.html', extra_vars=extra_vars)

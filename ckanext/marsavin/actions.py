@@ -1,17 +1,19 @@
 from helpers import _mail_recipient, get_package_resource_format_split, \
     subscribe_to_mailchimp
 import ckan.logic as logic
-import ckan
 from ckanext.marsavin.dictization import reqaccess_dict_save
 import logging
 from ckan.plugins import toolkit
-from ckanext.marsavin.schema import default_reqaccess_schema
+from ckanext.marsavin.schema import default_reqaccess_schema, \
+    default_update_user_schema, default_marsavin_pages_schema
 import sqlalchemy
 from sqlalchemy import text
 import ckan.logic.schema as schema_
 import ckan.lib.dictization.model_dictize as model_dictize
 import ckan.lib.dictization.model_save as model_save
-from dictization import user_marsavin_save, marsavin_pages_save
+from dictization import user_marsavin_save
+from ckanext.marsavin.model.marsavin_pages import MarsavinPages
+import ckan.lib.dictization as d
 
 _func = sqlalchemy.func
 _and_ = sqlalchemy.and_
@@ -19,12 +21,12 @@ _and_ = sqlalchemy.and_
 # Define some shortcuts
 # Ensure they are module-private so that they don't get loaded as available
 # actions in the action API.
-_validate = ckan.lib.navl.dictization_functions.validate
-_check_access = logic.check_access
-_get_action = logic.get_action
-ValidationError = logic.ValidationError
-NotFound = logic.NotFound
-_get_or_bust = logic.get_or_bust
+_validate = toolkit.navl_validate
+_check_access = toolkit.check_access
+_get_action = toolkit.get_action
+ValidationError = toolkit.ValidationError
+NotFound = toolkit.ObjectNotFound
+_get_or_bust = toolkit.get_or_bust
 
 log = logging.getLogger(__name__)
 
@@ -142,23 +144,6 @@ def format_autocomplete(context, data_dict):
     return output_list
 
 
-@schema_.validator_args
-def default_update_user_schema(
-        ignore_missing, name_validator, user_name_validator,
-        unicode_safe, user_password_validator, boolean_validator):
-    schema = schema_.default_user_schema()
-
-    schema['name'] = [
-        ignore_missing, name_validator, user_name_validator, unicode_safe]
-    schema['password'] = [
-        user_password_validator, ignore_missing, unicode_safe]
-    
-    schema['user-terms-agree'] = [boolean_validator, ]
-    schema["allow_marketting_emails"] = [boolean_validator, ]
-    
-    return schema
-
-
 def user_update(context, data_dict):
     '''Update a user account.
 
@@ -268,7 +253,7 @@ def default_update_marsavin_pages_schema(
     return schema
 
 
-def marsavin_pages_create(context, data_dict=None):
+def marsavin_pages_new(context, data_dict=None):
     '''Make a new page
     
     :param id: the id or name of the group to add the object to
@@ -302,6 +287,30 @@ def marsavin_pages_create(context, data_dict=None):
     model = context['model']
     user = context['user']
     
-    _check_access('marsavin_pages_create', context, data_dict)
+    _check_access('ckanext_marsavin_pages_new', context, data_dict)
+    
+    schema = toolkit
 
-    return marsavin_pages_create(context, data_dict)
+    marsavin_page_dict = {
+        "title": data_dict["title"],
+        "name": data_dict["name"],
+        "content": data_dict["content"],
+        "sidebar_content": data_dict["sidebar_content"],
+        "order": data_dict["order"]
+    }
+    if "created" in data_dict:
+        marsavin_page_dict["created"] = data_dict["created"]
+    if "modified" in data_dict:
+        marsavin_page_dict["modified"] = data_dict["modified"]
+        
+    marsavin_page_dict, errors = _validate(data=data_dict,
+                                  schema=default_update_marsavin_pages_schema(),
+                                  context=context)
+    
+    if errors:
+        raise ValidationError(errors)
+    
+    marsavin_page = d.table_dict_save(marsavin_page_dict, MarsavinPages,
+                                      context)
+    return marsavin_page
+

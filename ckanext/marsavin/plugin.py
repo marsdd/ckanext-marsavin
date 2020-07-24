@@ -4,17 +4,18 @@ import ckan.plugins.toolkit as toolkit
 from flask import Blueprint
 import os
 import logging
-from helpers import _mail_recipient, is_featured_organization, \
+from .helpers import _mail_recipient, is_featured_organization, \
     get_homepage_featured_organizations, get_homepage_featured_groups, \
     get_package_resource_format_split, render_resource_format
-import actions
-from views.request_access import RequestAccessView
-from dictization import package_marsavin_save, package_marsavin_delete, \
-    package_marsavin_load
-from views.marsavin import contact, terms, privacy, faq
-from views.pages import index as page_index, edit as page_edit, delete as \
+from . import actions, auth
+from .views.request_access import RequestAccessView
+from .views.marsavin import contact, terms, privacy, faq
+from .views.pages import index as page_index, edit as page_edit, delete as \
     page_delete, read as page_read, CreatePagesView
-from model.package_marsavin import PackageMarsavin
+
+from .dictization import package_marsavin_save, package_marsavin_delete, \
+    package_marsavin_load
+from .model.package_marsavin import PackageMarsavin
 import ckan.model as ckan_model
 from ckan.lib.search import index_for
 log = logging.getLogger("ckanext")
@@ -28,12 +29,14 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
     plugins.implements(plugins.IDatasetForm)
     plugins.implements(plugins.ISession, inherit=True)
     plugins.implements(plugins.IActions)
+    plugins.implements(plugins.IAuthFunctions)
 
     # IActions
     def get_actions(self):
         return {
             u"format_autocomplete": actions.format_autocomplete,
-            u"user_update": actions.user_update
+            u"user_update": actions.user_update,
+            u"marsavin_pages_new": actions.marsavin_pages_new
         }
 
     # add template helper functions
@@ -61,7 +64,8 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
         for env_var in relevant_env_vars:
             config_[env_var] = os.environ.get(env_var, None)
 
-    # IBlueprint
+    # IBlueprint - this is how we add additional routes to the app, only run
+    # once when starting the app, cannot be changed afterwards
     def get_blueprint(self):
         blueprints = []
         bp = Blueprint(u'marsavin', self.__module__)
@@ -83,7 +87,7 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
                               strict_slashes=False)
         pages_bp.add_url_rule(u'/new', methods=[u'GET', u'POST'],
                               view_func=CreatePagesView.as_view(
-                                  "create_pages"))
+                                  "new"))
         pages_bp.add_url_rule(u'/edit/<page>', methods=[u'GET', u'POST'],
                               view_func=page_edit)
         pages_bp.add_url_rule(u'/delete/<page>', methods=[u'GET', u'POST'],
@@ -192,6 +196,21 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
 
     def after_commit(self, session):
         pass
+    
+    def get_auth_functions(self):
+        """
+        returns the authorizations functions requred by some of the
+        functionality in order to maintain the security of who can edit what
+        in the system.  Mostly used by the dynamic page functionality.
+        :return: dict
+        """
+        return {
+            "ckanext_marsavin_pages_new": auth.pages_new,
+            "ckanext_marsavin_pages_update": auth.pages_update,
+            "ckanext_marsavin_pages_delete": auth.pages_delete,
+            "ckanext_marsavin_pages_list": auth.pages_list,
+            "ckanext_marsavin_pages_read": auth.pages_read
+        }
 
 
 class MarsavinRequestAccessPlugin(plugins.SingletonPlugin):

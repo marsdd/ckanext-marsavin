@@ -1,3 +1,4 @@
+from ckan.logic import schema as schema_
 from ckan.logic.schema import validator_args, default_user_schema
 
 # a.s.
@@ -21,4 +22,38 @@ def reqaccess_new_form_schema():
     schema = default_user_schema()
 
     return schema
+
+
 # a.s. end of section
+@validator_args
+def default_update_user_schema(
+        ignore_missing, name_validator, user_name_validator,
+        unicode_safe, user_password_validator, boolean_validator):
+    schema = schema_.default_user_schema()
+
+    schema['name'] = [
+        ignore_missing, name_validator, user_name_validator, unicode_safe]
+    schema['password'] = [
+        user_password_validator, ignore_missing, unicode_safe]
+    
+    schema['user-terms-agree'] = [boolean_validator, ]
+    schema["allow_marketting_emails"] = [boolean_validator, ]
+    
+    return schema
+
+
+@validator_args
+def default_marsavin_pages_schema(
+        ignore_missing, name_validator, int_validator):
+    schema = {
+        "title": [],
+        "name": [name_validator],
+        "content": [ignore_missing],
+        "lang": [],
+        "sidebar_content": [],
+        "order": [int_validator],
+        "created": [],
+        "modified": []
+    }
+    
+    return schema
