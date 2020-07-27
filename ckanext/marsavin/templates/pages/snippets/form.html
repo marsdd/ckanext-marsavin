@@ -1,16 +1,23 @@
 {% import 'macros/form.html' as form %}
 
-
+{% if page %}
+{% set slug_prefix = h.url_for("marsavin_pages_edit", page=page) ~ '/' %}
+{% else %}
+{% set slug_prefix = h.url_for("marsavin_pages_index") ~ '/' %}
+{% endif %}
+<h1>{{slug_prefix}}</h1>
 <form id="pages-edit" class="dataset-form" method="post" data-module="basic-form" enctype="multipart/form-data">
     {% block error_summary %}
         {{ form.errors(error_summary) }}
     {% endblock %}
 
+    {% set attrs = {'data-module': 'slug-preview-target', 'class': 'form-control'} %}
     {{ form.input('title', label=_('Name'), id='field-name', placeholder=_('My Page'), value=data.title, error=errors.title, classes=['control-full'], attrs=attrs) }}
 
+    {% set domain = h.url_for('marsavin_pages_index') %}
     {% set domain = slug_domain|replace("http://", "")|replace("https://", "") %}
-    {% set attrs = {'data-module': 'slug-preview-slug', 'data-module-prefix': domain~'/', 'data-module-placeholder': '<page>'} %}
-    {{ form.prepend('name', id='field-name', label=_('URL'), prepend=slug_prefix, placeholder=_(url_placeholder), value=data.name, error=errors.name, attrs=attrs) }}
+    {% set attrs = {'data-module': 'slug-preview-slug', 'class': 'form-control input-sm', 'data-module-prefix': domain~'/', 'data-module-placeholder': '<page>'} %}
+    {{ form.prepend('name', id='field-url', label=_('URL'), prepend=slug_prefix, placeholder=_('Page URL'), value=data.name, error=errors.name, attrs=attrs, is_required=true) }}
 
     {{ form.input('publish_date', id='field-publish_date', label=_('Publish Date'), placeholder=_('2020-01-01'), value=data.publish_date, error=errors.publish_date, classes=[], attrs={'data-module': 'datepicker', 'data-date-format': 'yyyy-mm-dd'}) }}
 

@@ -44,14 +44,32 @@ def default_update_user_schema(
 
 @validator_args
 def default_marsavin_pages_schema(
-        ignore_missing, name_validator, int_validator):
+        ignore_missing, name_validator, int_validator, unicode_safe):
+    
     schema = {
-        "title": [],
-        "name": [name_validator],
-        "content": [ignore_missing],
-        "lang": [],
-        "sidebar_content": [],
-        "order": [int_validator],
+        "id": [
+            unicode_safe
+        ],
+        'title': [
+            unicode_safe
+        ],
+        'name': [
+            name_validator,
+            unicode_safe
+        ],
+        'content': [
+            unicode_safe,
+            ignore_missing
+        ],
+        "lang": [
+            unicode_safe
+        ],
+        "sidebar_content": [
+            unicode_safe
+        ],
+        "order": [
+            int_validator
+        ],
         "created": [],
         "modified": []
     }

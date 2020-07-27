@@ -219,40 +219,6 @@ def user_update(context, data_dict):
     return model_dictize.user_dictize(user, context)
 
 
-@schema_.validator_args
-def default_update_marsavin_pages_schema(
-        name_validator,
-        unicode_safe):
-    schema = {
-        "id": [
-            unicode_safe
-        ],
-        'title': [
-            name_validator,
-            unicode_safe
-        ],
-        'name': [
-            unicode_safe
-        ],
-        'content': [
-            unicode_safe
-        ],
-        "lang": [
-            unicode_safe
-        ],
-        "sidebar_content": [
-            unicode_safe
-        ],
-        "order": [
-            unicode_safe
-        ],
-        "created": [],
-        "modified": []
-    }
-
-    return schema
-
-
 def marsavin_pages_new(context, data_dict=None):
     '''Make a new page
     
@@ -289,7 +255,7 @@ def marsavin_pages_new(context, data_dict=None):
     
     _check_access('ckanext_marsavin_pages_new', context, data_dict)
     
-    schema = toolkit
+    schema = default_marsavin_pages_schema()
 
     marsavin_page_dict = {
         "title": data_dict["title"],
@@ -303,9 +269,8 @@ def marsavin_pages_new(context, data_dict=None):
     if "modified" in data_dict:
         marsavin_page_dict["modified"] = data_dict["modified"]
         
-    marsavin_page_dict, errors = _validate(data=data_dict,
-                                  schema=default_update_marsavin_pages_schema(),
-                                  context=context)
+    marsavin_page_dict, errors = _validate(data=data_dict, schema=schema,
+                                           context=context)
     
     if errors:
         raise ValidationError(errors)
