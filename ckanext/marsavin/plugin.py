@@ -36,7 +36,8 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
         return {
             u"format_autocomplete": actions.format_autocomplete,
             u"user_update": actions.user_update,
-            u"marsavin_pages_new": actions.marsavin_pages_new
+            u"marsavin_pages_new": actions.marsavin_pages_new,
+            u"marsavin_pages_list": actions.marsavin_pages_list
         }
 
     # add template helper functions

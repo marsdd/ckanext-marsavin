@@ -9,10 +9,18 @@ clean_dict = logic.clean_dict
 parse_params = logic.parse_params
 
 
-
 def index():
+    context = {
+        u'model': model,
+        u'session': model.Session
+    }
+    data_dict = {}
+    pages = logic.get_action(u'marsavin_pages_list')(context, data_dict)
+    extra_vars = {
+        'pages': pages
+    }
     u''' display privacy page'''
-    return base.render(u'pages/index.html', extra_vars={})
+    return base.render(u'pages/index.html', extra_vars=extra_vars)
 
 
 def edit(page):

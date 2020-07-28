@@ -1,0 +1,22 @@
+{% set pages_total = pages|length %}
+
+<h2>Pages</h2>
+
+<ul class="dataset-list list-unstyled">
+    {% for page in pages %}
+        {% set url = h.url_for(controller='marsavin_pages', action='read', page=page.name) %}
+
+        <li class="dataset-item">
+            {% block page_list_summary scoped %}
+                <h3 class="dataset-heading">
+                    <a href="{{ url }}" >{{ page.title }}</a>
+                </h3>
+                {% if page.content %}
+                    {{ h.markdown_extract(page.content)|truncate(50) }}
+                {% else %}
+                    <p class="empty">{{ _('This page currently has no content') }}</p>
+                {% endif %}
+            {% endblock %}
+        </li>
+    {% endfor %}
+</ul>

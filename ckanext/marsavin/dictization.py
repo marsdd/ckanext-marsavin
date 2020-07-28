@@ -4,6 +4,9 @@ from ckanext.marsavin.model.access_requests import AccessRequests
 from ckanext.marsavin.model.package_marsavin import PackageMarsavin
 from ckanext.marsavin.model.user_marsavin import UserMarsavin
 from datetime import date
+import logging
+
+log = logging.getLogger(__name__)
 
 
 # a.s.
@@ -115,3 +118,14 @@ def user_marsavin_save(user_dict, context):
     user_marsavin = d.table_dict_save(user_marsavin_dict, UserMarsavin,
                                       context)
     return user_marsavin
+
+
+def marsavin_pages_dictize(obj, context):
+    log.info(obj)
+    pages_dict = {
+        "title": obj.title,
+        "name": obj.name
+    }
+    return pages_dict
+    
+    

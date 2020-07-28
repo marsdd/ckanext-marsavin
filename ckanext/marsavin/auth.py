@@ -10,4 +10,4 @@ pages_read = anyone
 pages_update = sysadmin
 pages_new = sysadmin
 pages_delete = sysadmin
-pages_list = anyone
+pages_list = sysadmin

@@ -1,7 +1,8 @@
 from helpers import _mail_recipient, get_package_resource_format_split, \
     subscribe_to_mailchimp
 import ckan.logic as logic
-from ckanext.marsavin.dictization import reqaccess_dict_save
+from ckanext.marsavin.dictization import reqaccess_dict_save, \
+    marsavin_pages_dictize
 import logging
 from ckan.plugins import toolkit
 from ckanext.marsavin.schema import default_reqaccess_schema, \
@@ -14,6 +15,10 @@ import ckan.lib.dictization.model_save as model_save
 from dictization import user_marsavin_save
 from ckanext.marsavin.model.marsavin_pages import MarsavinPages
 import ckan.lib.dictization as d
+
+import logging
+
+log = logging.getLogger(__name__)
 
 _func = sqlalchemy.func
 _and_ = sqlalchemy.and_
@@ -286,3 +291,27 @@ def marsavin_pages_new(context, data_dict=None):
         
     return marsavin_page
 
+
+def marsavin_pages_list(context, data_dict):
+    '''Return a list of the site's user accounts.
+
+    :rtype: list of user dictionaries. User properties include:
+      ``number_created_packages`` which excludes datasets which are private
+      or draft state.
+
+    '''
+    model = context['model']
+
+    _check_access('ckanext_marsavin_pages_list', context, data_dict)
+
+    query = model.Session.query(
+        MarsavinPages.title,
+        MarsavinPages.name
+    )
+    
+    pages_list = []
+    for page in query.all():
+        page_dict = marsavin_pages_dictize(page, context)
+        pages_list.append(page_dict)
+    
+    return pages_list
