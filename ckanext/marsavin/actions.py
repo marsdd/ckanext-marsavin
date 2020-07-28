@@ -251,7 +251,7 @@ def marsavin_pages_new(context, data_dict=None):
 
     '''
     model = context['model']
-    user = context['user']
+    session = context['session']
     
     _check_access('ckanext_marsavin_pages_new', context, data_dict)
     
@@ -264,10 +264,6 @@ def marsavin_pages_new(context, data_dict=None):
         "sidebar_content": data_dict["sidebar_content"],
         "order": data_dict["order"]
     }
-    if "created" in data_dict:
-        marsavin_page_dict["created"] = data_dict["created"]
-    if "modified" in data_dict:
-        marsavin_page_dict["modified"] = data_dict["modified"]
         
     marsavin_page_dict, errors = _validate(data=data_dict, schema=schema,
                                            context=context)
@@ -277,5 +273,16 @@ def marsavin_pages_new(context, data_dict=None):
     
     marsavin_page = d.table_dict_save(marsavin_page_dict, MarsavinPages,
                                       context)
+    
+    # generate the user id
+    session.flush()
+
+    if not context.get('defer_commit'):
+        try:
+            model.repo.commit()
+        except Exception as e:
+            log.debug(e.message)
+            session.rollback()
+        
     return marsavin_page
 

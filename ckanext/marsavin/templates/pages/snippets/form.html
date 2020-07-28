@@ -1,11 +1,10 @@
 {% import 'macros/form.html' as form %}
 
 {% if page %}
-{% set slug_prefix = h.url_for("marsavin_pages_edit", page=page) ~ '/' %}
+{% set slug_prefix = h.url_for("marsavin_pages.edit", page=page) %}
 {% else %}
-{% set slug_prefix = h.url_for("marsavin_pages_index") ~ '/' %}
+{% set slug_prefix = h.url_for("marsavin_pages.index") %}
 {% endif %}
-<h1>{{slug_prefix}}</h1>
 <form id="pages-edit" class="dataset-form" method="post" data-module="basic-form" enctype="multipart/form-data">
     {% block error_summary %}
         {{ form.errors(error_summary) }}
@@ -14,26 +13,11 @@
     {% set attrs = {'data-module': 'slug-preview-target', 'class': 'form-control'} %}
     {{ form.input('title', label=_('Name'), id='field-name', placeholder=_('My Page'), value=data.title, error=errors.title, classes=['control-full'], attrs=attrs) }}
 
-    {% set domain = h.url_for('marsavin_pages_index') %}
-    {% set domain = slug_domain|replace("http://", "")|replace("https://", "") %}
-    {% set attrs = {'data-module': 'slug-preview-slug', 'class': 'form-control input-sm', 'data-module-prefix': domain~'/', 'data-module-placeholder': '<page>'} %}
+    {% set domain = slug_prefix|replace("http://", "")|replace("https://", "") %}
+    {% set attrs = {'data-module': 'slug-preview-slug', 'class': 'form-control input-sm', 'data-module-prefix': domain, 'data-module-placeholder': '<page>'} %}
     {{ form.prepend('name', id='field-url', label=_('URL'), prepend=slug_prefix, placeholder=_('Page URL'), value=data.name, error=errors.name, attrs=attrs, is_required=true) }}
 
-    {{ form.input('publish_date', id='field-publish_date', label=_('Publish Date'), placeholder=_('2020-01-01'), value=data.publish_date, error=errors.publish_date, classes=[], attrs={'data-module': 'datepicker', 'data-date-format': 'yyyy-mm-dd'}) }}
-
-    <div class="control-group">
-    <label for="field-private" class="control-label">{{ _('Visibility') }}</label>
-        <div class="controls">
-            <select id="field-private" class="form-control" name="private">
-                {% for option in [(true, _('Private')), (false, _('Public'))] %}
-                <option value="{{ option[0] }}" {% if option[0] == data.private %}selected="selected"{% endif %}>{{ option[1] }}</option>
-                {% endfor %}
-            </select>
-        </div>
-    </div>
-
-    {% if not hide_field_order %}
-    <div class="control-group">
+    <div class="form-group">
         <label for="field-order" class="control-label">{{ _('Header Order') }}</label>
         <div class="controls">
             <select id="field-order" class="form-control" name="order">
@@ -43,7 +27,6 @@
             </select>
         </div>
     </div>
-    {% endif %}
 
     {{ form.markdown('content', id='field-content', label=_('Content'), placeholder=_('Enter content here'), value=data.content, error=errors.content) }}
 

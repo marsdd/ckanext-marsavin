@@ -55,7 +55,8 @@ class CreatePagesView(MethodView):
                 dict_fns.unflatten(tuplize_dict(parse_params(
                     toolkit.request.form))))
             
-            toolkit.get_action(u"marsavin_pages_new")(context, data_dict)
+            page = toolkit.get_action(u"marsavin_pages_new")(context,
+                                                             data_dict)
         except (toolkit.ObjectNotFound) as e:
             base.abort(404, toolkit._(u'Page not found: %s' % e))
         except dict_fns.DataError:
@@ -65,7 +66,7 @@ class CreatePagesView(MethodView):
             error_summary = e.error_summary
             return self.get(data_dict, errors, error_summary)
 
-        return toolkit.redirect_to(u"marsavin_pages.new")
+        return toolkit.redirect_to(u"marsavin_pages.index")
 
     def get(self, data=None, errors=None, error_summary=None):
         extra_vars = {

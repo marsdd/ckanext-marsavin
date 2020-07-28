@@ -48,6 +48,7 @@ def default_marsavin_pages_schema(
     
     schema = {
         "id": [
+            ignore_missing,
             unicode_safe
         ],
         'title': [
@@ -70,8 +71,8 @@ def default_marsavin_pages_schema(
         "order": [
             int_validator
         ],
-        "created": [],
-        "modified": []
+        "created": [ignore_missing],
+        "modified": [ignore_missing]
     }
     
     return schema
