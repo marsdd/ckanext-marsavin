@@ -1,0 +1,7 @@
+{% if page.content %}
+<div class="ckanext-pages-content">
+    {{ h.render_markdown(page.content) }}
+</div>
+{% else %}
+    <p class="empty">{{ _('This page currently has no content') }}</p>
+{% endif %}

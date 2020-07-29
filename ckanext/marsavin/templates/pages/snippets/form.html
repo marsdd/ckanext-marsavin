@@ -1,9 +1,9 @@
 {% import 'macros/form.html' as form %}
 
-{% if page %}
-{% set slug_prefix = h.url_for("marsavin_pages.edit", page=page) %}
-{% else %}
 {% set slug_prefix = h.url_for("marsavin_pages.index") %}
+
+{% if page %}
+    {% set delete_url=h.url_for("marsavin_pages.delete", page=page) %}
 {% endif %}
 <form id="pages-edit" class="dataset-form" method="post" data-module="basic-form" enctype="multipart/form-data">
     {% block error_summary %}

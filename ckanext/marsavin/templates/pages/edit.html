@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block primary_content_inner %}
-      {% snippet "pages/snippets/form.html", page=page %}
+      {% snippet "pages/snippets/form.html", page=data.name, data=data, attrs=attrs, errors=errors %}
 {% endblock %}
 
 {% block secondary_content %}

@@ -10,8 +10,8 @@ from .helpers import _mail_recipient, is_featured_organization, \
 from . import actions, auth
 from .views.request_access import RequestAccessView
 from .views.marsavin import contact, terms, privacy, faq
-from .views.pages import index as page_index, edit as page_edit, delete as \
-    page_delete, read as page_read, CreatePagesView
+from .views.pages import index as page_index, delete as \
+    page_delete, read as page_read, CreatePagesView, EditPagesView
 
 from .dictization import package_marsavin_save, package_marsavin_delete, \
     package_marsavin_load
@@ -37,7 +37,10 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
             u"format_autocomplete": actions.format_autocomplete,
             u"user_update": actions.user_update,
             u"marsavin_pages_new": actions.marsavin_pages_new,
-            u"marsavin_pages_list": actions.marsavin_pages_list
+            u"marsavin_pages_list": actions.marsavin_pages_list,
+            u"marsavin_pages_show": actions.marsavin_pages_show,
+            u"marsavin_pages_edit": actions.marsavin_pages_edit,
+            u"marsavin_pages_delete": actions.marsavin_pages_delete
         }
 
     # add template helper functions
@@ -90,7 +93,7 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
                               view_func=CreatePagesView.as_view(
                                   "new"))
         pages_bp.add_url_rule(u'/edit/<page>', methods=[u'GET', u'POST'],
-                              view_func=page_edit)
+                              view_func=EditPagesView.as_view("edit"))
         pages_bp.add_url_rule(u'/delete/<page>', methods=[u'GET', u'POST'],
                               view_func=page_delete)
         pages_bp.add_url_rule(u'/<page>', view_func=page_read,
@@ -207,7 +210,7 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
         """
         return {
             "ckanext_marsavin_pages_new": auth.pages_new,
-            "ckanext_marsavin_pages_update": auth.pages_update,
+            "ckanext_marsavin_pages_edit": auth.pages_edit,
             "ckanext_marsavin_pages_delete": auth.pages_delete,
             "ckanext_marsavin_pages_list": auth.pages_list,
             "ckanext_marsavin_pages_read": auth.pages_read

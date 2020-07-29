@@ -18,7 +18,7 @@ marsavin_pages_table = Table('ckanext_marsavin_pages', meta.metadata,
                              Column('created', types.TIMESTAMP,
                                     default=datetime.utcnow),
                              Column('modified', types.TIMESTAMP,
-                                    onupdate=func.utcnow),
+                                    onupdate=func.current_timestamp()),
                              UniqueConstraint("name", "lang",
                                               name="u_name_lang")
                              )

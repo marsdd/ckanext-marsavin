@@ -7,7 +7,7 @@ def anyone(context, data_dict):
 
 
 pages_read = anyone
-pages_update = sysadmin
+pages_edit = sysadmin
 pages_new = sysadmin
 pages_delete = sysadmin
 pages_list = sysadmin

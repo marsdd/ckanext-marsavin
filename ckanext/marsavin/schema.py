@@ -43,36 +43,34 @@ def default_update_user_schema(
 
 
 @validator_args
-def default_marsavin_pages_schema(
-        ignore_missing, name_validator, int_validator, unicode_safe):
-    
+def marsavin_pages_default_schema(ignore_missing, name_validator,
+                                  int_validator, unicode_safe):
     schema = {
-        "id": [
-            ignore_missing,
-            unicode_safe
-        ],
-        'title': [
-            unicode_safe
-        ],
-        'name': [
-            name_validator,
-            unicode_safe
-        ],
-        'content': [
-            unicode_safe,
-            ignore_missing
-        ],
-        "lang": [
-            unicode_safe
-        ],
-        "sidebar_content": [
-            unicode_safe
-        ],
-        "order": [
-            int_validator
-        ],
+        "id": [unicode_safe],
+        'title': [unicode_safe],
+        'name': [name_validator, unicode_safe],
+        'content': [unicode_safe, ignore_missing],
+        "lang": [unicode_safe],
+        "sidebar_content": [unicode_safe],
+        "order": [int_validator],
         "created": [ignore_missing],
         "modified": [ignore_missing]
     }
+    return schema
+
+
+@validator_args
+def marsavin_pages_new_schema(ignore_missing, unicode_safe):
     
+    schema = marsavin_pages_default_schema()
+    schema["id"] = [ignore_missing, unicode_safe]
+    
+    return schema
+
+
+@validator_args
+def marsavin_pages_edit_schema(unicode_safe):
+    schema = marsavin_pages_default_schema()
+    schema["id"] = [unicode_safe]
+
     return schema
