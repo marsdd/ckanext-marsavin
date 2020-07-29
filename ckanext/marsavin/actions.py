@@ -345,17 +345,14 @@ def marsavin_pages_list(context, data_dict):
       or draft state.
 
     '''
-    model = context['model']
+    lang = context['lang']
 
     _check_access('ckanext_marsavin_pages_list', context, data_dict)
 
-    query = model.Session.query(
-        MarsavinPages.title,
-        MarsavinPages.name
-    )
+    pages = MarsavinPages.by_lang(lang)
     
     pages_list = []
-    for page in query.all():
+    for page in pages:
         page_dict = marsavin_pages_dictize(page, context)
         pages_list.append(page_dict)
     

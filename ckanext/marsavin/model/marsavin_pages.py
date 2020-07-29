@@ -31,5 +31,11 @@ class MarsavinPages(domain_object.DomainObject):
               .filter_by(name=page, lang=lang).first()
         return obj
 
+    @classmethod
+    def by_lang(cls, lang, autoflush=True):
+        obj = meta.Session.query(cls).autoflush(autoflush) \
+            .filter_by(lang=lang).all()
+        return obj
+
 
 meta.mapper(MarsavinPages, marsavin_pages_table)

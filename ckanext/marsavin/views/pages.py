@@ -27,12 +27,13 @@ def load_page(page):
 def index():
     context = {
         u'model': model,
-        u'session': model.Session
+        u'session': model.Session,
+        u'lang': get_lang()
     }
     data_dict = {}
     pages = logic.get_action(u'marsavin_pages_list')(context, data_dict)
     extra_vars = {
-        'pages': pages
+        u'pages': pages
     }
     u''' display privacy page'''
     return base.render(u'pages/index.html', extra_vars=extra_vars)
