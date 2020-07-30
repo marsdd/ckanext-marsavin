@@ -18,10 +18,10 @@
     {{ form.prepend('name', id='field-url', label=_('URL'), prepend=slug_prefix, placeholder=_('Page URL'), value=data.name, error=errors.name, attrs=attrs, is_required=true) }}
 
     <div class="form-group">
-        <label for="field-order" class="control-label">{{ _('Header Order') }}</label>
+        <label for="field-order" class="control-label">{{ _('Nav Menu Order') }}</label>
         <div class="controls">
             <select id="field-order" class="form-control" name="order">
-                {% for option in [('', _('Not in Menu')), ('1','1'), ('2', '2'), ('3', '3') , ('4', '4')] %}
+                {% for option in [('', _('Not in Menu')), ('1','Slot 1'), ('2', 'Slot 2'), ('3', 'Slot 3') , ('4', 'Slot 4')] %}
                 <option value="{{ option[0] }}" {% if option[0] == data.order %}selected="selected"{% endif %}>{{ option[1] }}</option>
                 {% endfor %}
             </select>
