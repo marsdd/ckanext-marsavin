@@ -6,7 +6,8 @@ import os
 import logging
 from .helpers import _mail_recipient, is_featured_organization, \
     get_homepage_featured_organizations, get_homepage_featured_groups, \
-    get_package_resource_format_split, render_resource_format
+    get_package_resource_format_split, render_resource_format, \
+    pages_build_main_nav
 from . import actions, auth
 from .views.request_access import RequestAccessView
 from .views.marsavin import contact, terms, privacy, faq
@@ -117,7 +118,8 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
             'get_homepage_featured_groups': get_homepage_featured_groups,
             'get_package_resource_format_split':
                 get_package_resource_format_split,
-            'render_resource_format': render_resource_format
+            'render_resource_format': render_resource_format,
+            'pages_build_main_nav': pages_build_main_nav
         }
 
     def _get_schema_updates(self, schema):

@@ -124,7 +124,13 @@ def marsavin_pages_dictize(obj, context):
     log.info(obj)
     pages_dict = {
         "title": obj.title,
-        "name": obj.name
+        "name": obj.name,
+        "content": obj.content,
+        "lang": obj.lang,
+        "sidebar_content": obj.sidebar_content,
+        "order": obj.order,
+        "created": obj.created,
+        "modified": obj.modified,
     }
     return pages_dict
     

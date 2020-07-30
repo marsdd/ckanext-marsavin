@@ -31,7 +31,11 @@ def index():
         u'lang': get_lang()
     }
     data_dict = {}
-    pages = logic.get_action(u'marsavin_pages_list')(context, data_dict)
+    try:
+        pages = logic.get_action(u'marsavin_pages_list')(context, data_dict)
+    except logic.NotAuthorized:
+        base.abort(403, toolkit._(u'You must be logged in to view this page'))
+        
     extra_vars = {
         u'pages': pages
     }
@@ -115,6 +119,7 @@ class EditPagesView(MethodView):
         return toolkit.redirect_to(u"marsavin_pages.read", page=page.name)
     
     def get(self, page=None, data=None, errors=None, error_summary=None):
+        self._prepare(page)
         try:
             page_obj = load_page(page)
         except toolkit.ObjectNotFound:
@@ -131,7 +136,7 @@ class EditPagesView(MethodView):
 
 class CreatePagesView(MethodView):
     u'''Create pages view '''
-    def _prepare(self, data=None):
+    def _prepare(self):
         context = {
             u'model': model,
             u'session': model.Session,
@@ -169,10 +174,12 @@ class CreatePagesView(MethodView):
         return toolkit.redirect_to(u"marsavin_pages.read", page=page.name)
 
     def get(self, data=None, errors=None, error_summary=None):
+        self._prepare()
         extra_vars = {
             "data": data or {},
             u'errors': errors,
             u'error_summary': error_summary,
             "attrs": {}
         }
+        
         return base.render(u'pages/new.html', extra_vars=extra_vars)
