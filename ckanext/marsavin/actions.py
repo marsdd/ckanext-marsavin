@@ -1,17 +1,25 @@
 from helpers import _mail_recipient, get_package_resource_format_split, \
     subscribe_to_mailchimp
 import ckan.logic as logic
-import ckan
-from ckanext.marsavin.dictization import reqaccess_dict_save
+from ckanext.marsavin.dictization import reqaccess_dict_save, \
+    marsavin_pages_dictize
 import logging
 from ckan.plugins import toolkit
-from ckanext.marsavin.schema import default_reqaccess_schema
+from ckanext.marsavin.schema import default_reqaccess_schema, \
+    default_update_user_schema, marsavin_pages_new_schema, \
+    marsavin_pages_edit_schema
 import sqlalchemy
 from sqlalchemy import text
 import ckan.logic.schema as schema_
 import ckan.lib.dictization.model_dictize as model_dictize
 import ckan.lib.dictization.model_save as model_save
 from dictization import user_marsavin_save
+from ckanext.marsavin.model.marsavin_pages import MarsavinPages
+import ckan.lib.dictization as d
+
+import logging
+
+log = logging.getLogger(__name__)
 
 _func = sqlalchemy.func
 _and_ = sqlalchemy.and_
@@ -19,12 +27,12 @@ _and_ = sqlalchemy.and_
 # Define some shortcuts
 # Ensure they are module-private so that they don't get loaded as available
 # actions in the action API.
-_validate = ckan.lib.navl.dictization_functions.validate
-_check_access = logic.check_access
-_get_action = logic.get_action
-ValidationError = logic.ValidationError
-NotFound = logic.NotFound
-_get_or_bust = logic.get_or_bust
+_validate = toolkit.navl_validate
+_check_access = toolkit.check_access
+_get_action = toolkit.get_action
+ValidationError = toolkit.ValidationError
+NotFound = toolkit.ObjectNotFound
+_get_or_bust = toolkit.get_or_bust
 
 log = logging.getLogger(__name__)
 
@@ -142,23 +150,6 @@ def format_autocomplete(context, data_dict):
     return output_list
 
 
-@schema_.validator_args
-def default_update_user_schema(
-        ignore_missing, name_validator, user_name_validator,
-        unicode_safe, user_password_validator, boolean_validator):
-    schema = schema_.default_user_schema()
-
-    schema['name'] = [
-        ignore_missing, name_validator, user_name_validator, unicode_safe]
-    schema['password'] = [
-        user_password_validator, ignore_missing, unicode_safe]
-    
-    schema['user-terms-agree'] = [boolean_validator, ]
-    schema["allow_marketting_emails"] = [boolean_validator, ]
-    
-    return schema
-
-
 def user_update(context, data_dict):
     '''Update a user account.
 
@@ -232,3 +223,184 @@ def user_update(context, data_dict):
     if not context.get('defer_commit'):
         model.repo.commit()
     return model_dictize.user_dictize(user, context)
+
+
+def marsavin_pages_save(context, data_dict):
+    schema = context["schema"]
+    model = context["model"]
+    session = context["session"]
+    marsavin_page_dict, errors = _validate(data=data_dict, schema=schema,
+                                           context=context)
+    
+    if errors:
+        raise ValidationError(errors)
+    
+    marsavin_page = d.table_dict_save(marsavin_page_dict, MarsavinPages,
+                                      context)
+    
+    # generate the user id
+    session.flush()
+    
+    if not context.get('defer_commit'):
+        try:
+            model.repo.commit()
+        except Exception as e:
+            log.debug(e.message)
+            session.rollback()
+    
+    return marsavin_page
+
+
+def marsavin_pages_new(context, data_dict=None):
+    '''Make a new page
+    
+    :param id: the id or name of the group to add the object to
+    :type id: string
+    
+    :param title: the title of the page
+    :type title: string
+    
+    :param name: the url safe name of the page
+    :type name: string
+    
+    :param content: the id or name of the group to add the object to
+    :type content: string
+    
+    :param lang: the id or name of the group to add the object to
+    :type lang: string
+    
+    :param sidebar_content: the id or name of the group to add the object to
+    :type sidebar_content: string
+    
+    :param order: the id or name of the group to add the object to
+    :type order: string
+    
+    :param user_id: created user id of the page
+    :type user_id: string
+
+    :returns: the newly created (or updated) page
+    :rtype: dictionary
+
+    '''
+    model = context['model']
+    session = context['session']
+    
+    _check_access('ckanext_marsavin_pages_new', context, data_dict)
+    
+    context['schema'] = marsavin_pages_new_schema()
+    
+    return marsavin_pages_save(context, data_dict)
+
+
+def marsavin_pages_edit(context, data_dict=None):
+    '''Make a new page
+
+    :param id: the id or name of the group to add the object to
+    :type id: string
+
+    :param title: the title of the page
+    :type title: string
+
+    :param name: the url safe name of the page
+    :type name: string
+
+    :param content: the id or name of the group to add the object to
+    :type content: string
+
+    :param lang: the id or name of the group to add the object to
+    :type lang: string
+
+    :param sidebar_content: the id or name of the group to add the object to
+    :type sidebar_content: string
+
+    :param order: the id or name of the group to add the object to
+    :type order: string
+
+    :param user_id: created user id of the page
+    :type user_id: string
+
+    :returns: the newly created (or updated) page
+    :rtype: dictionary
+
+    '''
+    
+    _check_access('ckanext_marsavin_pages_edit', context, data_dict)
+    
+    page_obj = MarsavinPages.by_page_lang(data_dict["name"], data_dict["lang"])
+    if not page_obj:
+        raise toolkit.ObjectNotFound
+    
+    data_dict["id"] = page_obj.id
+    
+    context["schema"] = marsavin_pages_edit_schema()
+
+    return marsavin_pages_save(context, data_dict)
+
+
+def marsavin_pages_list(context, data_dict):
+    '''Return a list of the site's user accounts.
+
+    :rtype: list of user dictionaries. User properties include:
+      ``number_created_packages`` which excludes datasets which are private
+      or draft state.
+
+    '''
+    lang = context['lang']
+
+    _check_access('ckanext_marsavin_pages_list', context, data_dict)
+
+    pages = MarsavinPages.by_lang(lang)
+    
+    pages_list = []
+    for page in pages:
+        page_dict = marsavin_pages_dictize(page, context)
+        pages_list.append(page_dict)
+    
+    return pages_list
+
+
+def marsavin_pages_show(context, data_dict={}):
+    '''Return a list of the site's user accounts.
+
+    :rtype: list of user dictionaries. User properties include:
+      ``number_created_packages`` which excludes datasets which are private
+      or draft state.
+
+    '''
+    page = _get_or_bust(data_dict, "name")
+    lang = _get_or_bust(data_dict, "lang")
+    
+    _check_access('ckanext_marsavin_pages_read', context, data_dict)
+    
+    page_obj = MarsavinPages.by_page_lang(page, lang)
+    
+    if not page_obj:
+        raise toolkit.ObjectNotFound
+    
+    return page_obj
+
+
+def marsavin_pages_delete(context, data_dict):
+    '''Delete a user.
+
+    Only sysadmins can delete users.
+
+    :param id: the id or usernamename of the user to delete
+    :type id: string
+    '''
+
+    _check_access('ckanext_marsavin_pages_delete', context, data_dict)
+
+    model = context['model']
+    pages_name = _get_or_bust(data_dict, 'page')
+    lang = _get_or_bust(data_dict, "lang")
+    
+    page = MarsavinPages.by_page_lang(pages_name, lang)
+
+    if page is None:
+        raise toolkit.ObjectNotFound('Page "{id}" was not found.'.format(
+            id=pages_name))
+
+    page.delete()
+
+    model.repo.commit()
