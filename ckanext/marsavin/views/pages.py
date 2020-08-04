@@ -68,9 +68,10 @@ def read(page):
         page_obj = load_page(page)
     except toolkit.ObjectNotFound:
         base.abort(404)
-        
+    
     extra_vars = {
-        u"page": page_obj
+        u"page": page_obj,
+        u"can_edit": toolkit.h.check_access("ckanext_marsavin_pages_edit")
     }
     u''' display privacy page'''
     return base.render(u'pages/read.html', extra_vars=extra_vars)
