@@ -40,6 +40,11 @@
         <span class="text">{{ _('Admin') }}</span>
       </a>
     </li>
+    <li>
+      <a href="{{ h.url_for('marsavin_pages.index') }}" title="{{ _('Manage Pages') }}">
+        <span class="text">{{ _('Manage Pages') }}</span>
+      </a>
+    </li>
     {% endif %}
     {% block header_account_log_out_link %}
     <li role="separator" class="divider"></li>
