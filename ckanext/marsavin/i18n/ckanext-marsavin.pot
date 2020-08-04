@@ -4497,3 +4497,25 @@ msgstr ""
 msgid "Search Users"
 msgstr ""
 
+#: ckanext/marsavin/templates/pages/index.html:3
+#: ckanext/marsavin/templates/pages/new.html:3
+#: ckanext/marsavin/templates/pages/new.html:3
+msgid "Editable Pages"
+msgstr ""
+
+#: ckanext/marsavin/templates/pages/snippets/helper.html:4
+msgid "What are Pages?"
+msgstr ""
+
+#: ckanext/marsavin/templates/pages/snippets/helper.html:8
+msgid "You can use this section to edit the editable pages available for AVIN."
+msgstr ""
+
+#: ckanext/marsavin/templates/pages/snippets/list.html:15
+#: ckanext/marsavin/templates/pages/snippets/read_content.html:6
+msgid "This page currently has no content"
+msgstr ""
+
+#: ckanext/marsavin/templates/pages/snippets/form.html:43
+msgid "Are you sure you want to delete this Page?"
+msgstr ""

@@ -1,7 +1,5 @@
 {% set pages_total = pages|length %}
 
-<h2>Pages</h2>
-
 <ul class="dataset-list list-unstyled">
     {% for page in pages %}
         {% set url = h.url_for(controller='marsavin_pages', action='read', page=page.name) %}

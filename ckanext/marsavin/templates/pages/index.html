@@ -1,6 +1,6 @@
 {% extends "page.html" %}
 
-{% block subtitle %}{{ _('Privacy Policy') }}{% endblock %}
+{% block subtitle %}{{ _('Editable Pages') }}{% endblock %}
 
 {% block breadcrumb_content %}
   <li class="active">{% link_for _('Editable Pages'), 'marsavin_pages.index' %}</li>
@@ -13,7 +13,7 @@
   {% link_for _('New Page'), controller='marsavin_pages', action='new', class_='btn btn-primary', icon='plus-square' %}
 {% endblock %}
 {% block primary_content_inner %}
-    {% snippet "pages/snippets/list.html", pages=pages %}
+    {% snippet "pages/snippets/list.html", pages=pages, attrs=attrs, errors=errors %}
 {% endblock %}
 
 {% block secondary_content %}
