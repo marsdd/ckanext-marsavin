@@ -536,3 +536,26 @@ msgstr "Apprenez-en davantage au sujet d’RIVA"
 #: ckanext/marsavin/templates/package/resource_read.html:60
 msgid "Request Dataset Access"
 msgstr "Demande d’accès à l’ensemble de données"
+
+#: ckanext/marsavin/templates/pages/index.html:3
+#: ckanext/marsavin/templates/pages/new.html:3
+#: ckanext/marsavin/templates/pages/new.html:3
+msgid "Editable Pages"
+msgstr "Pages modifiables"
+
+#: ckanext/marsavin/templates/pages/snippets/helper.html:4
+msgid "What are Pages?"
+msgstr "Que sont les pages?"
+
+#: ckanext/marsavin/templates/pages/snippets/helper.html:8
+msgid "You can use this section to edit the editable pages available for AVIN."
+msgstr "Vous pouvez utiliser cette section pour modifier les pages modifiables disponibles pour AVIN."
+
+#: ckanext/marsavin/templates/pages/snippets/list.html:15
+#: ckanext/marsavin/templates/pages/snippets/read_content.html:6
+msgid "This page currently has no content"
+msgstr "Cette page n'a actuellement aucun contenu"
+
+#: ckanext/marsavin/templates/pages/snippets/form.html:43
+msgid "Are you sure you want to delete this Page?"
+msgstr "Êtes-vous sûr de vouloir supprimer cette page?"

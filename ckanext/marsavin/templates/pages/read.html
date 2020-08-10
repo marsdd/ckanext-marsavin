@@ -1,0 +1,25 @@
+{% extends "page.html" %}
+
+{% block subtitle %}{{ page.title }}{% endblock %}
+
+{% block breadcrumb_content %}
+  <li class="active">{% link_for page.title, 'marsavin_pages.read', page=page.name %}</li>
+{% endblock %}
+
+{% block page_header %}
+{% endblock %}
+
+{% block page_primary_action %}
+  {% if can_edit %}
+    {% link_for _('Edit'), controller='marsavin_pages', action='edit', page=page.name, class_='btn btn-primary', icon='edit' %}
+  {% endif %}
+{% endblock %}
+
+
+{% block primary_content_inner %}
+  {% snippet "pages/snippets/read_content.html", page=page %}
+{% endblock %}
+
+{% block secondary_content %}
+  {% snippet "pages/snippets/read_sidebar.html", page=page %}
+{% endblock %}
