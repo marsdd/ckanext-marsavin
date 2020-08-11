@@ -61,16 +61,6 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
             config_['beaker.session.type'] = "ext:redis"
             config_['beaker.session.url'] = redis_url
             config_['beaker.session.timeout'] = 300
-
-        app_uuid = os.environ.get("CKAN_APP_UUID", None)
-        if app_uuid:
-            log.info("app uuid env var: %s" % app_uuid)
-            config_['app_instance_uuid'] = app_uuid
-
-        app_session_secret = os.environ.get("CKAN_APP_SECRET", None)
-        if app_session_secret:
-            log.info("app secret env var: %s" % app_session_secret)
-            config_['app_instance_secret'] = app_session_secret
             
         relevant_env_vars = [
             'mailchimp_audience_id',
