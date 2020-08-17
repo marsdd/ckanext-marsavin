@@ -9,6 +9,7 @@ from .helpers import _mail_recipient, is_featured_organization, \
     get_package_resource_format_split, render_resource_format, \
     pages_build_main_nav
 from . import actions, auth
+from .cli import marsavin
 from .views.request_access import RequestAccessView
 from .views.marsavin import contact, terms, privacy, faq
 from .views.pages import index as page_index, delete as \
@@ -31,6 +32,7 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
     plugins.implements(plugins.ISession, inherit=True)
     plugins.implements(plugins.IActions)
     plugins.implements(plugins.IAuthFunctions)
+    plugins.implements(plugins.IClick)
 
     # IActions
     def get_actions(self):
@@ -218,6 +220,13 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
             "ckanext_marsavin_pages_list": auth.pages_list,
             "ckanext_marsavin_pages_read": auth.pages_read
         }
+    
+    def get_commands(self):
+        """
+        Returns plugin commands
+        :return: list
+        """
+        return [marsavin.marsavin]
 
 
 class MarsavinRequestAccessPlugin(plugins.SingletonPlugin):
