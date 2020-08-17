@@ -24,7 +24,7 @@ from alembic.command import (
 )
 from alembic.config import Config as AlembicConfig
 
-log = logging.getLogger("ckanext")
+log = logging.getLogger(__name__)
 
 
 class DatabaseCommand(CkanCommand):
