@@ -3,10 +3,10 @@ import ckan.lib.mailer as mailer
 from ckan.common import config
 from ckan.lib.i18n import get_lang
 from six import text_type
-from cache import cacheable
+from .cache import cacheable
 from ckan import model
 from hashlib import md5
-from mailchimp import mailchimp_get_member, get_merge_fields, update_member, \
+from .mailchimp import mailchimp_get_member, get_merge_fields, update_member, \
     add_member, update_member_tags
 from pprint import pprint
 import requests

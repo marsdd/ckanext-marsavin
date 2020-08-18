@@ -1,4 +1,4 @@
-from helpers import _mail_recipient, get_package_resource_format_split, \
+from .helpers import _mail_recipient, get_package_resource_format_split, \
     subscribe_to_mailchimp
 import ckan.logic as logic
 from ckanext.marsavin.dictization import reqaccess_dict_save, \
@@ -13,11 +13,9 @@ from sqlalchemy import text
 import ckan.logic.schema as schema_
 import ckan.lib.dictization.model_dictize as model_dictize
 import ckan.lib.dictization.model_save as model_save
-from dictization import user_marsavin_save
+from .dictization import user_marsavin_save
 from ckanext.marsavin.model.marsavin_pages import MarsavinPages
 import ckan.lib.dictization as d
-
-import logging
 
 log = logging.getLogger(__name__)
 
