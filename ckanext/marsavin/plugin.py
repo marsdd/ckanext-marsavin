@@ -55,10 +55,11 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
         toolkit.add_resource('public/css', 'marsavin')
         config_['ckan.favicon'] = "/images/avin.ico"
         
-        if "ckan.redis.url" in config_:
+        redis_url = os.environ.get("CKAN_REDIS_URL", None)
+        if redis_url:
             # ckan sessions in redis to allow for container idempotency
             config_['beaker.session.type'] = "ext:redis"
-            config_['beaker.session.url'] = config_["ckan.redis.url"]
+            config_['beaker.session.url'] = redis_url
             config_['beaker.session.timeout'] = 300
             
         relevant_env_vars = [
