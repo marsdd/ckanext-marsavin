@@ -81,13 +81,21 @@ def delete_expired_packages():
     ).filter(
         PackageMarsavin.expiry_date < datetime.date.today()
     )
-
+    
     expired_packages = query.all()
-
+    
     if expired_packages:
+        log.info("Found expired packages")
         for package in expired_packages:
             # model.package
+            log.info("Deleting package {package_name} ({package_id}) "
+                     "expired on {package_expired}".format(
+                        package_name=package[0].name,
+                        package_id=package[0].id,
+                        package_expired=package[1].expiry_date))
             package[0].delete()
             rebuild(package[0].id)
-
+    else:
+        log.info("No expired packages found")
+    
     model.repo.commit()
