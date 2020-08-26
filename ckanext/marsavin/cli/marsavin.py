@@ -1,6 +1,10 @@
 import click
 import logging
 from ckan.lib.search.common import make_connection
+from ckan import model
+from ckanext.marsavin.model.package_marsavin import PackageMarsavin
+import datetime
+from ckan.lib.search import rebuild
 
 log = logging.getLogger(__name__)
 
@@ -66,3 +70,24 @@ def update_package_search_schema():
         res = conn._send_request("post", path, copy_fields[fieldname])
         log.debug("Result of update {result}".format(result=res))
     pass
+
+
+@marsavin.command()
+def delete_expired_pagkages():
+    query = model.Session.query(model.Package, PackageMarsavin).filter(
+        model.Package.id == PackageMarsavin.package_id
+    ).filter(
+        model.Package.state == "active"
+    ).filter(
+        PackageMarsavin.expiry_date < datetime.date.today()
+    )
+
+    expired_packages = query.all()
+
+    if expired_packages:
+        for package in expired_packages:
+            # model.package
+            package[0].delete()
+            rebuild(package[0].id)
+
+    model.repo.commit()
