@@ -73,7 +73,7 @@ def update_package_search_schema():
 
 
 @marsavin.command()
-def delete_expired_pagkages():
+def delete_expired_packages():
     query = model.Session.query(model.Package, PackageMarsavin).filter(
         model.Package.id == PackageMarsavin.package_id
     ).filter(
