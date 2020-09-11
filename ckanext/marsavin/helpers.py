@@ -28,8 +28,7 @@ def _mail_recipient(recipient=None, email_dict=None):
         mailer.mail_recipient(**email)
     
     except mailer.MailerException as e:
-        toolkit.h.flash_error(toolkit._('Could not send an email: %s') %
-                              text_type(e))
+        log.exception(e)
         raise
     return
 
