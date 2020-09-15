@@ -15,7 +15,7 @@ setup(
     # Versions should comply with PEP440.  For a discussion on single-sourcing
     # the version across setup.py and the project code, see
     # http://packaging.python.org/en/latest/tutorial.html#version
-    version='0.16.1',
+    version='0.18.0',
 
     description='''''',
     long_description=long_description,
@@ -87,10 +87,6 @@ setup(
 
         [babel.extractors]
         ckan = ckan.lib.extract:extract_ckan
-        
-        [paste.paster_command]
-        db = ckanext.marsavin.commands.marsavin:DatabaseCommand
-        package = ckanext.marsavin.commands.marsavin:PackageCommand
     ''',
 
     # If you are changing from the default layout of your extension, you may

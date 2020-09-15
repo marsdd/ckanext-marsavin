@@ -9,6 +9,7 @@ from .helpers import _mail_recipient, is_featured_organization, \
     get_package_resource_format_split, render_resource_format, \
     pages_build_main_nav
 from . import actions, auth
+from .cli import marsavin
 from .views.request_access import RequestAccessView
 from .views.marsavin import contact, terms, privacy, faq
 from .views.pages import index as page_index, delete as \
@@ -31,6 +32,7 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
     plugins.implements(plugins.ISession, inherit=True)
     plugins.implements(plugins.IActions)
     plugins.implements(plugins.IAuthFunctions)
+    plugins.implements(plugins.IClick)
 
     # IActions
     def get_actions(self):
@@ -41,7 +43,8 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
             u"marsavin_pages_list": actions.marsavin_pages_list,
             u"marsavin_pages_show": actions.marsavin_pages_show,
             u"marsavin_pages_edit": actions.marsavin_pages_edit,
-            u"marsavin_pages_delete": actions.marsavin_pages_delete
+            u"marsavin_pages_delete": actions.marsavin_pages_delete,
+            u"reqaccess_create": actions.reqaccess_create
         }
 
     # add template helper functions
@@ -102,6 +105,13 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
                               methods=[u"GET"])
             
         blueprints.append(pages_bp)
+
+        reqacc_bp = Blueprint(u'request_access', self.__module__)
+        reqacc_bp.add_url_rule("/request_access",
+                               view_func=RequestAccessView.as_view(str(
+                                   u'request_access')))
+        
+        blueprints.append(reqacc_bp)
         return blueprints
 
     def get_helpers(self):
@@ -218,25 +228,13 @@ class MarsavinPlugin(plugins.SingletonPlugin, DefaultTranslation,
             "ckanext_marsavin_pages_list": auth.pages_list,
             "ckanext_marsavin_pages_read": auth.pages_read
         }
-
-
-class MarsavinRequestAccessPlugin(plugins.SingletonPlugin):
-    plugins.implements(plugins.IActions)
-    plugins.implements(plugins.IBlueprint)
-
-    # IActions
-    def get_actions(self):
-        return {
-            "reqaccess_create": actions.reqaccess_create
-        }
-
-    # IBlueprint
-    def get_blueprint(self):
-        bp = Blueprint(u'request_access', self.__module__)
-        bp.add_url_rule("/request_access",
-                        view_func=RequestAccessView.as_view(str(
-                            u'request_access')))
-        return bp
+    
+    def get_commands(self):
+        """
+        Returns plugin commands
+        :return: list
+        """
+        return [marsavin.marsavin]
 
 
 class MarsavinResourcePlugin(plugins.SingletonPlugin):

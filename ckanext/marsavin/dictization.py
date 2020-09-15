@@ -121,7 +121,6 @@ def user_marsavin_save(user_dict, context):
 
 
 def marsavin_pages_dictize(obj, context):
-    log.info(obj)
     pages_dict = {
         "title": obj.title,
         "name": obj.name,
