@@ -198,8 +198,11 @@ def user_update(context, data_dict):
 
     user = model_save.user_dict_save(data, context)
     user_marsavin = user_marsavin_save(data, context)
-    if data["allow_marketting_emails"]:
-        toolkit.enqueue_job(subscribe_to_mailchimp, [user_obj])
+    try:
+        if data["allow_marketting_emails"]:
+            toolkit.enqueue_job(subscribe_to_mailchimp, [user_obj])
+    except KeyError:
+        pass
         
 
     activity_dict = {

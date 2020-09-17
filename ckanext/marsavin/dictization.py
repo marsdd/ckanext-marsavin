@@ -112,7 +112,7 @@ def user_marsavin_save(user_dict, context):
         user_marsavin_dict["allow_marketting_emails"] = user_dict[
             "allow_marketting_emails"]
     except KeyError:
-        user_marsavin_dict["allow_marketting_emails"] = None
+        pass
 
     entity = UserMarsavin.by_user_id(user_id)
 
