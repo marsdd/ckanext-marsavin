@@ -104,11 +104,15 @@ def package_marsavin_load(pkg_dict, cached_entity=None):
 
 def user_marsavin_save(user_dict, context):
     user_id = _get_or_bust(user_dict, 'id')
-
+    
     user_marsavin_dict = {
         "user_id": user_id,
-        "allow_marketting_emails": user_dict["allow_marketting_emails"]
     }
+    try:
+        user_marsavin_dict["allow_marketting_emails"] = user_dict[
+            "allow_marketting_emails"]
+    except KeyError:
+        pass
 
     entity = UserMarsavin.by_user_id(user_id)
 
