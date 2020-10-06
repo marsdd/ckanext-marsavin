@@ -113,6 +113,16 @@ def user_marsavin_save(user_dict, context):
             "allow_marketting_emails"]
     except KeyError:
         pass
+    try:
+        user_marsavin_dict["user-terms-agree"] = user_dict[
+            "user-terms-agree"]
+    except KeyError:
+        pass
+    try:
+        user_marsavin_dict["uploader-terms-agree"] = user_dict[
+            "uploader-terms-agree"]
+    except KeyError:
+        pass
 
     entity = UserMarsavin.by_user_id(user_id)
 

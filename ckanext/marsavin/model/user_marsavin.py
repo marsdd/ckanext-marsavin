@@ -8,7 +8,9 @@ user_marsavin_table = Table('user_marsavin', meta.metadata,
     Column('id', types.UnicodeText, primary_key=True, default=_types.make_uuid),
     # NB: only (package, key) pair is unique
     Column('user_id', types.UnicodeText, ForeignKey('user.id')),
-    Column('allow_marketting_emails', types.BOOLEAN)
+    Column('allow_marketting_emails', types.BOOLEAN),
+    Column('user-terms-agree', types.BOOLEAN),
+    Column('uploader-terms-agree', types.BOOLEAN)
 )
 
 

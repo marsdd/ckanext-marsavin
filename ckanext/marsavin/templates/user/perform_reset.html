@@ -15,7 +15,7 @@
       {% endcall %}
       {% if user_dict['state'] == 'pending' %}
         {% set terms_label = _('I agree to the <a href="#" data-toggle="modal" data-target="#terms-modal">Terms and Conditions</a> <i class="fa fa-external-link" aria-hidden="true"></i>') %}
-        {% set uploader_label = _('I agree to the <a href="#" data-toggle="modal" data-target="#uploader-agreement-modal">Upload Agreement</a> <i class="fa fa-external-link" aria-hidden="true"></i>')  %}
+        {% set uploader_label = _('I agree to the <a href="#" data-toggle="modal" data-target="#uploader-agreement-modal">Uploader Agreement</a> <i class="fa fa-external-link" aria-hidden="true"></i>')  %}
         {% call form.checkbox('user-terms-agree', label=terms_label, id='field-user-terms-agree', value='true', error='', classes=[], attrs={"data-module": "user-terms-reset"}) %}
         {% endcall %}
         {% call form.checkbox('uploader-terms-agree', label=uploader_label, id='field-uploader-terms-agree', value='true', error='', classes=[], attrs={"data-module": "user-terms-reset"}) %}

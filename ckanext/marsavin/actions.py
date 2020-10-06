@@ -170,6 +170,8 @@ def user_update(context, data_dict):
     id = _get_or_bust(data_dict, 'id')
     
     data_dict['user-terms-agree'] = toolkit.request.form.get("user-terms-agree")
+    data_dict['uploader-terms-agree'] = toolkit.request.form.get(
+        "uploader-terms-agree")
     data_dict['allow_marketting_emails'] = toolkit.request.form.get(
         "allow_marketting_emails")
     
@@ -187,10 +189,12 @@ def user_update(context, data_dict):
 
     # user state of "pending" is the user who doesn't yet have access to the
     # site and must reset their password to do so.
-    if user_obj.state == u'pending' and not data['user-terms-agree']:
+    if user_obj.state == u'pending' and not (
+        data['user-terms-agree'] and data['uploader-terms-agree']
+    ):
         session.rollback()
         raise ValueError(toolkit._("You must agree to the Terms and "
-                                   "Conditions"))
+                                   "Conditions and Uploader Agreement"))
 
     # user schema prevents non-sysadmins from providing password_hash
     if 'password_hash' in data:
