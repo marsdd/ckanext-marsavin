@@ -37,6 +37,7 @@ def default_update_user_schema(
         user_password_validator, ignore_missing, unicode_safe]
     
     schema['user-terms-agree'] = [boolean_validator, ]
+    schema['uploader-terms-agree'] = [boolean_validator, ]
     schema["allow_marketting_emails"] = [boolean_validator, ]
     
     return schema

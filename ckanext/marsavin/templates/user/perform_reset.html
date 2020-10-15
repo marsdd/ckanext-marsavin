@@ -14,9 +14,11 @@
       {% call form.checkbox('allow_marketting_emails', label=allow_marketting_emails_label, id='allow_marketting_emails', value='true', error='', classes=[]) %}
       {% endcall %}
       {% if user_dict['state'] == 'pending' %}
-        {% set terms_url = h.url_for('marsavin.terms') %}
-        {% set terms_label = _('I agree to the <a href="#" data-toggle="modal" data-target="#terms-modal">Terms and Conditions</a> <i class="fa fa-external-link" aria-hidden="true"></i>')|replace("{terms_url}", terms_url)  %}
+        {% set terms_label = _('I agree to the <a href="#" data-toggle="modal" data-target="#terms-modal">Terms and Conditions</a> <i class="fa fa-external-link" aria-hidden="true"></i>') %}
+        {% set uploader_label = _('I agree to the <a href="#" data-toggle="modal" data-target="#uploader-agreement-modal">Uploader Agreement</a> <i class="fa fa-external-link" aria-hidden="true"></i>')  %}
         {% call form.checkbox('user-terms-agree', label=terms_label, id='field-user-terms-agree', value='true', error='', classes=[], attrs={"data-module": "user-terms-reset"}) %}
+        {% endcall %}
+        {% call form.checkbox('uploader-terms-agree', label=uploader_label, id='field-uploader-terms-agree', value='true', error='', classes=[], attrs={"data-module": "user-terms-reset"}) %}
         {% endcall %}
       {% endif %}
       <div class="form-actions">
@@ -61,6 +63,22 @@
                 </div>
                 <div class="modal-body">
                     {% snippet 'home/snippets/privacy_text.html' %}
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="uploader-agreement-modal" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">{{ _('AVIN DATA INDEX SITE ACCOUNT/UPLOAD AGREEMENT') }}</h4>
+                </div>
+                <div class="modal-body">
+                    {% snippet 'home/snippets/uploader_agreement_text.html' %}
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
