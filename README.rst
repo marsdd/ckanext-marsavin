@@ -8,9 +8,6 @@ ckanext-marsavin
 ------------
 To Do:
 ------------
-#. Figure out how to migrate db changes required by the plugin
-#. Figure out how to handle deployments without changing the general docker
-   provided by upstream (low priority)
 #. Figure out how to manage the ini file for dev / production (low priority)
 
 
@@ -28,9 +25,10 @@ To install ckanext-marsavin (local environment):
 
      . /path/to/ckan/venv/bin/activate
 
-2. Install the ckanext-marsavin Python package into your virtual environment::
+2. Install the ckanext-marsavin and ckanext-multilang Python packages into your virtual environment::
 
      pip install /path/to/project/ckanext-marsavin
+     pip install /path/to/project/ckanext-multilang
 
 3. Add ``marsavin`` to the ``ckan.plugins`` setting in your CKAN
    config file (by default the config file is located at
@@ -38,27 +36,26 @@ To install ckanext-marsavin (local environment):
 
 4. initialize database::
 
-      paster --plugin=ckanext-marsavin init --config=/path/to/config.ini
+      ckan db init --config=/path/to/config.ini
+      ckan db upgrade --plugin marsavin
+      ckan db upgrade --plugin multilang
 
 6. make sure to update Solr search schema::
 
       cd /usr/lib/ckan/venv/src/ckan && ckan-paster --plugin=ckanext-marsavin package update_search_schema -c "${CKAN_CONFIG}/production.ini"
+      ckan --config=/path/to/config.ini marsavin update_package_search_schema
+      ckan --config=/path/to/config.ini marsavin initsearch
 
-5. Restart CKAN
-      sh /path/to/ckan/contrib/docker/ckan-entrypoint.sh
+7. rebuild the search index::
+
+   ckan --config=/path/to/config.ini search-index rebuild
+
+8. Restart CKAN::
+
+   sh /path/to/ckan/contrib/docker/ckan-entrypoint.sh
 
 ---------------------
 Installation (docker)
 ---------------------
 
-Add following in the docker file anywhere before the entrypoint but after
-ckan installation section
-
-ARG MARS_PLUGIN_VERSION
-
-     ckan-pip install https://github.com/marsdd/ckanext-marsavin/archive/$MARS_PLUGIN_VERSION.zip
-
-
-Then rebuild with the build arg::
-
-   docker build -f /path/to/ckan/Dockerfile --build-arg MARS_PLUGIN_VERSION=<name-of-branch-or-tag>
+See https://github.com/marsdd/ckan-docker for instructions on how to do docker installs.
