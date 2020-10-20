@@ -10,6 +10,24 @@ To Do:
 ------------
 #. Figure out how to manage the ini file for dev / production (low priority)
 
+-------------
+CKAN Version:
+-------------
+
+Current version is 2.9.0
+
+--------------------------
+Difference with upstream:
+--------------------------
+
+There are some changes that makes our repo separate from upstream.  I've moved 90% + changes to the plugin
+or the ckan-docker repo, but there are some changes that still require our own version, mostly
+because of the bugs that exist that isn't fixed in upstream yet.
+
+I have submitted them and they must ultimately be tracked, but until they are resolved and 2.9.1 releases,
+we don't have the lastest code base
+
+
 
 ------------
 Installation
@@ -59,3 +77,11 @@ Installation (docker)
 ---------------------
 
 See https://github.com/marsdd/ckan-docker for instructions on how to do docker installs.
+
+
+-----------------------
+Command line reference
+-----------------------
+
+* Manage user: https://docs.ckan.org/en/2.9/maintaining/cli.html#user-create-and-manage-users
+* Sysadmin user admin: https://docs.ckan.org/en/2.9/maintaining/cli.html#sysadmin-give-sysadmin-rights
