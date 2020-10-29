@@ -39,6 +39,9 @@ Installation
 
 To install ckanext-marsavin (local environment):
 
+First set up the environment, docker is probably your best bet in getting things going quickly, so scroll down to the
+[docker install](#installation-docker) section to get that going.
+
 1. Clone the repository::
 
    git git@github.com:marsdd/ckan.git /path/to/ckan
