@@ -3148,11 +3148,6 @@ msgstr ""
 msgid "Popular tags"
 msgstr ""
 
-#: ckan/templates/home/snippets/search.html:39
-msgid "To list data assets on the AVIN Data Index, contact
-    avindata@marsdd.com"
-msgstr ""
-
 #: ckan/templates/home/snippets/stats.html:5
 msgid "{0} statistics"
 msgstr ""
