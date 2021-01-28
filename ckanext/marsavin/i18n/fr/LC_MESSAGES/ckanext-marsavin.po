@@ -83,6 +83,10 @@ msgstr ""
 msgid "Welcome to the AVIN Data Index"
 msgstr "Bienvenue au Répertoire de données RIVA"
 
+#: ckanext/marsavin/templates/home/snippets/search.html:26
+msgid "To list data assets on the AVIN Data Index, contact avindata@marsdd.com"
+msgstr "Pour ajouter un ensemble de données sur le Répertoire de données RIVA, veuillez écrire à avindata@marsdd.com"
+
 #: ckanext/marsavin/templates/header.html:8
 #: ckanext/marsavin/templates/home/about.html:4
 #: ckanext/marsavin/templates/home/about.html:11
